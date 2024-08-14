@@ -1,6 +1,6 @@
 {
   "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/image-generation/page": "app/image-generation/page.js",
+  "/music-generation/page": "app/music-generation/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }

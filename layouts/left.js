@@ -31,7 +31,7 @@ const data = [
     img: "svg/image.svg",
   },
   {
-    title: "Music Generation",
+    title: "Music Generation (test)",
     pathname: "/music-generation",
     img: "svg/image.svg",
   },

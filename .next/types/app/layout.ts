@@ -1,4 +1,4 @@
-// File: /mnt/d/workplace/ssc/music.generator.fe/app/layout.js
+// File: /home/thinh/music.generator.fe/app/layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
