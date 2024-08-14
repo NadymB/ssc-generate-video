@@ -1,4 +1,4 @@
-// File: /home/thinh/music.generator.fe/app/page.js
+// File: D:\workplace\ssc\music.generator.fe\app\page.js
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

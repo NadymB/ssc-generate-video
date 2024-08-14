@@ -44,12 +44,12 @@ export default function ImageGeneration() {
             <div className="header_top">
               <h1 className="title">Music Generation</h1>
               <div className="setup">
-                <p className="info">
+                {/* <p className="info">
                   This will use <span className="count">4</span> tokens
-                </p>
-                <a className="sidebar__trigger" onClick={leftMenuHandler}>
+                </p> */}
+                {/* <a className="sidebar__trigger" onClick={leftMenuHandler}>
                   <img src="svg/option.svg" alt="" className="fn__svg" />
-                </a>
+                </a> */}
               </div>
             </div>
             <div className="header_bottom">
@@ -1116,6 +1116,7 @@ export default function ImageGeneration() {
             </div>
           </div>
         </div>
+
         <div className="generation__sidebar">
           <div className="sidebar_model">
             <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
@@ -1169,8 +1170,8 @@ export default function ImageGeneration() {
           </div>
           <div className="sidebar_details">
             <div className="number_of_images">
-              <div className="d-flex align-items-center justify-content-between">
-                <h4 className="title">Lyrics</h4>
+              <div className="d-flex align-items-center justify-content-between mb-2">
+                <h4 className="title generation_title">Lyrics</h4>
                 <label className="fn__toggle">
                   <span className="t_in">
                     <input
@@ -1184,12 +1185,13 @@ export default function ImageGeneration() {
                   Instrumental
                 </label>
               </div>
-
-              <div className="fn__quantity">
-                <a className="decrease" onClick={handleDecrement} />
-                <input type="number" defaultValue={count} max={20} min={1} />
-                {/* <span>{count}</span> */}
-                <a className="increase" onClick={handleIncrement} />
+              <div className="include_area">
+                <textarea id="fn__include_textarea" rows={3} />
+                <textarea
+                  className="fn__hidden_textarea"
+                  rows={3}
+                  tabIndex={-1}
+                />
               </div>
             </div>
             <div className="img_sizes">
