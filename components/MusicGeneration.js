@@ -1,11 +1,79 @@
 "use client";
 import React, { useState } from "react";
+import AudioPlayer from "react-modern-audio-player";
 import Link from "next/link";
+
+const song_1 = [
+  {
+    name: "music - 1",
+    writer: "react-modern-audio-player",
+    img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
+    src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
+    id: 1,
+  },
+];
+
+const song_2 = [
+  {
+    name: "music - 2",
+    writer: "react-modern-audio-player",
+    img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
+    src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
+    id: 1,
+  },
+];
+
+// const playlist = [
+//   {
+//     name: "music - 1",
+//     writer: "react-modern-audio-player",
+//     img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
+//     src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
+//     id: 1,
+//   },
+//   {
+//     name: "music - 2",
+//     writer: "react-modern-audio-player",
+//     img: "https://cdn.pixabay.com/photo/2021/09/06/16/45/nature-6602056__340.jpg",
+//     src: "https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3",
+//     id: 2,
+//   },
+//   {
+//     name: "music - 3",
+//     writer: "react-modern-audio-player",
+//     img: "https://cdn.pixabay.com/photo/2022/08/29/08/47/sky-7418364__340.jpg",
+//     src: "https://cdn.pixabay.com/audio/2022/08/03/audio_54ca0ffa52.mp3",
+//     id: 3,
+//   },
+//   {
+//     name: "music - 4",
+//     writer: "react-modern-audio-player",
+//     img: "https://cdn.pixabay.com/photo/2015/09/22/01/30/lights-951000__340.jpg",
+//     src: "https://cdn.pixabay.com/audio/2022/07/25/audio_3266b47d61.mp3",
+//     id: 4,
+//   },
+//   {
+//     name: "music - 5",
+//     writer: "react-modern-audio-player",
+//     img: "https://cdn.pixabay.com/photo/2022/08/28/18/03/dog-7417233__340.jpg",
+//     src: "https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3",
+//     id: 5,
+//   },
+// ];
 
 export default function ImageGeneration() {
   const [count, setCount] = useState(4);
   const [leftMenu, setLeftMenu] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
+
+  // new
+  const [progressType, setProgressType] = useState("waveform");
+  const [playerPlacement, setPlayerPlacement] = useState("static");
+
+  const [progressType2, setProgressType2] = useState("waveform");
+  const [playerPlacement2, setPlayerPlacement2] = useState("static");
+  // new
+
   const handleIsDropdown = () => {
     setIsDropdown(!isDropdown);
   };
@@ -39,57 +107,9 @@ export default function ImageGeneration() {
     <>
       <div className="techwave_fn_image_generation_page">
         <div className="generation__page">
-          {/* Generation Header */}
-          <div className="generation_header">
-            <div className="header_top">
-              <h1 className="title">Music Generation</h1>
-              <div className="setup">
-                {/* <p className="info">
-                  This will use <span className="count">4</span> tokens
-                </p> */}
-                {/* <a className="sidebar__trigger" onClick={leftMenuHandler}>
-                  <img src="svg/option.svg" alt="" className="fn__svg" />
-                </a> */}
-              </div>
-            </div>
-            <div className="header_bottom">
-              <div className="include_area">
-                <textarea id="fn__include_textarea" rows={1} />
-                <textarea
-                  className="fn__hidden_textarea"
-                  rows={1}
-                  tabIndex={-1}
-                />
-              </div>
-              <div className="exclude_area">
-                <textarea id="fn__exclude_textarea" rows={1} />
-                <textarea
-                  className="fn__hidden_textarea"
-                  rows={1}
-                  tabIndex={-1}
-                />
-              </div>
-              <div className="generate_section">
-                <label className="fn__toggle">
-                  <span className="t_in">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      id="negative_prompt"
-                    />
-                    <span className="t_slider" />
-                    <span className="t_content" />
-                  </span>
-                  Negative Prompt
-                </label>
-                <Link id="generate_it" href="#" className="techwave_fn_button">
-                  <span>Generate</span>
-                </Link>
-              </div>
-            </div>
-          </div>
           {/* !Generation Header */}
           <div className="generation_history">
+            {/* test */}
             <div className="fn__generation_item">
               <div className="item_header">
                 <div className="title_holder">
@@ -159,957 +179,71 @@ export default function ImageGeneration() {
                 </div>
               </div>
               <div className="item_list">
-                <ul className="fn__generation_list">
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/1.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                {/* <ul className="fn__generation_list"> */}
+                <div className="container-fluid">
+                  <div className="row w-100">
+                    <div className="col-11">
+                      <AudioPlayer
+                        playList={song_1}
+                        activeUI={{
+                          all: true,
+                          progress: progressType,
+                        }}
+                        placement={{
+                          player: playerPlacement,
+                        }}
+                      />
                     </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/2.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="col-1 d-flex align-items-center justify-content-center border">
+                      <button
+                        type="button"
+                        class="btn btn-labeled btn-warning d-flex align-items-center justify-content-between w-100 px-0"
+                      >
+                        <img
+                          src="img/icon/download.png"
+                          style={{ width: "24px" }}
+                        ></img>
+                        <span className="me-3">Download</span>
+                      </button>
                     </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/3.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                  </div>
+                </div>
+
+                <div className="container-fluid">
+                  <div className="row w-100 mt-5">
+                    <div className="col-11">
+                      <AudioPlayer
+                        playList={song_2}
+                        activeUI={{
+                          all: true,
+                          progress: progressType2,
+                        }}
+                        placement={{
+                          player: playerPlacement2,
+                        }}
+                      />
                     </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/4.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="col-1 d-flex align-items-center justify-content-center border">
+                      <button
+                        type="button"
+                        class="btn btn-labeled btn-warning d-flex align-items-center justify-content-between w-100 px-0"
+                      >
+                        <img
+                          src="img/icon/download.png"
+                          style={{ width: "24px" }}
+                        ></img>
+                        <span className="me-3">Download</span>
+                      </button>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
+
+                {/* </ul> */}
               </div>
             </div>
-            <div className="fn__generation_item">
-              <div className="item_header">
-                <div className="title_holder">
-                  <h2 className="prompt_title">
-                    Frozen Glacial Mystical spiral Lighthouse, a minimalist
-                    lighthouse landscape with a mystical , Watercolor Clipart,
-                    comic, strybk, full Illustration, 4k, sharp focus,
-                    watercolor, smooth soft skin, symmetrical, soft lighting,
-                    detailed face, concept art, muted colors
-                  </h2>
-                  <p className="negative_prompt_title">
-                    Negative prompt: Text, watermarks, off centre, blur, low
-                    res, out of frame, cut off, ugly
-                  </p>
-                </div>
-                <div className="item_options">
-                  <div className="fn__icon_options medium_size align_right">
-                    <Link href="#" className="fn__icon_button">
-                      <img src="svg/info.svg" alt="" className="fn__svg" />
-                    </Link>
-                    <div className="fn__icon_popup">
-                      <ul>
-                        <li>
-                          <span className="text">ArtShaper v3</span>
-                        </li>
-                        <li>
-                          <span className="text">512 x 512px</span>
-                        </li>
-                        <li>
-                          <span className="text">March 15, 2023</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="fn__icon_options medium_size align_right">
-                    <Link href="#" className="fn__icon_button">
-                      <span className="dots" />
-                    </Link>
-                    <div className="fn__icon_popup">
-                      <ul>
-                        <li>
-                          <Link href="#">Copy Prompt</Link>
-                        </li>
-                        <li>
-                          <Link href="#">Reuse Prompt</Link>
-                        </li>
-                        <li>
-                          <Link href="#">Upscale All</Link>
-                        </li>
-                        <li>
-                          <Link href="#">Download All</Link>
-                        </li>
-                        <li className="high_priorety">
-                          <Link href="#">Delete All</Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="item_list">
-                <ul className="fn__generation_list">
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/5.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/6.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/7.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/8.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="fn__generation_item">
-              <div className="item_header">
-                <div className="title_holder">
-                  <h2 className="prompt_title">
-                    Frozen Glacial Mystical spiral Lighthouse, a minimalist
-                    lighthouse landscape with a mystical , Watercolor Clipart,
-                    comic, strybk, full Illustration, 4k, sharp focus,
-                    watercolor, smooth soft skin, symmetrical, soft lighting,
-                    detailed face, concept art, muted colors
-                  </h2>
-                  <p className="negative_prompt_title">
-                    Negative prompt: Text, watermarks, off centre, blur, low
-                    res, out of frame, cut off, ugly
-                  </p>
-                </div>
-                <div className="item_options">
-                  <div className="fn__icon_options medium_size align_right">
-                    <Link href="#" className="fn__icon_button">
-                      <img src="svg/info.svg" alt="" className="fn__svg" />
-                    </Link>
-                    <div className="fn__icon_popup">
-                      <ul>
-                        <li>
-                          <span className="text">ArtShaper v3</span>
-                        </li>
-                        <li>
-                          <span className="text">512 x 512px</span>
-                        </li>
-                        <li>
-                          <span className="text">March 15, 2023</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="fn__icon_options medium_size align_right">
-                    <Link href="#" className="fn__icon_button">
-                      <span className="dots" />
-                    </Link>
-                    <div className="fn__icon_popup">
-                      <ul>
-                        <li>
-                          <Link href="#">Copy Prompt</Link>
-                        </li>
-                        <li>
-                          <Link href="#">Reuse Prompt</Link>
-                        </li>
-                        <li>
-                          <Link href="#">Upscale All</Link>
-                        </li>
-                        <li>
-                          <Link href="#">Download All</Link>
-                        </li>
-                        <li className="high_priorety">
-                          <Link href="#">Delete All</Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="item_list">
-                <ul className="fn__generation_list">
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/1.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/2.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#"> Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/3.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#"> Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="fn__gl_item">
-                    <div className="fn__gl__item">
-                      <div className="abs_item">
-                        <img src="img/gallery/4.jpg" alt="" />
-                        <div className="all_options">
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/download.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Original Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">Creative Upscaled Image</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscaled Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <img
-                                src="svg/upscale.svg"
-                                alt=""
-                                className="fn__svg"
-                              />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Creative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#"> Alternative Upscale</Link>
-                                </li>
-                                <li>
-                                  <Link href="#">HD Upscale</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="fn__icon_options medium_size">
-                            <Link href="#" className="fn__icon_button">
-                              <span className="dots" />
-                            </Link>
-                            <div className="fn__icon_popup">
-                              <ul>
-                                <li>
-                                  <Link href="#">Make Variations</Link>
-                                </li>
-                                <li className="high_priorety">
-                                  <Link href="#">Delete Image</Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="generation_more">
+            {/* end of test */}
+
+            <div className="generation_more" style={{ marginTop: "1000px" }}>
               <Link href="pricing" className="techwave_fn_button medium">
                 <span>Previous Generations</span>
               </Link>
@@ -1117,7 +251,7 @@ export default function ImageGeneration() {
           </div>
         </div>
 
-        <div className="generation__sidebar">
+        {/* <div className="generation__sidebar">
           <div className="sidebar_model">
             <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
               <Link href="#" className="model_open">
@@ -1270,7 +404,7 @@ export default function ImageGeneration() {
               </label>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

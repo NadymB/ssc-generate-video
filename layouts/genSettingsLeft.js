@@ -1,7 +1,20 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import "antd-tag-input/dist/style.css";
+import TagInput from "antd-tag-input";
+import { ReactTags } from "react-tag-autocomplete";
+import { Container, Typography, TextField, Box } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
+import { top100Films } from "./mockData";
+
+const suggestions = [
+  { value: 3, label: "Bananas" },
+  { value: 4, label: "Mangos" },
+  { value: 5, label: "Lemons" },
+  { value: 6, label: "Apricots", disabled: true },
+];
 
 const data = [
   {
@@ -89,46 +102,37 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   const toggleHandle = () => setToggle(!isToggle);
 
   //test
-  const [count, setCount] = useState(4);
-  const [leftMenu, setLeftMenu] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const handleIsDropdown = () => {
     setIsDropdown(!isDropdown);
   };
 
-  const leftMenuHandler = () => {
-    setLeftMenu(!leftMenu);
-    document.querySelector(".techwave_fn_wrapper");
-    //   .classList.toggle("fn__has_sidebar");
-  };
-
-  const handleIncrement = () => {
-    if (count < 20) {
-      setCount(count + 1);
-    }
-  };
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-
-  const handleInput = (event) => {
-    const val = event.target.value;
-    setSliderValue(val);
-  };
-
-  const [sliderValue, setSliderValue] = useState(9);
-
+  const [generalModeToggled, setGeneralModeToggled] = useState(false);
   const [instrumentalToggled, setInstrumentalToggled] = useState(false);
 
   const handleInstrumentalToggleChange = () => {
     setInstrumentalToggled(!instrumentalToggled);
   };
 
+  const handleGeneralModeToggleChange = () => {
+    setGeneralModeToggled(!generalModeToggled);
+    setInstrumentalToggled(false);
+  };
+
+  //new
+  const [selected, setSelected] = useState([]);
+
+  const defaultSelectedFilms = top100Films.filter((film) => film.year === 1994);
+  const [state, setState] = useState(defaultSelectedFilms);
+
+  const handleChange = (e, value) => {
+    console.log(value);
+    setState(value);
+  };
+
   useEffect(() => {
-    console.log(instrumentalToggled);
-  }, [instrumentalToggled]);
+    console.log("state:", state);
+  }, [state]);
 
   //test
 
@@ -138,7 +142,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
-          <Link href="/" className="fn_logo">
+          <Link href="/music-generation" className="fn_logo">
             <span className="full_logo">
               <img
                 src="img/logo-desktop-full.png"
@@ -180,7 +184,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
         {/* !logo (left panel) */}
         {/* content (left panel) */}
         <div className="leftpanel_content">
-          <div className="generation__sidebar">
+          <div className="generation__sidebar generation_mode_1">
             <div className="sidebar_model">
               <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
                 <Link href="#" className="model_open">
@@ -230,8 +234,35 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   </ul>
                 </div>
               </div>
+              <div className="mt-4 border-top">
+                <label className="fn__toggle mt-3">
+                  <span
+                    className="t_in"
+                    style={{
+                      width: "40px",
+                      height: "25px",
+                    }}
+                  >
+                    <input
+                      // defaultChecked
+                      type="checkbox"
+                      id="negative_prompt"
+                      checked={generalModeToggled}
+                      onChange={handleGeneralModeToggleChange}
+                    />
+                    <span className="t_slider" />
+                    <span className="t_content" />
+                  </span>
+                  <span className="fs-5">Custom</span>
+                </label>
+              </div>
             </div>
-            <div className="sidebar_details">
+            {/* default mode */}
+            <div
+              className={`sidebar_details tab_1 ${
+                generalModeToggled ? "hide" : ""
+              }`}
+            >
               {/* lyrics */}
               <div className="lyrics_of_music">
                 <div className="d-flex align-items-center justify-content-between mb-2 mt-4">
@@ -259,11 +290,97 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     Instrumental
                   </label>
                 </div>
-                <div className="include_area">
-                  <textarea id="fn__include_textarea" rows={3} />
+                <div
+                  className={`include_area ${
+                    instrumentalToggled ? "hide" : ""
+                  }`}
+                >
+                  <textarea
+                    className="border border-secondary"
+                    id="fn__include_textarea"
+                    rows={6}
+                  />
                   <textarea
                     className="fn__hidden_textarea"
-                    rows={3}
+                    rows={6}
+                    tabIndex={-1}
+                  />
+                </div>
+              </div>
+              {/* Song description */}
+              <div className="song_decription">
+                <div className="d-flex align-items-center justify-content-start mb-2 mt-4">
+                  <h4 className="title generation_title">
+                    Song description
+                    <span
+                      className="fn__tooltip"
+                      title="Enter the song description that you want to generate."
+                    >
+                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                    </span>
+                  </h4>
+                </div>
+
+                <div className="include_area">
+                  <textarea
+                    id="fn__include_textarea"
+                    className="border border-secondary"
+                    rows={6}
+                  ></textarea>
+                  <textarea
+                    className="fn__hidden_textarea"
+                    rows={6}
+                    tabIndex={-1}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* custom mode */}
+            <div
+              className={`sidebar_details tab_1 ${
+                !generalModeToggled ? "hide" : ""
+              }`}
+            >
+              {/* lyrics */}
+              <div className="lyrics_of_music">
+                <div className="d-flex align-items-center justify-content-between mb-2 mt-4">
+                  <h4 className="title generation_title">
+                    Lyrics
+                    <span
+                      className="fn__tooltip"
+                      title="Enter the lyrics of music that you want to generate."
+                    >
+                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                    </span>
+                  </h4>
+                  <label className="fn__toggle">
+                    <span className="t_in">
+                      <input
+                        // defaultChecked
+                        type="checkbox"
+                        id="negative_prompt"
+                        checked={instrumentalToggled}
+                        onChange={handleInstrumentalToggleChange}
+                      />
+                      <span className="t_slider" />
+                      <span className="t_content" />
+                    </span>
+                    Instrumental
+                  </label>
+                </div>
+                <div
+                  className={`include_area ${
+                    instrumentalToggled ? "hide" : ""
+                  }`}
+                >
+                  <textarea
+                    className="border border-secondary"
+                    id="fn__include_textarea"
+                    rows={6}
+                  />
+                  <textarea
+                    className="fn__hidden_textarea"
+                    rows={6}
                     tabIndex={-1}
                   />
                 </div>
@@ -281,15 +398,40 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     </span>
                   </h4>
                 </div>
-                <div className="include_area">
-                  <textarea id="fn__include_textarea" rows={3}></textarea>
-                  <textarea
-                    className="fn__hidden_textarea"
-                    rows={3}
-                    tabIndex={-1}
+                <Container className="w-100 px-0">
+                  <Autocomplete
+                    className="w-100 border border-secondary"
+                    id="combo-box-demo"
+                    multiple
+                    options={top100Films}
+                    getOptionLabel={(option) => String(option.title)}
+                    style={{ width: 300 }}
+                    value={state || []}
+                    defaultValue={[top100Films[0]]}
+                    renderInput={(params) => (
+                      <TextField
+                        className="tags-input-field"
+                        {...params}
+                        // label="Choose styles of music"
+                        variant="outlined"
+                        name="combo-box-demo"
+                      />
+                    )}
+                    onChange={handleChange}
                   />
-                </div>
+                  {/* {state && (
+                    <>
+                      <Typography variant="h2">{`Фильм: ${state.map(
+                        (item) => item.title
+                      )}`}</Typography>
+                      <Typography variant="h2">{`Год выпуска: ${state.map(
+                        (item) => item.year
+                      )}`}</Typography>
+                    </>
+                  )} */}
+                </Container>
               </div>
+
               {/* title of music */}
               <div className="title_of_music">
                 <div className="d-flex align-items-center justify-content-between mb-2 mt-4">
@@ -312,7 +454,9 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   />
                 </div>
               </div>
-              <div className="img_sizes">
+
+              {/* others */}
+              {/* <div className="img_sizes">
                 <h4 className="title">Image Dimensions</h4>
                 <div className="img_size_select">
                   <select>
@@ -390,7 +534,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     <span className="t_content" />
                   </span>
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

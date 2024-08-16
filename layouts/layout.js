@@ -6,8 +6,11 @@ import Header from "./header";
 import Left from "./left";
 import GenSettingsLeft from "./genSettingsLeft";
 import Search from "./search";
+import { usePathname } from "next/navigation";
 
 export default function Layout({ children, leftMenu }) {
+  const pathname = usePathname(); // get router info
+
   useEffect(() => {
     setTimeout(() => {
       imageToSvg();
@@ -56,14 +59,26 @@ export default function Layout({ children, leftMenu }) {
           <Header searchToggle={searchToggle} />
           {/* !HEADER */}
           {/* LEFT PANEL */}
-          {/* <Left
-            activeTrueFalse={activeTrueFalse}
-            activeMobileMenu={activeMobileMenu}
-          /> */}
-          <GenSettingsLeft
-            activeTrueFalse={activeTrueFalse}
-            activeMobileMenu={activeMobileMenu}
-          />
+          {/* LEFT PANEL */}
+          {/* {pathname === "/user-profile" && (
+            <Left
+              activeTrueFalse={activeTrueFalse}
+              activeMobileMenu={activeMobileMenu}
+            />
+          )} */}
+
+          {pathname === "/music-generation" ? (
+            <GenSettingsLeft
+              activeTrueFalse={activeTrueFalse}
+              activeMobileMenu={activeMobileMenu}
+            />
+          ) : (
+            <Left
+              activeTrueFalse={activeTrueFalse}
+              activeMobileMenu={activeMobileMenu}
+            />
+          )}
+          {/* !LEFT PANEL */}
           {/* !LEFT PANEL */}
           {/* CONTENT */}
           <div className="techwave_fn_content">

@@ -94,7 +94,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
-          <Link href="/" className="fn_logo">
+          <Link href="/music-generation" className="fn_logo">
             <span className="full_logo">
               <img
                 src="img/logo-desktop-full.png"
