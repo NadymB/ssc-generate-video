@@ -1,1 +1,4 @@
-{}
+{
+  "/music-generation/page": "app/music-generation/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}

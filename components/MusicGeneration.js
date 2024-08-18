@@ -1,27 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import AudioPlayer from "react-modern-audio-player";
+// import AudioPlayer from "react-modern-audio-player";
 import Link from "next/link";
+// import Player from "react-wavy-audio";
+import "wave-audio-path-player";
+import WaveSurferPlayer from "./WavesurferPlayer";
 
-const song_1 = [
-  {
-    name: "music - 1",
-    writer: "react-modern-audio-player",
-    img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
-    src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
-    id: 1,
-  },
-];
+const song_1 = {
+  name: "music - 1",
+  writer: "react-modern-audio-player",
+  img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
+  src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
+  id: 1,
+};
 
-const song_2 = [
-  {
-    name: "music - 2",
-    writer: "react-modern-audio-player",
-    img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
-    src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
-    id: 1,
-  },
-];
+const song_2 = {
+  name: "music - 2",
+  writer: "react-modern-audio-player",
+  img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
+  src: "https://cdn.pixabay.com/audio/2022/08/03/audio_54ca0ffa52.mp3",
+  id: 2,
+};
 
 // const playlist = [
 //   {
@@ -180,7 +179,7 @@ export default function ImageGeneration() {
               </div>
               <div className="item_list">
                 {/* <ul className="fn__generation_list"> */}
-                <div className="container-fluid">
+                {/* <div className="container-fluid">
                   <div className="row w-100">
                     <div className="col-11">
                       <AudioPlayer
@@ -235,6 +234,17 @@ export default function ImageGeneration() {
                         <span className="me-3">Download</span>
                       </button>
                     </div>
+                  </div>
+                </div> */}
+                <div className="container-fluid">
+                  <div className="row w-100">
+                    <WaveSurferPlayer song={song_1} />
+                  </div>
+                </div>
+
+                <div className="container-fluid">
+                  <div className="row w-100">
+                    <WaveSurferPlayer song={song_2} />
                   </div>
                 </div>
 

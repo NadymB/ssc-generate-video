@@ -20949,9 +20949,138 @@ fieldset:disabled .btn {
   display: none;
 }
 
-
-.rm-audio-player-provider .prev-n-next-button, .drawer-container  {
+.rm-audio-player-provider .prev-n-next-button,
+.drawer-container {
   display: none;
 }
 
+#waveform {
+  background-color: #fff;
+}
 
+/* WAVE AUDIO PLAYER */
+.audio-image {
+  height: 10rem;
+  width: 100%;
+  border-radius: 10px;
+  margin: 2rem 0;
+  border: 0.2rem solid white;
+}
+.sub-container p {
+  color: #fff;
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+}
+.wavesurfer-container {
+  margin: 1rem 0;
+}
+.wavesurfer-controls {
+  display: flex;
+  margin-top: 1.5rem;
+}
+.wavesurfer-controls button {
+  font-size: 1.5rem;
+  color: white;
+  /* margin: 0 0.5rem; */
+
+  /* padding; */
+}
+
+.wavesurfer-controls {
+  margin-top: 0px !important;
+}
+
+.wavesurfer-controls button:nth-child(2),
+.wavesurfer-controls button:nth-child(3) {
+  background-color: #f90;
+  background: linear-gradient(210deg, #f90, rgb(227, 180, 114));
+  border-radius: 2rem;
+  padding: 0.8rem;
+  background: #191b28;
+  box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40;
+}
+
+@media screen and (max-width: 998px) {
+  .sub-container {
+    height: 32rem;
+    width: 80vw;
+  }
+  .audio-image {
+    height: 13rem;
+    width: 67vw;
+  }
+}
+
+/* audio player button */
+.audio-player-btn-container {
+  display: flex;
+  flex-basis: 33.33%;
+  justify-content: center;
+}
+
+/* Actual Play Button Styles */
+.play-button {
+  align-items: center;
+  border: 2px solid #ff0000; /* Replace with actual $button-stroke and $button-color */
+  border-radius: 50%;
+  box-shadow: 0 0 1px 0px rgba(255, 255, 255, 1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: 50px; /* Replace with actual $button-size */
+  opacity: 1;
+  overflow: hidden;
+  transition: all 0.25s ease-out, background-color 0.5s ease-in-out;
+  text-decoration: none;
+  z-index: 1;
+  width: 50px; /* Replace with actual $button-size */
+}
+
+.play-button:hover {
+  background-color: #fff; /* Replace with actual $button-bg-color */
+}
+
+.play-arrow {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 10px 0 10px 16px; /* Replace with actual $arrow-base-size and calculated value */
+  border-top-color: transparent;
+  border-left-color: #fff; /* Replace with actual $button-color */
+  display: block;
+  height: 0;
+  left: 3.33px; /* Replace with actual $arrow-base-size/3 */
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
+  text-indent: -20em;
+  width: 0;
+}
+
+.play-text {
+  text-transform: uppercase;
+  color: #ff0000; /* Replace with actual $button-color */
+  font-size: 10px; /* Replace with actual $button-size/5 */
+}
+
+/* New defaults for NYT button */
+.play-button-nyt {
+  border: 2px solid transparent; /* Replace with actual $button-stroke */
+  box-shadow: 0 0 1px 0px rgba(255, 255, 255, 0);
+}
+
+.play-button-nyt .play-arrow {
+  border-width: 20px 0 20px 32px; /* Replace with actual $arrow-base-size*2 and calculated value */
+  transition: transform 0.25s ease-in;
+}
+
+.play-button-nyt:hover {
+  background-color: transparent;
+  border: 2px solid #ff0000; /* Replace with actual $button-stroke and $button-color */
+  box-shadow: 0 0 1px 0px rgba(255, 255, 255, 1);
+  transition: all 0.25s ease-out;
+}
+
+.play-button-nyt:hover .play-arrow {
+  transform: scale(0.6, 0.6);
+  transition: transform 0.25s ease-out;
+}

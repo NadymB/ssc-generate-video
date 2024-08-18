@@ -25,7 +25,10 @@
     "react-dom": "18.2.0",
     "react-modern-audio-player": "^1.4.0-rc.2",
     "react-tag-autocomplete": "^7.3.0",
+    "react-wavy-audio": "^1.0.3",
     "screenfull": "^6.0.2",
+    "wave-audio-path-player": "^0.0.1",
+    "wavesurfer.js": "^7.8.3",
     "waypoints": "^4.0.1"
   }
 }
