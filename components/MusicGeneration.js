@@ -237,16 +237,22 @@ export default function ImageGeneration() {
                   </div>
                 </div> */}
                 <div className="container-fluid">
-                  <div className="row w-100">
+                  <div className="row w-100 my-2">
+                    <span className="text-white">1.</span>
                     <WaveSurferPlayer song={song_1} />
                   </div>
-                </div>
 
-                <div className="container-fluid">
-                  <div className="row w-100">
+                  <div className="row w-100 my-2">
+                    <span className="text-white">2.</span>
                     <WaveSurferPlayer song={song_2} />
                   </div>
                 </div>
+
+                {/* <div className="container-fluid">
+                  <div className="row w-100">
+                    <WaveSurferPlayer song={song_2} />
+                  </div>
+                </div> */}
 
                 {/* </ul> */}
               </div>

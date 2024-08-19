@@ -1,177 +1,225 @@
-"use client";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import WaveSurfer from "wavesurfer.js";
-import {
-  BsFillStopFill,
-  BsFillPlayFill,
-  BsSkipForward,
-  BsSkipBackward,
-} from "react-icons/bs";
+import React, { useEffect, useRef, useState } from "react";
+import WaveSurfer from "wavesurfer";
+// import uuidv4 from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 
-export default function WaveSurferPlayer({ song }) {
-  //   console.log("song", song);
+import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import StopIcon from "@material-ui/icons/Stop";
+import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
+import ShareIcon from "@material-ui/icons/Share";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { green, red, blue } from "@material-ui/core/colors";
 
-  const waveformRef = useRef(null);
-  let wavesurfer;
-  const [playPause, setPlayPause] = useState();
+import PauseIcon from "@material-ui/icons/Pause";
+import Grid from "@material-ui/core/Grid";
 
-  const [currentTime, setCurrentTime] = useState("00:00");
-  const [duration, setDuration] = useState("00:00");
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import { Shadows_Into_Light } from "next/font/google";
+import Button from "@mui/material/Button";
+
+const faces = [
+  "http://i.pravatar.cc/300?img=1",
+  "http://i.pravatar.cc/300?img=2",
+  "http://i.pravatar.cc/300?img=3",
+  "http://i.pravatar.cc/300?img=4",
+];
+
+const useStyles = makeStyles((theme) => ({
+  card: {
+    maxWidth: 600,
+    minWidth: 240,
+    margin: "auto",
+    transition: "0.3s",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
+    },
+  },
+  media: {
+    width: "100%",
+  },
+  list: {
+    padding: 0,
+  },
+  listItem: {
+    //paddingBottom: 0
+  },
+  buttons: {
+    padding: theme.spacing(1),
+  },
+  controls: {
+    minWidth: "100px",
+  },
+  icon: {
+    height: 18,
+    width: 18,
+  },
+  avatar: {
+    display: "inline-block",
+  },
+}));
+/*
+avatar username ostalo layout sa grid
+
+*/
+function WaveSurferPlayer({ song }) {
+  useEffect(() => {
+    // console.log("file_test:", file);
+    console.log("song:", song);
+  }, []);
+
+  const wavesurfer = useRef(null);
+
+  const [playerReady, setPlayerReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const wavesurferId = `wavesurfer--${uuidv4()}`;
 
   useEffect(() => {
-    wavesurfer = WaveSurfer.create({
-      container: waveformRef.current,
-      waveColor: [
-        // an array of colors, to be applied as gradient color stops to the waveform.
-        "#ced4da",
-        // "#60efff",
-        // // "red",
-        // // "green",
-        // // "purple",
-        // // "yellow",
-        // "rgba(0,255,255,.5)",
-      ],
-      progressColor: "#343a40",
-      //   url: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
-      url: song.src,
-      dragToSeek: true,
-      width: "35vw",
-      hideScrollbar: true,
-      normalize: true,
-      barGap: 1,
-      height: 60,
-      barHeight: 20,
-      barRadius: 20,
-      barWidth: 5,
-    });
+    const loadWaveSurfer = async () => {
+      //   const { default: WaveSurfer } = await import("wavesurfer.js");
+      if (song.src && !wavesurfer.current) {
+        wavesurfer.current = WaveSurfer.create({
+          container: `#${wavesurferId}`,
+          waveColor: "grey",
+          progressColor: "#4BB543",
+          height: 70,
+          cursorWidth: 1,
+          cursorColor: "lightgray",
+          barWidth: 1,
+          barGap: 5,
+          normalize: true,
+          responsive: true,
+          fillParent: true,
+        });
 
-    // // new
-    // // wavesurfer.on("audioprocess", () => {
-    // //   setCurrentTime(formatTime(wavesurfer.getCurrentTime()));
-    // // });
+        wavesurfer.current.load(song.src);
 
-    // wavesurfer.on("ready", () => {
-    //   setDuration(formatTime(wavesurfer.getDuration()));
-    // });
-    // // new
+        wavesurfer.current.on("ready", () => {
+          setPlayerReady(true);
+        });
 
-    // wavesurfer.on("finish", () => {
-    //   console.log("song finished");
-    // });
+        const handleResize = wavesurfer.current.util.debounce(() => {
+          wavesurfer.current.empty();
+          wavesurfer.current.drawBuffer();
+        }, 150);
 
-    // // wavesurfer.on("ready", () => {
-    // //   console.log("Waveform is ready");
-    // //   setDuration(formatTime(wavesurfer.getDuration()));
-    // // });
-    wavesurfer.on("finish", () => {
-      console.log("song finished");
-    });
-
-    wavesurfer.on("ready", () => {
-      console.log("Waveform is ready");
-    });
-    return () => {
-      wavesurfer.destroy();
+        wavesurfer.current.on("play", () => setIsPlaying(true));
+        wavesurfer.current.on("pause", () => setIsPlaying(false));
+        window.addEventListener("resize", handleResize, false);
+      }
     };
-  }, []);
-  const handleStop = () => {
-    if (wavesurfer) {
-      wavesurfer.stop();
-    }
-  };
-  const handlePause = () => {
-    if (wavesurfer) {
-      wavesurfer.playPause();
-    }
-  };
+    loadWaveSurfer();
+    // }
+  }, [wavesurfer, song.src]);
 
-  const handleSkipForward = () => {
-    if (wavesurfer) {
-      wavesurfer.skip(2);
-    }
-  };
-  const handleSkipBack = () => {
-    if (wavesurfer) {
-      wavesurfer.skip(-2);
-    }
-  };
-
-  //   new
   //   useEffect(() => {
-  //     wavesurfer = WaveSurfer.create({
-  //       container: "#waveform",
-  //       waveColor: "#ddd",
-  //       progressColor: "#007bff",
-  //     });
+  //     console.log("file", file);
+  //     if (file) {
+  //       wavesurfer.current.load(file.blobURL);
+  //     }
+  //   }, [file]);
 
-  //     wavesurfer.on("audioprocess", () => {
-  //       setCurrentTime(formatTime(wavesurfer.getCurrentTime()));
-  //     });
-
-  //     wavesurfer.on("ready", () => {
-  //       setDuration(formatTime(wavesurfer.getDuration()));
-  //     });
-
-  //     return () => wavesurfer.destroy(); // Cleanup on component unmount
-  //   }, []);
-
-  const formatTime = (time) => {
-    return [
-      Math.floor((time % 3600) / 60), // minutes
-      ("00" + Math.floor(time % 60)).slice(-2), // seconds
-    ].join(":");
+  const togglePlayback = () => {
+    if (!isPlaying) {
+      wavesurfer.current.play();
+    } else {
+      wavesurfer.current.pause();
+    }
   };
+
+  const stopPlayback = () => wavesurfer.current.stop();
+
+  const classes = useStyles();
+
+  let transportPlayButton;
+
+  if (!isPlaying) {
+    transportPlayButton = (
+      <IconButton onClick={togglePlayback}>
+        <PlayArrowIcon className={classes.icon} />
+      </IconButton>
+    );
+  } else {
+    transportPlayButton = (
+      <IconButton onClick={togglePlayback}>
+        <PauseIcon className={classes.icon} />
+      </IconButton>
+    );
+  }
 
   return (
-    <div className="container">
-      <div className="sub-container">
-        {/* <Image
-          src="https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg"
-          width={1000}
-          height={1000}
-          className="audio-image"
-        /> */}
-        <p>Oceans</p>
-
-        <div>
-          <div className="waveform__counter" style={{ color: "#fff" }}>
-            {currentTime}
-          </div>
-          <div className="waveform__duration" style={{ color: "#fff" }}>
-            {duration}
-          </div>
-        </div>
-
-        <div className="d-flex border align-items-center">
-          <div
-            ref={waveformRef}
-            className="wavesurfer-container w-100"
-            style={{ backgroundColor: "#fff" }}
-          />
-          <div className="wavesurfer-controls">
-            {/* <button onClick={handleSkipBack}>
-            <BsSkipBackward />
-          </button> */}
-            {/* <button onClick={handlePause}>
-              <BsFillPlayFill />
-            </button> */}
-            <div class="audio-player-btn-container">
-              <div class="play-button play-button-nyt">
-                <span onClick={handlePause} class="play-arrow">
-                  Play
-                </span>
-              </div>
+    <>
+      <Card className={`${classes.card} card-sound-wave`}>
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          style={{ minWidth: "100% !important" }}
+        >
+          <Grid item xs={1}>
+            {transportPlayButton}
+            <IconButton onClick={stopPlayback}>
+              <StopIcon className={classes.icon} />
+            </IconButton>
+          </Grid>
+          {/* waveform */}
+          <Grid item xs={10} id={wavesurferId} />
+          <Grid item xs={1}>
+            <div className="d-flex align-items-center justify-content-center w-100">
+              <Button variant="contained" color="success">
+                Download
+              </Button>
             </div>
-            {/* <button onClick={handleStop}>
-            <BsFillStopFill />
-          </button>
-          <button onClick={handleSkipForward}>
-            <BsSkipForward />
-          </button> */}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Grid>
+        </Grid>
+        {/* controls */}
+        {/* <Grid item container className={classes.buttons}> */}
+        {/* <Grid item xs={5}>
+            {transportPlayButton}
+            <IconButton onClick={stopPlayback}>
+              <StopIcon className={classes.icon} />
+            </IconButton>
+          </Grid> */}
+        {/* <Grid item xs={7} container justify="space-around">
+            <Grid item>
+              <IconButton>
+                <FavoriteIcon
+                  style={{ color: blue[500] }}
+                  className={classes.icon}
+                />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton>
+                <ShareIcon
+                  style={{ color: red[500] }}
+                  className={classes.icon}
+                />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton>
+                <ChatBubbleIcon
+                  style={{ color: green[500] }}
+                  className={classes.icon}
+                />
+              </IconButton>
+            </Grid>
+          </Grid> */}
+        {/* </Grid> */}
+      </Card>
+    </>
   );
 }
+
+export default WaveSurferPlayer;
