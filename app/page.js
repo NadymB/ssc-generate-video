@@ -1,11 +1,13 @@
-import Index from '@/components/Index'
-import Layout from '@/layouts/layout'
+import Index from "@/components/Index";
+import Layout from "@/layouts/layout";
+import { AuthProvider } from "@/context/authContext";
 
 export default function Home() {
-  
   return (
-    <Layout>
-      <Index />
-    </Layout>
-  )
+    <AuthProvider>
+      <Layout>
+        <Index />
+      </Layout>
+    </AuthProvider>
+  );
 }

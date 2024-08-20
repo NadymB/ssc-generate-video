@@ -90,7 +90,7 @@ export default function Header({ searchToggle }) {
                 title="Search"
                 onClick={searchToggle}
               >
-                <img src="svg/search.svg" alt="" className="fn__svg" />
+                <img src="../svg/search.svg" alt="" className="fn__svg" />
               </a>
               <div className="item_popup" data-position="right">
                 <input type="text" placeholder="Search" />
@@ -108,7 +108,7 @@ export default function Header({ searchToggle }) {
                 className="item_opener fn__tooltip"
                 title="Notifications"
               >
-                <img src="svg/bell.svg" alt="" className="fn__svg" />
+                <img src="../svg/bell.svg" alt="" className="fn__svg" />
               </Menu.Button>
               <Menu.Items as="div" className="item_popup" data-position="right">
                 <div className="ntfc_header">
@@ -156,12 +156,12 @@ export default function Header({ searchToggle }) {
                 onClick={toggleFullscreen}
               >
                 <img
-                  src="svg/fullscreen.svg"
+                  src="../svg/fullscreen.svg"
                   alt=""
                   className="fn__svg f_screen"
                 />
                 <img
-                  src="svg/smallscreen.svg"
+                  src="../svg/smallscreen.svg"
                   alt=""
                   className="fn__svg s_screen"
                 />
@@ -176,7 +176,7 @@ export default function Header({ searchToggle }) {
                 className="item_opener fn__tooltip"
                 title="Language"
               >
-                <img src="svg/language.svg" alt="" className="fn__svg" />
+                <img src="../svg/language.svg" alt="" className="fn__svg" />
               </Menu.Button>
               <Menu.Items as="div" className="item_popup" data-position="right">
                 <ul>
@@ -201,12 +201,12 @@ export default function Header({ searchToggle }) {
                 onClick={toggleSkin}
               >
                 <img
-                  src={skin === "light" ? "svg/sun.svg" : "svg/moon.svg"}
+                  src={skin === "light" ? "../svg/sun.svg" : "../svg/moon.svg"}
                   alt=""
                   className="fn__svg dark_mode"
                 />
                 <img
-                  src={skin === "light" ? "svg/moon.svg" : "svg/sun.svg"}
+                  src={skin === "light" ? "../svg/moon.svg" : "../svg/sun.svg"}
                   alt=""
                   className="fn__svg light_mode"
                 />
@@ -221,7 +221,7 @@ export default function Header({ searchToggle }) {
                 className="user_opener fn__tooltip"
                 title="User Profile"
               >
-                <img src="img/user/user_2.webp" alt="" />
+                <img src="../img/user/user_2.webp" alt="" />
               </Menu.Button>
               <Menu.Items as="div" className="item_popup" data-position="right">
                 <div className="user_profile">
@@ -248,7 +248,7 @@ export default function Header({ searchToggle }) {
                       <Link href="/user-profile">
                         <span className="icon">
                           <img
-                            src="svg/person.svg"
+                            src="../svg/person.svg"
                             alt=""
                             className="fn__svg"
                           />
@@ -260,7 +260,7 @@ export default function Header({ searchToggle }) {
                       <Link href="/user-settings">
                         <span className="icon">
                           <img
-                            src="svg/setting.svg"
+                            src="../svg/setting.svg"
                             alt=""
                             className="fn__svg"
                           />
@@ -272,7 +272,7 @@ export default function Header({ searchToggle }) {
                       <Link href="/user-billing">
                         <span className="icon">
                           <img
-                            src="svg/billing.svg"
+                            src="../svg/billing.svg"
                             alt=""
                             className="fn__svg"
                           />
@@ -284,7 +284,7 @@ export default function Header({ searchToggle }) {
                       <Link href="/sign-in">
                         <span className="icon">
                           <img
-                            src="svg/logout.svg"
+                            src="../svg/logout.svg"
                             alt=""
                             className="fn__svg"
                           />

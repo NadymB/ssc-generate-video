@@ -1,13 +1,50 @@
-import React from "react";
+"use client"; // Add this directive to mark the component as a Client Component
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { loginUserApi } from "../app/api/Auth"; // Adjust the import path based on your folder structure
 
 export default function Signin() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("authTokens");
+    if (token) {
+      router.push("/"); // Redirect to home or any other protected page
+    }
+  }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const data = {
+      username,
+      password,
+    };
+
+    try {
+      const response = await loginUserApi(data);
+      // toast.success("Đăng nhập thành công");
+      let token = response?.data?.data?.token;
+      localStorage.setItem("authTokens", token);
+      console.log("Login successful:", token);
+      // Handle successful login (e.g., redirect or show success message)
+      router.push("/"); // Redirect to home or any other protected page
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login failure (e.g., show error message)
+    }
+  };
+
   return (
     <>
       <div className="techwave_fn_sign">
         <div className="sign__content">
           <h1 className="logo">Designed by Frenify</h1>
-          <form className="login">
+          <form className="login" onSubmit={handleLogin}>
             <div className="form__content">
               <div className="form__title">Sign In</div>
               <div className="form__username">
@@ -19,6 +56,8 @@ export default function Signin() {
                   autoCapitalize="off"
                   autoComplete="username"
                   aria-describedby="login-message"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="form__pass">
@@ -31,11 +70,13 @@ export default function Signin() {
                   id="user_password"
                   autoComplete="current-password"
                   spellCheck="false"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="form__submit">
                 <label className="fn__submit">
-                  <input type="submit" name="submit" defaultValue="Sign In" />
+                  <input type="submit" name="submit" value="Sign In" />
                 </label>
               </div>
               <div className="form__alternative">
@@ -44,9 +85,6 @@ export default function Signin() {
                   <div className="text">Or</div>
                   <div className="line" />
                 </div>
-                {/* <Link href="#" className="techwave_fn_button">
-                  <span>Sign in with Google</span>
-                </Link> */}
               </div>
             </div>
           </form>

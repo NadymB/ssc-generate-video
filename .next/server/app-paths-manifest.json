@@ -1,5 +1,5 @@
 {
   "/not-found": "app/not-found.js",
-  "/music-generation/page": "app/music-generation/page.js",
-  "/(user)/sign-in/page": "app/(user)/sign-in/page.js"
+  "/(user)/sign-in/page": "app/(user)/sign-in/page.js",
+  "/page": "app/page.js"
 }

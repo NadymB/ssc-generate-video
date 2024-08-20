@@ -7,43 +7,43 @@ const data = [
   {
     title: "Home",
     pathname: "/",
-    img: "svg/home.svg",
+    img: "../svg/home.svg",
   },
   {
     title: "Community Feed",
     pathname: "/community-feed",
-    img: "svg/community.svg",
+    img: "../svg/community.svg",
   },
   {
     title: "Personal Feed",
     pathname: "/personal-feed",
-    img: "svg/person.svg",
+    img: "../svg/person.svg",
     counter: 48,
   },
   {
     title: "Finetuned Models",
     pathname: "/models",
-    img: "svg/cube.svg",
+    img: "../svg/cube.svg",
   },
   {
     title: "Image Generation",
     pathname: "/image-generation",
-    img: "svg/image.svg",
+    img: "../svg/image.svg",
   },
   {
     title: "Music Generation (test)",
     pathname: "/music-generation",
-    img: "svg/image.svg",
+    img: "../svg/image.svg",
   },
   {
     title: "AI Chat Bot",
     pathname: "/ai-chat-bot",
-    img: "svg/chat.svg",
+    img: "../svg/chat.svg",
   },
   {
     title: "Pricing",
     pathname: "/pricing",
-    img: "svg/dollar.svg",
+    img: "../svg/dollar.svg",
   },
   {
     title: "Documentation",
@@ -78,7 +78,7 @@ const data = [
   {
     title: "Log Out",
     pathname: "/sign-in",
-    img: "svg/logout.svg",
+    img: "../svg/logout.svg",
   },
 ];
 
@@ -97,24 +97,24 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
           <Link href="/music-generation" className="fn_logo">
             <span className="full_logo">
               <img
-                src="img/logo-desktop-full.png"
+                src="../img/logo-desktop-full.png"
                 alt=""
                 className="desktop_logo"
               />
               <img
-                src="img/logo-retina-full.png"
+                src="../img/logo-retina-full.png"
                 alt=""
                 className="retina_logo"
               />
             </span>
             <span className="short_logo">
               <img
-                src="img/logo-desktop-mini.png"
+                src="../img/logo-desktop-mini.png"
                 alt=""
                 className="desktop_logo"
               />
               <img
-                src="img/logo-retina-mini.png"
+                src="../img/logo-retina-mini.png"
                 alt=""
                 className="retina_logo"
               />
@@ -124,13 +124,13 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
             className="fn__closer fn__icon_button desktop_closer"
             onClick={activeTrueFalse}
           >
-            <img src="svg/arrow.svg" alt="" className="fn__svg" />
+            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
           </a>
           <a
             className="fn__closer fn__icon_button mobile_closer"
             onClick={activeMobileMenu}
           >
-            <img src="svg/arrow.svg" alt="" className="fn__svg" />
+            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
           </a>
         </div>
         {/* !logo (left panel) */}
@@ -217,11 +217,11 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                   onClick={toggleHandle}
                 >
                   <span className="icon">
-                    <img src="svg/question.svg" alt="" className="fn__svg" />
+                    <img src="../svg/question.svg" alt="" className="fn__svg" />
                   </span>
                   <span className="text">FAQ &amp; Help</span>
                   <span className="trigger">
-                    <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                    <img src="../svg/arrow.svg" alt="" className="fn__svg" />
                   </span>
                 </a>
                 <ul
