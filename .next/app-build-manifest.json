@@ -1,5 +1,11 @@
 {
   "pages": {
+    "/music-generation/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/music-generation/page.css",
+      "static/chunks/app/music-generation/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,6 +22,12 @@
       "static/chunks/main-app.js",
       "static/css/app/(user)/sign-in/page.css",
       "static/chunks/app/(user)/sign-in/page.js"
+    ],
+    "/management/teams/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/management/teams/page.css",
+      "static/chunks/app/management/teams/page.js"
     ],
     "/page": [
       "static/chunks/webpack.js",

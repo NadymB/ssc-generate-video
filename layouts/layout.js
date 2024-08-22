@@ -7,6 +7,7 @@ import Left from "./left";
 import GenSettingsLeft from "./genSettingsLeft";
 import Search from "./search";
 import { usePathname } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 
 export default function Layout({ children, leftMenu }) {
   const pathname = usePathname(); // get router info
@@ -67,7 +68,7 @@ export default function Layout({ children, leftMenu }) {
             />
           )} */}
 
-          {pathname === "/music-generation" ? (
+          {pathname === "/music-generation/" ? (
             <GenSettingsLeft
               activeTrueFalse={activeTrueFalse}
               activeMobileMenu={activeMobileMenu}
@@ -83,10 +84,13 @@ export default function Layout({ children, leftMenu }) {
           {/* CONTENT */}
           <div className="techwave_fn_content">
             {/* PAGE (all pages go inside this div) */}
-            <div className="techwave_fn_page">{children}</div>
+            <div className="techwave_fn_page">
+              <Toaster position="top-center" />
+              {children}
+            </div>
             {/* !PAGE (all pages go inside this div) */}
             {/* FOOTER (inside the content) */}
-            <Footer />
+            {/* <Footer /> */}
             {/* !FOOTER (inside the content) */}
           </div>
           {/* !CONTENT */}

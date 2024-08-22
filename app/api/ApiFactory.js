@@ -2,13 +2,12 @@
 import axios from "axios";
 // import Cookies from 'js-cookie';
 import { BASE_URL, TIMEOUT_REQUEST_API } from "../variables/index";
+let token = null;
+if (typeof window !== "undefined") {
+  token = localStorage.getItem("authToken");
+}
 
-// let token = localStorage.getItem("authTokens");
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjZjMWQzYWUyMWJkNjM0ZjEzNmE1NjY2IiwiZ3JvdXBfaWQiOiI2NmMxZDFmMjIxYmQ2MzRmMTM2YTU2NjEifQ.FJbgME7mf5CTTC9qCpCEeRdrYp5ypJCujX3V70G6Bu8";
-console.log("TOKEN 1:", token);
-// let token = Cookies.get('logedIn');
-axios.defaults.timeout = TIMEOUT_REQUEST_API;
+// axios.defaults.timeout = TIMEOUT_REQUEST_API;
 
 class ApiFactory {
   constructor({ url }) {
@@ -172,6 +171,20 @@ class ApiFactory {
     endpoints.put = (data, config) => {
       const customHeaders = config && config.headers && { ...config.headers };
       return axios.put(resourceURL, data, {
+        ...config,
+        headers: {
+          authorization: token ? `Bearer ${token}` : null,
+          ...customHeaders,
+        },
+      });
+    };
+
+    /**
+     * PATCH
+     */
+    endpoints.patch = (data, config) => {
+      const customHeaders = config && config.headers && { ...config.headers };
+      return axios.patch(resourceURL, data, {
         ...config,
         headers: {
           authorization: token ? `Bearer ${token}` : null,

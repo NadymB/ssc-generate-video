@@ -21947,6 +21947,39 @@ fieldset:disabled .btn {
   min-width: 100% !important;
 }
 
+.techwave_fn_header .group__list a {
+  font-weight: 500;
+  border-radius: 5px;
+  font-family: var(--techwave-heading-font-family);
+  color: var(--techwave-heading-color);
+  text-decoration: none;
+  min-height: 36px;
+  /* padding: 5px 10px 5px 42px; */
+  padding: 5px 10px;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  /* position: relative; */
+}
+
+.techwave_fn_header .group__list svg {
+  width: 22px;
+  height: 22px;
+}
+
+.techwave_fn_header .group__list .text {
+  font-size: 16px;
+}
+
+/* generated musics */
+.generated-music-title {
+  font-family: 'Dancing Script', cursive;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************/

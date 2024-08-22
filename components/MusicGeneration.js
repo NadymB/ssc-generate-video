@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import AudioPlayer from "react-modern-audio-player";
 import Link from "next/link";
 // import Player from "react-wavy-audio";
 import "wave-audio-path-player";
 import WaveSurferPlayer from "./WavesurferPlayer";
+import { fetchMusicListApi } from "@/app/api/Music";
 
 const song_1 = {
   name: "music - 1",
@@ -18,59 +19,47 @@ const song_2 = {
   name: "music - 2",
   writer: "react-modern-audio-player",
   img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
-  src: "https://cdn.pixabay.com/audio/2022/08/03/audio_54ca0ffa52.mp3",
+  src: "https://mhtai.kenroly.com/api/upload/66c4eb2412207255d0ba0c38",
   id: 2,
 };
-
-// const playlist = [
-//   {
-//     name: "music - 1",
-//     writer: "react-modern-audio-player",
-//     img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
-//     src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
-//     id: 1,
-//   },
-//   {
-//     name: "music - 2",
-//     writer: "react-modern-audio-player",
-//     img: "https://cdn.pixabay.com/photo/2021/09/06/16/45/nature-6602056__340.jpg",
-//     src: "https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3",
-//     id: 2,
-//   },
-//   {
-//     name: "music - 3",
-//     writer: "react-modern-audio-player",
-//     img: "https://cdn.pixabay.com/photo/2022/08/29/08/47/sky-7418364__340.jpg",
-//     src: "https://cdn.pixabay.com/audio/2022/08/03/audio_54ca0ffa52.mp3",
-//     id: 3,
-//   },
-//   {
-//     name: "music - 4",
-//     writer: "react-modern-audio-player",
-//     img: "https://cdn.pixabay.com/photo/2015/09/22/01/30/lights-951000__340.jpg",
-//     src: "https://cdn.pixabay.com/audio/2022/07/25/audio_3266b47d61.mp3",
-//     id: 4,
-//   },
-//   {
-//     name: "music - 5",
-//     writer: "react-modern-audio-player",
-//     img: "https://cdn.pixabay.com/photo/2022/08/28/18/03/dog-7417233__340.jpg",
-//     src: "https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3",
-//     id: 5,
-//   },
-// ];
 
 export default function ImageGeneration() {
   const [count, setCount] = useState(4);
   const [leftMenu, setLeftMenu] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
 
-  // new
-  const [progressType, setProgressType] = useState("waveform");
-  const [playerPlacement, setPlayerPlacement] = useState("static");
+  const [generatedSongs, setGeneratedSongs] = useState([]);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pageSize: 10,
+    meta: null,
+  });
 
-  const [progressType2, setProgressType2] = useState("waveform");
-  const [playerPlacement2, setPlayerPlacement2] = useState("static");
+  const fetchGeneratedSongList = async (page, limit) => {
+    try {
+      const response = await fetchMusicListApi({ page, limit });
+      let meta = response?.data?.data?.meta;
+      setPagination((prevState) => ({ ...prevState, meta }));
+      setGeneratedSongs(response?.data?.data?.data);
+    } catch (err) {
+      console.error("fetch generated songs failed", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchGeneratedSongList();
+  }, []);
+
+  useEffect(() => {
+    console.log("songs:", generatedSongs);
+  }, [generatedSongs]);
+
+  // new
+  // const [progressType, setProgressType] = useState("waveform");
+  // const [playerPlacement, setPlayerPlacement] = useState("static");
+
+  // const [progressType2, setProgressType2] = useState("waveform");
+  // const [playerPlacement2, setPlayerPlacement2] = useState("static");
   // new
 
   const handleIsDropdown = () => {
@@ -133,7 +122,7 @@ export default function ImageGeneration() {
                   </p>
                 </div>
                 <div className="item_options">
-                  <div className="fn__icon_options medium_size align_right">
+                  {/* <div className="fn__icon_options medium_size align_right">
                     <Link href="#" className="fn__icon_button">
                       <img src="svg/info.svg" alt="" className="fn__svg" />
                     </Link>
@@ -150,8 +139,8 @@ export default function ImageGeneration() {
                         </li>
                       </ul>
                     </div>
-                  </div>
-                  <div className="fn__icon_options medium_size align_right">
+                  </div> */}
+                  {/* <div className="fn__icon_options medium_size align_right">
                     <Link href="#" className="fn__icon_button">
                       <span className="dots" />
                     </Link>
@@ -174,7 +163,7 @@ export default function ImageGeneration() {
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="item_list">
@@ -236,7 +225,7 @@ export default function ImageGeneration() {
                     </div>
                   </div>
                 </div> */}
-                <div className="container-fluid">
+                {/* <div className="container-fluid">
                   <div className="row w-100 my-2">
                     <span className="text-white">1.</span>
                     <WaveSurferPlayer song={song_1} />
@@ -246,6 +235,14 @@ export default function ImageGeneration() {
                     <span className="text-white">2.</span>
                     <WaveSurferPlayer song={song_2} />
                   </div>
+                </div> */}
+                <div className="container-fluid">
+                  {generatedSongs?.map((generatedSong, index) => (
+                    <div className="row w-100 my-2">
+                      <span className="text-white">{index + 1}.</span>
+                      <WaveSurferPlayer song={generatedSong} />
+                    </div>
+                  ))}
                 </div>
 
                 {/* <div className="container-fluid">
@@ -260,9 +257,9 @@ export default function ImageGeneration() {
             {/* end of test */}
 
             <div className="generation_more" style={{ marginTop: "1000px" }}>
-              <Link href="pricing" className="techwave_fn_button medium">
+              {/* <Link href="pricing" className="techwave_fn_button medium">
                 <span>Previous Generations</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

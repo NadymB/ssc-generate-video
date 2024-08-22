@@ -1,13 +1,17 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "antd-tag-input/dist/style.css";
 import TagInput from "antd-tag-input";
 import { ReactTags } from "react-tag-autocomplete";
 import { Container, Typography, TextField, Box } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { top100Films } from "./mockData";
+import { toast } from "react-hot-toast";
+import "react-toastify/dist/ReactToastify.css";
+import Button from "@mui/material/Button";
+import { generateMusicApi, fetchMusicStylesApi } from "@/app/api/Music";
 
 const suggestions = [
   { value: 3, label: "Bananas" },
@@ -20,43 +24,43 @@ const data = [
   {
     title: "Home",
     pathname: "/",
-    img: "svg/home.svg",
+    img: "../svg/home.svg",
   },
   {
     title: "Community Feed",
     pathname: "/community-feed",
-    img: "svg/community.svg",
+    img: "../svg/community.svg",
   },
   {
     title: "Personal Feed",
     pathname: "/personal-feed",
-    img: "svg/person.svg",
+    img: "../svg/person.svg",
     counter: 48,
   },
   {
     title: "Finetuned Models",
     pathname: "/models",
-    img: "svg/cube.svg",
+    img: "../svg/cube.svg",
   },
   {
     title: "Image Generation",
     pathname: "/image-generation",
-    img: "svg/image.svg",
+    img: "../svg/image.svg",
   },
   {
     title: "Music Generation (test)",
     pathname: "/music-generation",
-    img: "svg/image.svg",
+    img: "../svg/image.svg",
   },
   {
     title: "AI Chat Bot",
     pathname: "/ai-chat-bot",
-    img: "svg/chat.svg",
+    img: "../svg/chat.svg",
   },
   {
     title: "Pricing",
     pathname: "/pricing",
-    img: "svg/dollar.svg",
+    img: "../svg/dollar.svg",
   },
   {
     title: "Documentation",
@@ -91,7 +95,7 @@ const data = [
   {
     title: "Log Out",
     pathname: "/sign-in",
-    img: "svg/logout.svg",
+    img: "../svg/logout.svg",
   },
 ];
 
@@ -107,62 +111,215 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
     setIsDropdown(!isDropdown);
   };
 
+  // generator states
   const [generalModeToggled, setGeneralModeToggled] = useState(false);
   const [instrumentalToggled, setInstrumentalToggled] = useState(false);
+  const [defaultGenMode, setDefaultGenMode] = useState(true);
+  const [hasVocal, setHasVocal] = useState(true);
+
+  useEffect(() => {
+    console.log("instrumentalToggled:", instrumentalToggled);
+  }, [instrumentalToggled]);
+
+  // custom mode states
+  const [musicStyles, SetMusicStyles] = useState([]);
+  const [musicTitle, setMusicTitle] = useState("");
 
   const handleInstrumentalToggleChange = () => {
     setInstrumentalToggled(!instrumentalToggled);
+    setHasVocal(!hasVocal);
   };
 
   const handleGeneralModeToggleChange = () => {
     setGeneralModeToggled(!generalModeToggled);
+    setDefaultGenMode(!defaultGenMode);
     setInstrumentalToggled(false);
   };
+
+  const handleMusicGeneratorSubmit = async () => {
+    // console.log("defaultGenMode:", defaultGenMode);
+    // console.log("hasVocal:", hasVocal);
+    // console.log("descContent:", descContent);
+
+    // default_mode = true
+    if (defaultGenMode) {
+      console.log("submit with default mode");
+      if (descContent.length <= 20) {
+        toast.error("Mô tả bài hát quá ngắn!");
+      } else {
+        let data = {
+          default: defaultGenMode,
+          has_vocal: hasVocal,
+          prompt: descContent,
+        };
+
+        try {
+          const response = await generateMusicApi(data);
+          if (response?.status == 200) {
+            toast.success("Generate nhạc với default mode thành công!");
+          }
+        } catch (err) {
+          toast.error("Generate nhạc không thành công!");
+          console.error("generate music with default mode failed:", err);
+        }
+      }
+    } else {
+      console.log("submit with custom mode");
+      // default_mode = false (custom mode)
+      try {
+        // instrumental = false - hasVocal = true
+        let stylesString = selectedMusicStyles
+          .map((item) => item.value)
+          .join(", ");
+
+        let bodyData = {};
+
+        if (hasVocal) {
+          bodyData = {
+            default: defaultGenMode,
+            has_vocal: hasVocal,
+            prompt: lyricContent,
+            title: musicTitle,
+            styles: stylesString,
+          };
+        }
+        // instrumental = true - hasVocal = false
+        // without the prompt (lyrics) field
+        else {
+          bodyData = {
+            default: defaultGenMode,
+            has_vocal: hasVocal,
+            title: musicTitle,
+            styles: stylesString,
+          };
+        }
+
+        // console.log("data:", bodyData);
+        const response = await generateMusicApi(bodyData);
+        if (response?.status == 200) {
+          toast.success("Generate nhạc với custom mode thành công!");
+        }
+      } catch (err) {
+        console.error("generate music with custom mode failed:", err);
+      }
+    }
+  };
+
+  const handleFetchMusicStyles = async () => {
+    try {
+      const response = await fetchMusicStylesApi();
+      if (response?.status == 200) {
+        SetMusicStyles(response?.data?.data);
+      }
+    } catch (err) {
+      console.error("Fetch music styles failed!");
+    }
+  };
+
+  useEffect(() => {
+    handleFetchMusicStyles();
+  }, []);
+
+  // Description
+  const [wordDescLimit, setWordDescLimit] = useState(200);
+  const [{ descContent, descWordCount }, setDescContent] = React.useState({
+    descContent: "",
+    descWordCount: 0,
+  });
+
+  const setFormattedDescContent = React.useCallback(
+    (text) => {
+      let words = text.split(" ").filter(Boolean);
+      if (words.length > wordDescLimit) {
+        setDescContent({
+          descContent: words.slice(0, wordDescLimit).join(" "),
+          descWordCount: wordDescLimit,
+        });
+        toast.error("Bạn đã đạt đến giới hạn từ cho phép của description");
+      } else {
+        setDescContent({ descContent: text, descWordCount: words.length });
+      }
+    },
+    [setWordDescLimit, setDescContent]
+  );
+
+  React.useEffect(() => {
+    // if(wordCount > set)
+    setFormattedDescContent(descContent);
+  }, []);
+  // end of description
+
+  // Lyrics
+
+  // for textarea word limit
+  const [LyricWordLimit, setLyricWordLimit] = useState(2700);
+
+  const [{ lyricContent, LyricWordCount }, setLyricContent] = React.useState({
+    lyricContent: "",
+    LyricWordCount: 0,
+  });
+
+  const setFormattedLyricContent = React.useCallback(
+    (text) => {
+      let words = text.split(" ").filter(Boolean);
+      if (words.length > LyricWordLimit) {
+        setLyricContent({
+          lyricContent: words.slice(0, LyricWordLimit).join(" "),
+          LyricWordCount: LyricWordLimit,
+        });
+        toast.error("Bạn đã đạt đến giới hạn từ cho phép của lyrics");
+      } else {
+        setLyricContent({ lyricContent: text, LyricWordCount: words.length });
+      }
+    },
+    [LyricWordLimit, setLyricContent]
+  );
+
+  React.useEffect(() => {
+    // if(wordCount > set)
+    setFormattedLyricContent(lyricContent);
+  }, []);
+  // end of textarea word limit
 
   //new
   const [selected, setSelected] = useState([]);
 
-  const defaultSelectedFilms = top100Films.filter((film) => film.year === 1994);
-  const [state, setState] = useState(defaultSelectedFilms);
+  // const defaultSelectedFilms = top100Films.filter((film) => film.year === 1994);
+  const [selectedMusicStyles, setSelectedMusicStyles] = useState([]);
 
-  const handleChange = (e, value) => {
-    console.log(value);
-    setState(value);
+  const handleChangeSelectedStyles = (e, value) => {
+    // console.log(value);
+    setSelectedMusicStyles(value);
   };
-
-  useEffect(() => {
-    console.log("state:", state);
-  }, [state]);
-
-  //test
 
   return (
     <>
       <div className="techwave_fn_leftpanel">
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
-        <div className="leftpanel_logo">
+        <div className="leftpanel_logo d-flex justify-content-center mb-5">
           <Link href="/music-generation" className="fn_logo">
             <span className="full_logo">
               <img
-                src="img/logo-desktop-full.png"
+                src="../img/mht-ai-logo-5.jpg"
                 alt=""
                 className="desktop_logo"
+                style={{ width: "100px", height: "100px" }}
               />
               <img
-                src="img/logo-retina-full.png"
+                src="../img/logo-retina-full.png"
                 alt=""
                 className="retina_logo"
               />
             </span>
             <span className="short_logo">
               <img
-                src="img/logo-desktop-mini.png"
+                src="../img/logo-desktop-mini.png"
                 alt=""
                 className="desktop_logo"
               />
               <img
-                src="img/logo-retina-mini.png"
+                src="../img/logo-retina-mini.png"
                 alt=""
                 className="retina_logo"
               />
@@ -172,13 +329,13 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
             className="fn__closer fn__icon_button desktop_closer"
             onClick={activeTrueFalse}
           >
-            <img src="svg/arrow.svg" alt="" className="fn__svg" />
+            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
           </a>
           <a
             className="fn__closer fn__icon_button mobile_closer"
             onClick={activeMobileMenu}
           >
-            <img src="svg/arrow.svg" alt="" className="fn__svg" />
+            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
           </a>
         </div>
         {/* !logo (left panel) */}
@@ -186,15 +343,15 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
         <div className="leftpanel_content">
           <div className="generation__sidebar generation_mode_1">
             <div className="sidebar_model">
-              <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
+              {/* <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
                 <Link href="#" className="model_open">
-                  <img className="user_img" src="img/user/user.jpg" alt="" />
+                  <img className="user_img" src="../img/user/user.jpg" alt="" />
                   <div className="author">
                     <h4 className="subtitle">Model</h4>
                     <h3 className="title">ArtShaper v3</h3>
                   </div>
                   <span className="fn__icon_button" onClick={handleIsDropdown}>
-                    <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                    <img src="../svg/arrow.svg" alt="" className="fn__svg" />
                   </span>
                 </Link>
                 <div className="all_models">
@@ -233,8 +390,8 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     </li>
                   </ul>
                 </div>
-              </div>
-              <div className="mt-4 border-top">
+              </div> */}
+              <div className="mt-4">
                 <label className="fn__toggle mt-3">
                   <span
                     className="t_in"
@@ -253,7 +410,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     <span className="t_slider" />
                     <span className="t_content" />
                   </span>
-                  <span className="fs-5">Custom</span>
+                  <span className="fs-5">Nâng cao</span>
                 </label>
               </div>
             </div>
@@ -266,16 +423,23 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               {/* lyrics */}
               <div className="lyrics_of_music">
                 <div className="d-flex align-items-center justify-content-between mb-2 mt-4">
-                  <h4 className="title generation_title">
-                    Lyrics
+                  <h4 className="title generation_title invisible">
+                    Lời bài hát
                     <span
                       className="fn__tooltip"
                       title="Enter the lyrics of music that you want to generate."
                     >
-                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                      <img
+                        src="../svg/question.svg"
+                        alt=""
+                        className="fn__svg"
+                      />
+                    </span>
+                    <span className="ms-2" style={{ fontSize: "15px" }}>
+                      {/* ({wordCount} / {wordLimit}) */}
                     </span>
                   </h4>
-                  <label className="fn__toggle">
+                  <label className="fn__toggle" disabled>
                     <span className="t_in">
                       <input
                         // defaultChecked
@@ -287,10 +451,10 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
-                    Instrumental
+                    Chỉ nhạc
                   </label>
                 </div>
-                <div
+                {/* <div
                   className={`include_area ${
                     instrumentalToggled ? "hide" : ""
                   }`}
@@ -298,25 +462,33 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   <textarea
                     className="border border-secondary"
                     id="fn__include_textarea"
-                    rows={6}
+                    rows={20}
+                    onChange={(event) =>
+                      setFormattedContent(event.target.value)
+                    }
+                    value={content}
                   />
                   <textarea
                     className="fn__hidden_textarea"
                     rows={6}
                     tabIndex={-1}
                   />
-                </div>
+                </div> */}
               </div>
               {/* Song description */}
               <div className="song_decription">
                 <div className="d-flex align-items-center justify-content-start mb-2 mt-4">
                   <h4 className="title generation_title">
-                    Song description
+                    Mô tả bài hát
                     <span
                       className="fn__tooltip"
-                      title="Enter the song description that you want to generate."
+                      title="Nhập mô tả của bài hát mà bạn muốn tạo"
                     >
-                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                      <img
+                        src="../svg/question.svg"
+                        alt=""
+                        className="fn__svg"
+                      />
                     </span>
                   </h4>
                 </div>
@@ -326,6 +498,10 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     id="fn__include_textarea"
                     className="border border-secondary"
                     rows={6}
+                    onChange={(event) =>
+                      setFormattedDescContent(event.target.value)
+                    }
+                    value={descContent}
                   ></textarea>
                   <textarea
                     className="fn__hidden_textarea"
@@ -335,7 +511,9 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                 </div>
               </div>
             </div>
+            {/* ******** */}
             {/* custom mode */}
+            {/* ******** */}
             <div
               className={`sidebar_details tab_1 ${
                 !generalModeToggled ? "hide" : ""
@@ -345,12 +523,19 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               <div className="lyrics_of_music">
                 <div className="d-flex align-items-center justify-content-between mb-2 mt-4">
                   <h4 className="title generation_title">
-                    Lyrics
+                    Lời bài hát
                     <span
                       className="fn__tooltip"
                       title="Enter the lyrics of music that you want to generate."
                     >
-                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                      <img
+                        src="../svg/question.svg"
+                        alt=""
+                        className="fn__svg"
+                      />
+                    </span>
+                    <span className="ms-2" style={{ fontSize: "15px" }}>
+                      ({LyricWordCount} / {LyricWordLimit})
                     </span>
                   </h4>
                   <label className="fn__toggle">
@@ -365,7 +550,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
-                    Instrumental
+                    Chỉ nhạc
                   </label>
                 </div>
                 <div
@@ -376,7 +561,11 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   <textarea
                     className="border border-secondary"
                     id="fn__include_textarea"
-                    rows={6}
+                    rows={20}
+                    onChange={(event) =>
+                      setFormattedLyricContent(event.target.value)
+                    }
+                    value={lyricContent}
                   />
                   <textarea
                     className="fn__hidden_textarea"
@@ -389,12 +578,16 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               <div className="style_of_music">
                 <div className="d-flex align-items-center justify-content-start mb-2 mt-4">
                   <h4 className="title generation_title">
-                    Style of Music
+                    Phong cách của nhạc
                     <span
                       className="fn__tooltip"
                       title="Enter the styles of music that you want to generate."
                     >
-                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                      <img
+                        src="../svg/question.svg"
+                        alt=""
+                        className="fn__svg"
+                      />
                     </span>
                   </h4>
                 </div>
@@ -403,11 +596,13 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     className="w-100 border border-secondary"
                     id="combo-box-demo"
                     multiple
-                    options={top100Films}
-                    getOptionLabel={(option) => String(option.title)}
+                    // options={top100Films}
+                    options={musicStyles}
+                    getOptionLabel={(option) => String(option.value)}
                     style={{ width: 300 }}
-                    value={state || []}
-                    defaultValue={[top100Films[0]]}
+                    value={selectedMusicStyles || []}
+                    defaultValue={[musicStyles[0]]}
+                    // defaultValue={[]}
                     renderInput={(params) => (
                       <TextField
                         className="tags-input-field"
@@ -417,7 +612,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                         name="combo-box-demo"
                       />
                     )}
-                    onChange={handleChange}
+                    onChange={handleChangeSelectedStyles}
                   />
                   {/* {state && (
                     <>
@@ -436,17 +631,26 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               <div className="title_of_music">
                 <div className="d-flex align-items-center justify-content-between mb-2 mt-4">
                   <h4 className="title generation_title">
-                    Title{" "}
+                    Tiêu đề
                     <span
                       className="fn__tooltip"
                       title="Enter the title of music that you want to generate."
                     >
-                      <img src="svg/question.svg" alt="" className="fn__svg" />
+                      <img
+                        src="../svg/question.svg"
+                        alt=""
+                        className="fn__svg"
+                      />
                     </span>
                   </h4>
                 </div>
                 <div className="include_area">
-                  <textarea id="fn__include_textarea" rows={3}></textarea>
+                  <textarea
+                    id="fn__include_textarea"
+                    rows={3}
+                    onChange={(event) => setMusicTitle(event.target.value)}
+                    value={musicTitle}
+                  ></textarea>
                   <textarea
                     className="fn__hidden_textarea"
                     rows={3}
@@ -475,7 +679,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     className="fn__tooltip"
                     title="Select the resoultion of the images."
                   >
-                    <img src="svg/question.svg" alt="" className="fn__svg" />
+                    <img src="../svg/question.svg" alt="" className="fn__svg" />
                   </span>
                 </h4>
                 <div className="fn__range">
@@ -502,7 +706,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     className="fn__tooltip"
                     title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."
                   >
-                    <img src="svg/question.svg" alt="" className="fn__svg" />
+                    <img src="../svg/question.svg" alt="" className="fn__svg" />
                   </span>
                 </h4>
                 <label className="fn__toggle">
@@ -524,7 +728,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                     className="fn__tooltip"
                     title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."
                   >
-                    <img src="svg/question.svg" alt="" className="fn__svg" />
+                    <img src="../svg/question.svg" alt="" className="fn__svg" />
                   </span>
                 </h4>
                 <label className="fn__toggle">
@@ -535,6 +739,19 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   </span>
                 </label>
               </div> */}
+            </div>
+
+            {/* submit button */}
+            <div className="w-100 d-flex justify-content-center">
+              <Button
+                className="btn mt-2"
+                variant="contained"
+                color="primary"
+                size="medium"
+                onClick={handleMusicGeneratorSubmit}
+              >
+                Tạo
+              </Button>
             </div>
           </div>
         </div>

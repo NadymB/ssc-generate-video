@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.4.0",
+    "@ant-design/pro-components": "^2.7.15",
+    "@emotion/css": "^11.13.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@headlessui/react": "^1.7.16",
@@ -20,13 +24,13 @@
     "antd-tag-input": "^1.0.17",
     "axios": "^1.7.4",
     "bootstrap": "^5.3.3",
-    "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "isotope-layout": "^3.0.6",
     "material-ui": "^0.20.2",
     "next": "^13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-modern-audio-player": "^1.4.0-rc.2",
     "react-tag-autocomplete": "^7.3.0",
     "react-toastify": "^10.0.5",
@@ -43,5 +47,8 @@
     "fs": false,
     "path": false,
     "os": false
+  },
+  "devDependencies": {
+    "eslint": "^9.9.0"
   }
 }

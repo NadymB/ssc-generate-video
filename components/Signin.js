@@ -4,40 +4,60 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { loginUserApi } from "../app/api/Auth"; // Adjust the import path based on your folder structure
+
+import { useAuth } from "@/context/authContext";
 
 export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { authToken, login } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("authTokens");
-    if (token) {
-      router.push("/"); // Redirect to home or any other protected page
+    // console.log("authToken - test:", authToken);
+    // console.log("hehe:", authToken);
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      // console.log("hehe:", authToken);
+      router.push("/music-generation"); // Redirect to home or any other protected page
     }
   }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const data = {
-      username,
-      password,
-    };
-
-    try {
-      const response = await loginUserApi(data);
-      // toast.success("Đăng nhập thành công");
-      let token = response?.data?.data?.token;
-      localStorage.setItem("authTokens", token);
-      console.log("Login successful:", token);
-      // Handle successful login (e.g., redirect or show success message)
-      router.push("/"); // Redirect to home or any other protected page
-    } catch (error) {
-      console.error("Login failed:", error);
-      // Handle login failure (e.g., show error message)
+    console.log(username, password);
+    const authToken = await login(username, password);
+    if (authToken) {
+      // Redirect to the page the user was trying to access or to a default page
+      const destination = "/music-generation";
+      router.push(destination);
+      console.log("--authToken:", authToken);
+    } else {
+      // Handle login failure (e.g., display an error message)
+      console.log("login failed!");
     }
   };
+
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     username,
+  //     password,
+  //   };
+
+  //   try {
+  //     const response = await loginUserApi(data);
+  //     // toast.success("Đăng nhập thành công");
+  //     let token = response?.data?.data?.token;
+  //     localStorage.setItem("authTokens", token);
+  //     console.log("Login successful:", token);
+  //     // Handle successful login (e.g., redirect or show success message)
+  //     router.push("/"); // Redirect to home or any other protected page
+  //   } catch (error) {
+  //     console.error("Login failed:", error);
+  //     // Handle login failure (e.g., show error message)
+  //   }
+  // };
 
   return (
     <>

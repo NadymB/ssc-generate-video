@@ -2,55 +2,103 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Space, Table, Tag, Pagination } from "antd";
 import { fetchAdminListUser } from "../app/api/Auth";
-impoire;
+import { fetchListTeamApi } from "@/app/api/Team";
+import { Span } from "next/dist/trace";
 
 const columns = [
+  {
+    title: "Team ID",
+    dataIndex: "id",
+    key: "id",
+    render: (text) => <a>{text}</a>,
+  },
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Username",
-    dataIndex: "username",
-    key: "username",
     render: (text) => <span>{text}</span>,
   },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-    render: (text) => <span>{text}</span>,
-  },
-  {
-    title: "Role",
-    dataIndex: "role",
-    key: "role",
-    render: (_, { role }) => (
-      <>
-        <Tag color={"volcano"} key={role}>
-          {/* {role.toUpperCase()} */}
-          {/* {role} */}
-          ADMIN
-        </Tag>
-      </>
-    ),
-  },
-  {
-    title: "Group",
-    dataIndex: "group",
-    key: "group",
-    render: (text) => <span>{text}</span>,
-  },
-  {
-    title: "Team",
-    dataIndex: "team",
-    key: "team",
-    render: (text) => <span>{text}</span>,
-  },
+  // {
+  //   title: "Email",
+  //   dataIndex: "email",
+  //   key: "email",
+  //   render: (text) => <span>{text}</span>,
+  // },
+  // {
+  //   title: "Group",
+  //   dataIndex: "group",
+  //   key: "group",
+  //   render: (_, { group }) => (
+  //     <Tag
+  //       color={
+  //         group === "ADMIN"
+  //           ? "geekblue"
+  //           : group === "SUPERVISOR"
+  //           ? "green"
+  //           : "volcano"
+  //       }
+  //       key={group}
+  //     >
+  //       {group.toUpperCase()}
+  //     </Tag>
+  //   ),
+  // },
+  // {
+  //   title: "Team",
+  //   dataIndex: "team",
+  //   key: "team",
+  //   render: (text) => <span>{text}</span>,
+  // },
 ];
 
+// const columns = [
+//   {
+//     title: "Name",
+//     dataIndex: "name",
+//     key: "name",
+//     render: (text) => <a>{text}</a>,
+//   },
+//   {
+//     title: "Age",
+//     dataIndex: "age",
+//     key: "age",
+//   },
+//   {
+//     title: "Address",
+//     dataIndex: "address",
+//     key: "address",
+//   },
+//   {
+//     title: "Tags",
+//     key: "tags",
+//     dataIndex: "tags",
+//     render: (_, { role }) => (
+//       <>
+//         {tags.map((tag) => {
+//           let color = tag.length > 5 ? "geekblue" : "green";
+//           if (tag === "admin") {
+//             color = "volcano";
+//           }
+//           return (
+//             <Tag color={color} key={tag}>
+//               {tag.toUpperCase()}
+//             </Tag>
+//           );
+//         })}
+//       </>
+//     ),
+//   },
+//   {
+//     title: "Action",
+//     key: "action",
+//     render: (_, record) => (
+//       <Space size="middle">
+//         {/* <a>Invite {record.name}</a> */}
+//         <a>Delete</a>
+//       </Space>
+//     ),
+//   },
+// ];
 const data = [
   {
     key: "1",
@@ -121,7 +169,7 @@ export default function TeamManagement() {
   const [users, setUsers] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
-    pageSize: 1,
+    pageSize: 10,
     meta: null,
   });
 
@@ -133,19 +181,15 @@ export default function TeamManagement() {
     console.log("newPageSize:", newPageSize);
   };
 
-  const fetchUserList = async (page, limit) => {
+  const fetchTeamList = async (page, limit) => {
     try {
-      const response = await fetchAdminListUser({ page, limit });
+      const response = await fetchListTeamApi({ page, limit });
       let meta = response?.data?.data?.meta;
       setPagination((prevState) => ({ ...prevState, meta }));
       setUsers(response?.data?.data?.items);
     } catch (error) {
       console.error("fetch user list failed:", error);
     }
-
-    // try{
-    //   const response = await fetch
-    // }
   };
 
   useEffect(() => {
@@ -154,7 +198,7 @@ export default function TeamManagement() {
 
   // first call
   useEffect(() => {
-    fetchUserList(pagination.page, pagination.pageSize);
+    fetchTeamList(pagination.page, pagination.pageSize);
   }, [pagination.page]);
 
   return (

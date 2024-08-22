@@ -5,6 +5,8 @@ import {
   PROFILE_DETAIL_ENDPOINT,
   ADMIN_LIST_USER_ENDPOINT,
   UPDATE_PASSWORD_ENPOINT,
+  FETCH_USER_PROFILE_ENDPOINT,
+  CHANGE_PASSWORD_ENDPOINT,
 } from "./endpoints";
 import ApiFactory from "../ApiFactory";
 
@@ -20,6 +22,7 @@ AuthenticateApi.createEntities([
   { name: PROFILE_DETAIL_ENDPOINT },
   { name: ADMIN_LIST_USER_ENDPOINT },
   { name: UPDATE_PASSWORD_ENPOINT },
+  { name: CHANGE_PASSWORD_ENDPOINT },
 ]);
 
 const loginUserApi = (data) =>
@@ -31,9 +34,9 @@ const registerUserApi = (data) =>
   );
 
 // const fetchProfileDetail = (data, config) => AuthenticateApi.createBasicCRUDEndpoints({ name: PROFILE_DETAIL_ENDPOINT }).getWithHeader(data, config);
-const fetchProfileDetail = () =>
+const fetchUserProfileApi = () =>
   AuthenticateApi.createBasicCRUDEndpoints({
-    name: PROFILE_DETAIL_ENDPOINT,
+    name: FETCH_USER_PROFILE_ENDPOINT,
   }).get();
 
 const updateProfileDetail = (data) =>
@@ -49,6 +52,11 @@ const fetchAdminListUser = (params) => {
   }).get(params);
 };
 
+const changePasswordApi = (data) =>
+  AuthenticateApi.createBasicCRUDEndpoints({
+    name: CHANGE_PASSWORD_ENDPOINT,
+  }).put(data);
+
 const updatePasswordUser = (data) =>
   AuthenticateApi.createBasicCRUDEndpoints({
     name: UPDATE_PASSWORD_ENPOINT,
@@ -58,7 +66,8 @@ export {
   loginUserApi,
   registerUserApi,
   fetchAdminListUser,
-  fetchProfileDetail,
+  fetchUserProfileApi,
   updatePasswordUser,
   updateProfileDetail,
+  changePasswordApi,
 };

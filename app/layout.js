@@ -3,6 +3,7 @@ import "../public/css/plugins.css";
 import "../public/css/style.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { Heebo, Work_Sans } from "next/font/google";
+import { AuthProvider } from "@/context/authContext";
 
 const heebo = Heebo({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -40,14 +41,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="toggleMenu">
-      <body>
-        {children}
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-          async
-        ></script>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" className="toggleMenu">
+        <body>{children}</body>
+      </html>
+    </AuthProvider>
   );
 }

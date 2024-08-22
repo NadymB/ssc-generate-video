@@ -73,11 +73,6 @@ avatar username ostalo layout sa grid
 
 */
 function WaveSurferPlayer({ song }) {
-  useEffect(() => {
-    // console.log("file_test:", file);
-    console.log("song:", song);
-  }, []);
-
   const wavesurfer = useRef(null);
 
   const [playerReady, setPlayerReady] = useState(false);
@@ -87,7 +82,7 @@ function WaveSurferPlayer({ song }) {
   useEffect(() => {
     const loadWaveSurfer = async () => {
       //   const { default: WaveSurfer } = await import("wavesurfer.js");
-      if (song.src && !wavesurfer.current) {
+      if (song.audio_id && !wavesurfer.current) {
         wavesurfer.current = WaveSurfer.create({
           container: `#${wavesurferId}`,
           waveColor: "grey",
@@ -102,7 +97,9 @@ function WaveSurferPlayer({ song }) {
           fillParent: true,
         });
 
-        wavesurfer.current.load(song.src);
+        wavesurfer.current.load(
+          `https://mhtai.kenroly.com/api/upload/${song?.audio_id}`
+        );
 
         wavesurfer.current.on("ready", () => {
           setPlayerReady(true);
@@ -120,14 +117,7 @@ function WaveSurferPlayer({ song }) {
     };
     loadWaveSurfer();
     // }
-  }, [wavesurfer, song.src]);
-
-  //   useEffect(() => {
-  //     console.log("file", file);
-  //     if (file) {
-  //       wavesurfer.current.load(file.blobURL);
-  //     }
-  //   }, [file]);
+  }, [wavesurfer, song.audio_id]);
 
   const togglePlayback = () => {
     if (!isPlaying) {
@@ -164,6 +154,23 @@ function WaveSurferPlayer({ song }) {
           container
           direction="row"
           alignItems="center"
+          className="border-bottom"
+        >
+          <Grid
+            item
+            xs={12}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <h4 className="generated-music-title">
+              {/* <span>Title: </span> */}
+              {song?.title}
+            </h4>
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
           style={{ minWidth: "100% !important" }}
         >
           <Grid item xs={1}>
@@ -176,7 +183,16 @@ function WaveSurferPlayer({ song }) {
           <Grid item xs={10} id={wavesurferId} />
           <Grid item xs={1}>
             <div className="d-flex align-items-center justify-content-center w-100">
-              <Button variant="contained" color="success">
+              <Button
+                className={`btn-sm ${
+                  song?.status === "queued" || song?.status === "processing"
+                    ? "disabled"
+                    : ""
+                }`}
+                variant="contained"
+                color="success"
+                size="small"
+              >
                 Download
               </Button>
             </div>

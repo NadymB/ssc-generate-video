@@ -3,21 +3,55 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu } from "@headlessui/react";
 import screenfull from "screenfull";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/authContext";
+
+const data = [
+  {
+    title: "Quản Lý User",
+    pathname: "/management/users",
+    img: "../svg/community.svg",
+  },
+  {
+    title: "Quản Lý Team",
+    pathname: "/management/teams",
+    img: "../svg/community.svg",
+  },
+  {
+    title: "Quản Lý Group",
+    pathname: "/management/groups",
+    img: "../svg/community.svg",
+  },
+];
+
+const ex_routes = [
+  "/management/users",
+  "/management/teams",
+  "/management/groups",
+];
 
 export default function Header({ searchToggle }) {
   // Light/Dark switcher
   const [skin, setSkin] = useState("dark");
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const { logout, user } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname(); // get router info
+
+  // const { user } = useEffect(() => {
+  //   // Check if running in the browser (client side)
+  //   if (typeof window !== "undefined") {
+  //     const storedSkin = localStorage.getItem("frenify_skin");
+  //     if (storedSkin) {
+  //       setSkin(storedSkin);
+  //     }
+  //   }
+  // }, []);
 
   useEffect(() => {
-    // Check if running in the browser (client side)
-    if (typeof window !== "undefined") {
-      const storedSkin = localStorage.getItem("frenify_skin");
-      if (storedSkin) {
-        setSkin(storedSkin);
-      }
-    }
-  }, []);
+    console.log("user:", user);
+  }, [user]);
 
   const toggleSkin = () => {
     const newSkin = skin === "light" ? "dark" : "light";
@@ -57,6 +91,10 @@ export default function Header({ searchToggle }) {
     };
   }, []);
 
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <>
       <header className="techwave_fn_header">
@@ -71,11 +109,58 @@ export default function Header({ searchToggle }) {
                 Remain
               </span>
             </span> */}
-            {/* <Link href="/pricing" className="token_upgrade techwave_fn_button"><span>Upgrade</span></Link> */}
-            <div className="token__popup">
-              Resets in <span>19 hours.</span>
-              <br />
-              Daily limit is <span>200 tokens</span>
+            {/* <Link href="/pricing" className="token_upgrade techwave_fn_button">
+              <span>Upgrade</span>
+            </Link> */}
+
+            {/* <ul className="group__list">
+              {data.slice(0, 4).map((item, i) => (
+                <li key={i}>
+                  <Link
+                    href={`${item.pathname}`}
+                    className={`fn__tooltip menu__item ${
+                      item.pathname === pathname ? "active" : ""
+                    }`}
+                    title={item.title}
+                  >
+                    <span className="icon">
+                      <img src={item.img} alt="" className="fn__svg" />
+                    </span>
+                    <span className="text">
+                      {item.title}
+                      {item.counter && (
+                        <span className="count">{item.counter}</span>
+                      )}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul> */}
+            <div className="group__list d-flex mx-auto">
+              {!ex_routes.includes(pathname) &&
+                data.slice(0, 4).map((item, i) => (
+                  <Link
+                    href={`${item.pathname}`}
+                    className="fn__tooltip menu__item d-flex align-items-center justify-content-between"
+                    title={item.title}
+                  >
+                    <span className="icon">
+                      <img
+                        src="../svg/community.svg"
+                        alt=""
+                        className="fn__svg"
+                      />
+                    </span>
+                    {/* <span>Management</span>
+                     */}
+                    <span className="text ms-2">
+                      {/* User Management */}
+                      {item.title}
+                      {/* {item.title} */}
+                      {/* {item.counter && <span className="count">{item.counter}</span>} */}
+                    </span>
+                  </Link>
+                ))}
             </div>
           </div>
         </div>
@@ -226,18 +311,19 @@ export default function Header({ searchToggle }) {
               <Menu.Items as="div" className="item_popup" data-position="right">
                 <div className="user_profile">
                   <div className="user_img">
-                    <img src="img/user/user_2.webp" alt="" />
+                    <img src="../img/user/user_2.webp" alt="" />
                   </div>
                   <div className="user_info">
                     <h2 className="user_name">
-                      Caden Smith<span>Free</span>
+                      <span>{user?.group}</span>
                     </h2>
                     <p>
                       <Link
                         href="/mailto:cadmail@gmail.com"
                         className="user_email"
                       >
-                        cadmail@gmail.com
+                        {/* cadmail@gmail.com */}
+                        {user?.email}
                       </Link>
                     </p>
                   </div>
@@ -245,7 +331,7 @@ export default function Header({ searchToggle }) {
                 <div className="user_nav">
                   <ul>
                     <li>
-                      <Link href="/user-profile">
+                      <Link href="/profile">
                         <span className="icon">
                           <img
                             src="../svg/person.svg"
@@ -253,10 +339,10 @@ export default function Header({ searchToggle }) {
                             className="fn__svg"
                           />
                         </span>
-                        <span className="text">Profile</span>
+                        <span className="text">Hồ Sơ</span>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href="/user-settings">
                         <span className="icon">
                           <img
@@ -279,9 +365,9 @@ export default function Header({ searchToggle }) {
                         </span>
                         <span className="text">Billing</span>
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
-                      <Link href="/sign-in">
+                      <Link href="#" onClick={handleLogout}>
                         <span className="icon">
                           <img
                             src="../svg/logout.svg"
@@ -289,7 +375,7 @@ export default function Header({ searchToggle }) {
                             className="fn__svg"
                           />
                         </span>
-                        <span className="text">Log Out</span>
+                        <span className="text">Đăng Xuất</span>
                       </Link>
                     </li>
                   </ul>
