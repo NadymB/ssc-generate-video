@@ -451,7 +451,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
-                    Chỉ nhạc
+                    Nhạc Không Lời
                   </label>
                 </div>
                 {/* <div
@@ -550,7 +550,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                       <span className="t_slider" />
                       <span className="t_content" />
                     </span>
-                    Chỉ nhạc
+                    Nhạc Không Lời
                   </label>
                 </div>
                 <div

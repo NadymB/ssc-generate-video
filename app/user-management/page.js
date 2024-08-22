@@ -1,21 +1,22 @@
-import UserManagement from "@/components/UserManagement";
+"use client";
+
+import { useEffect } from "react";
 import UserManagementTest from "@/components/UserManagementTest";
-import Layout from "@/layouts/layout";
+// import Layout from "../../../layouts/layout";
+import Layout from "@/layouts/layout"
 import React from "react";
+import withProtectedRoute from "@/components/WithProtectedRoute";
 
-export const metadata = {
-  title: "Music Generation",
-  content: "text/html",
-  openGraph: {
-    title: "Music Generation",
-    content: "text/html",
-  },
-};
+const Page = () => {
+  useEffect(() => {
+    document.title = "Music Generation | MHT MUSIC AI";
+  }, []);
 
-export default function page() {
   return (
     <Layout leftMenu>
       <UserManagementTest />
     </Layout>
   );
-}
+};
+
+export default withProtectedRoute(Page);

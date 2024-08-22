@@ -6,29 +6,30 @@ import screenfull from "screenfull";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/authContext";
+// import UserBilling from "@/public/svg/";
 
 const data = [
   {
     title: "Quản Lý User",
-    pathname: "/management/users",
+    pathname: "/user-management/",
     img: "../svg/community.svg",
   },
   {
     title: "Quản Lý Team",
-    pathname: "/management/teams",
-    img: "../svg/community.svg",
+    pathname: "/team-management/",
+    img: "@/public/svg/community.svg",
   },
   {
     title: "Quản Lý Group",
-    pathname: "/management/groups",
+    pathname: "/group-management/",
     img: "../svg/community.svg",
   },
 ];
 
 const ex_routes = [
-  "/management/users",
-  "/management/teams",
-  "/management/groups",
+  "/user-management/",
+  "/team-management/",
+  "/group-management/",
 ];
 
 export default function Header({ searchToggle }) {
@@ -169,7 +170,7 @@ export default function Header({ searchToggle }) {
         <div className="header__right">
           <div className="fn__nav_bar">
             {/* Search (bar item) */}
-            <div className="bar__item bar__item_search">
+            {/* <div className="bar__item bar__item_search">
               <a
                 className="item_opener fn__tooltip"
                 title="Search"
@@ -180,10 +181,10 @@ export default function Header({ searchToggle }) {
               <div className="item_popup" data-position="right">
                 <input type="text" placeholder="Search" />
               </div>
-            </div>
+            </div> */}
             {/* !Search (bar item) */}
             {/* Notification (bar item) */}
-            <Menu
+            {/* <Menu
               as="div"
               className="bar__item bar__item_notification has_notification opened"
             >
@@ -229,7 +230,7 @@ export default function Header({ searchToggle }) {
                   </ul>
                 </div>
               </Menu.Items>
-            </Menu>
+            </Menu> */}
             {/* !Notification (bar item) */}
             {/* Full Screen (bar item) */}
             <div className="bar__item bar__item_fullscreen">

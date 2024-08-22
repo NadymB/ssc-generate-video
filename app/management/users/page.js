@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import UserManagementTest from "@/components/UserManagementTest";
-import Layout from "../../../layouts/layout";
+// import Layout from "../../../layouts/layout";
+import Layout from "@/layouts/layout"
 import React from "react";
 import withProtectedRoute from "@/components/WithProtectedRoute";
 

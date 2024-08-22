@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+
 const data = [
   {
     title: "Music Generation",
@@ -12,17 +13,17 @@ const data = [
 
   {
     title: "Users",
-    pathname: "/management/users",
+    pathname: "/user-management/",
     img: "../svg/community.svg",
   },
   {
     title: "Teams",
-    pathname: "/management/teams",
+    pathname: "/team-management/",
     img: "../svg/community.svg",
   },
   {
     title: "Groups",
-    pathname: "/management/groups",
+    pathname: "/group-management/",
     img: "../svg/community.svg",
   },
 
