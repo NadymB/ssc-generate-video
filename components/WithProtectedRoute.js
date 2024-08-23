@@ -1,16 +1,24 @@
 "use client";
 import { useAuth } from "@/context/authContext";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const withProtectedRoute = (WrappedComponent) => {
   return (props) => {
-    const { authToken } = useAuth();
+    // const { authToken } = useAuth();
+    const [authToken, setAuthToken] = useState(null);
     const router = useRouter();
 
     useEffect(() => {
       // If the user is not authenticated, redirect to the login page
-      if (!authToken) {
+      // if (!authToken) {
+      //   router.push("/sign-in");
+      // }
+
+      const token = localStorage.getItem("authToken");
+      setAuthToken(token);
+
+      if (!token) {
         router.push("/sign-in");
       }
     }, [authToken, router]);

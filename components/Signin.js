@@ -19,7 +19,7 @@ export default function Signin() {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
       // console.log("hehe:", authToken);
-      router.push("/music-generation"); // Redirect to home or any other protected page
+      router.push("/"); // Redirect to home or any other protected page
     }
   }, []);
 
@@ -29,9 +29,9 @@ export default function Signin() {
     const authToken = await login(username, password);
     if (authToken) {
       // Redirect to the page the user was trying to access or to a default page
-      const destination = "/music-generation";
+      const destination = "/";
       router.push(destination);
-      console.log("--authToken:", authToken);
+      // console.log("--authToken:", authToken);
     } else {
       // Handle login failure (e.g., display an error message)
       console.log("login failed!");

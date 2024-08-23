@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import "antd-tag-input/dist/style.css";
 import TagInput from "antd-tag-input";
@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "@mui/material/Button";
 import { generateMusicApi, fetchMusicStylesApi } from "@/app/api/Music";
+// import { useRouter } from "next/router";
 
 const suggestions = [
   { value: 3, label: "Bananas" },
@@ -101,6 +102,7 @@ const data = [
 
 export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [isToggle, setToggle] = useState(false);
   const toggleHandle = () => setToggle(!isToggle);
@@ -123,7 +125,6 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
 
   // custom mode states
   const [musicStyles, SetMusicStyles] = useState([]);
-  const [musicTitle, setMusicTitle] = useState("");
 
   const handleInstrumentalToggleChange = () => {
     setInstrumentalToggled(!instrumentalToggled);
@@ -137,14 +138,10 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   };
 
   const handleMusicGeneratorSubmit = async () => {
-    // console.log("defaultGenMode:", defaultGenMode);
-    // console.log("hasVocal:", hasVocal);
-    // console.log("descContent:", descContent);
-
     // default_mode = true
     if (defaultGenMode) {
       console.log("submit with default mode");
-      if (descContent.length <= 20) {
+      if (descContent.length <= 10) {
         toast.error("Mô tả bài hát quá ngắn!");
       } else {
         let data = {
@@ -157,6 +154,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
           const response = await generateMusicApi(data);
           if (response?.status == 200) {
             toast.success("Generate nhạc với default mode thành công!");
+            handleRefreshPage();
           }
         } catch (err) {
           toast.error("Generate nhạc không thành công!");
@@ -179,7 +177,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
             default: defaultGenMode,
             has_vocal: hasVocal,
             prompt: lyricContent,
-            title: musicTitle,
+            title: titleContent,
             styles: stylesString,
           };
         }
@@ -189,7 +187,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
           bodyData = {
             default: defaultGenMode,
             has_vocal: hasVocal,
-            title: musicTitle,
+            title: titleContent,
             styles: stylesString,
           };
         }
@@ -198,6 +196,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
         const response = await generateMusicApi(bodyData);
         if (response?.status == 200) {
           toast.success("Generate nhạc với custom mode thành công!");
+          handleRefreshPage();
         }
       } catch (err) {
         console.error("generate music with custom mode failed:", err);
@@ -221,26 +220,30 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   }, []);
 
   // Description
-  const [wordDescLimit, setWordDescLimit] = useState(200);
-  const [{ descContent, descWordCount }, setDescContent] = React.useState({
+  // const [wordDescLimit, setWordDescLimit] = useState(200);
+  // const [{ descContent, descWordCount }, setDescContent] = React.useState({
+  //   descContent: "",
+  //   descWordCount: 0,
+  // });
+
+  const [descCharLimit, setDescCharLimit] = useState(2700);
+  const [{ descContent, descCharCount }, setDescContent] = React.useState({
     descContent: "",
-    descWordCount: 0,
+    descCharCount: 0,
   });
 
   const setFormattedDescContent = React.useCallback(
     (text) => {
-      let words = text.split(" ").filter(Boolean);
-      if (words.length > wordDescLimit) {
-        setDescContent({
-          descContent: words.slice(0, wordDescLimit).join(" "),
-          descWordCount: wordDescLimit,
-        });
-        toast.error("Bạn đã đạt đến giới hạn từ cho phép của description");
+      // let chars = text.lan;
+      if (text.length > descCharLimit) {
+        toast.error(
+          "Bạn đã đạt đến giới hạn ký tự cho phép của mô tả bài hát!"
+        );
       } else {
-        setDescContent({ descContent: text, descWordCount: words.length });
+        setDescContent({ descContent: text, descCharCount: text.length });
       }
     },
-    [setWordDescLimit, setDescContent]
+    [setDescCharLimit, setDescContent]
   );
 
   React.useEffect(() => {
@@ -249,35 +252,44 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   }, []);
   // end of description
 
-  // Lyrics
-
-  // for textarea word limit
-  const [LyricWordLimit, setLyricWordLimit] = useState(2700);
-
-  const [{ lyricContent, LyricWordCount }, setLyricContent] = React.useState({
+  const [LyricCharLimit, setLyricCharLimit] = useState(2700);
+  const [{ lyricContent, LyricCharCount }, setLyricContent] = React.useState({
     lyricContent: "",
-    LyricWordCount: 0,
+    LyricCharCount: 0,
   });
 
   const setFormattedLyricContent = React.useCallback(
     (text) => {
-      let words = text.split(" ").filter(Boolean);
-      if (words.length > LyricWordLimit) {
-        setLyricContent({
-          lyricContent: words.slice(0, LyricWordLimit).join(" "),
-          LyricWordCount: LyricWordLimit,
-        });
-        toast.error("Bạn đã đạt đến giới hạn từ cho phép của lyrics");
+      if (text.length > LyricCharLimit) {
+        toast.error("Bạn đã đạt đến giới hạn ký tự cho phép của lyrics");
       } else {
-        setLyricContent({ lyricContent: text, LyricWordCount: words.length });
+        setLyricContent({ lyricContent: text, LyricCharCount: text.length });
       }
     },
-    [LyricWordLimit, setLyricContent]
+    [LyricCharLimit, setLyricContent]
+  );
+
+  const [tileCharLimit, setTitleCharLimit] = useState(200);
+  const [{ titleContent, titleCharCount }, setTitleContent] = React.useState({
+    titleContent: "",
+    titleCharCount: 0,
+  });
+
+  const setFormattedTitleContent = React.useCallback(
+    (text) => {
+      if (text.length > tileCharLimit) {
+        toast.error("Bạn đã đạt đến giới hạn ký tự cho phép của title");
+      } else {
+        setTitleContent({ titleContent: text, titleCharCount: text.length });
+      }
+    },
+    [tileCharLimit, setTitleContent]
   );
 
   React.useEffect(() => {
     // if(wordCount > set)
     setFormattedLyricContent(lyricContent);
+    setFormattedTitleContent(titleContent);
   }, []);
   // end of textarea word limit
 
@@ -292,13 +304,22 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
     setSelectedMusicStyles(value);
   };
 
+  const handleRefreshPage = () => {
+    console.log("refresh page...");
+    // router.refresh(); // Refresh the page
+    // router.push(`/music-generation?refreshId=${new Date().getTime()}`);
+    window.location.reload();
+    // router.refresh();
+    // window.location.reload()
+  };
+
   return (
     <>
       <div className="techwave_fn_leftpanel">
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo d-flex justify-content-center mb-5">
-          <Link href="/music-generation" className="fn_logo">
+          <Link href="/" className="fn_logo">
             <span className="full_logo">
               <img
                 src="../img/mht-ai-logo-5.jpg"
@@ -342,7 +363,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
         {/* content (left panel) */}
         <div className="leftpanel_content">
           <div className="generation__sidebar generation_mode_1">
-            <div className="sidebar_model">
+            <div className="sidebar_model_custom">
               {/* <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
                 <Link href="#" className="model_open">
                   <img className="user_img" src="../img/user/user.jpg" alt="" />
@@ -391,8 +412,8 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   </ul>
                 </div>
               </div> */}
-              <div className="mt-4">
-                <label className="fn__toggle mt-3">
+              <div className="d-flex align-items-center border border-top-0 border-start-0 border-end-0 pb-2 border-opacity-25 border-1">
+                <label className="fn__toggle">
                   <span
                     className="t_in"
                     style={{
@@ -490,6 +511,9 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                         className="fn__svg"
                       />
                     </span>
+                    <span className="ms-2" style={{ fontSize: "15px" }}>
+                      ({descCharCount} / {descCharLimit})
+                    </span>
                   </h4>
                 </div>
 
@@ -497,7 +521,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   <textarea
                     id="fn__include_textarea"
                     className="border border-secondary"
-                    rows={6}
+                    rows={20}
                     onChange={(event) =>
                       setFormattedDescContent(event.target.value)
                     }
@@ -535,7 +559,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                       />
                     </span>
                     <span className="ms-2" style={{ fontSize: "15px" }}>
-                      ({LyricWordCount} / {LyricWordLimit})
+                      ({LyricCharCount} / {LyricCharLimit})
                     </span>
                   </h4>
                   <label className="fn__toggle">
@@ -642,14 +666,19 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                         className="fn__svg"
                       />
                     </span>
+                    <span className="ms-2" style={{ fontSize: "15px" }}>
+                      ({titleCharCount} / {tileCharLimit})
+                    </span>
                   </h4>
                 </div>
                 <div className="include_area">
                   <textarea
                     id="fn__include_textarea"
                     rows={3}
-                    onChange={(event) => setMusicTitle(event.target.value)}
-                    value={musicTitle}
+                    onChange={(event) =>
+                      setFormattedTitleContent(event.target.value)
+                    }
+                    value={titleContent}
                   ></textarea>
                   <textarea
                     className="fn__hidden_textarea"

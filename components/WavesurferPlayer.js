@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer";
 // import uuidv4 from "uuid/v4";
 import { v4 as uuidv4 } from "uuid";
-
+import useDownloader from "react-use-downloader";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
@@ -79,6 +79,18 @@ function WaveSurferPlayer({ song }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const wavesurferId = `wavesurfer--${uuidv4()}`;
 
+  const { size, elapsed, percentage, download, cancel, error, isInProgress } =
+    useDownloader();
+
+  const downloadAudio = (audioUrl, filename) => {
+    const link = document.createElement("a");
+    link.href = audioUrl;
+    link.setAttribute("download", filename);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
   useEffect(() => {
     const loadWaveSurfer = async () => {
       //   const { default: WaveSurfer } = await import("wavesurfer.js");
@@ -98,7 +110,7 @@ function WaveSurferPlayer({ song }) {
         });
 
         wavesurfer.current.load(
-          `https://mhtai.kenroly.com/api/upload/${song?.audio_id}`
+          `${process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT}/${song?.audio_id}`
         );
 
         wavesurfer.current.on("ready", () => {
@@ -192,47 +204,21 @@ function WaveSurferPlayer({ song }) {
                 variant="contained"
                 color="success"
                 size="small"
+                onClick={() =>
+                  download(
+                    `${process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT}/${song?.audio_id}`,
+                    `mht-ai-generated-music-${song?.audio_id}.mp3`
+                  )
+                }
+                disabled={
+                  song?.status === "queued" || song?.status === "processing"
+                }
               >
-                Download
+                {song?.status == "complete" ? "Download" : "Processing..."}
               </Button>
             </div>
           </Grid>
         </Grid>
-        {/* controls */}
-        {/* <Grid item container className={classes.buttons}> */}
-        {/* <Grid item xs={5}>
-            {transportPlayButton}
-            <IconButton onClick={stopPlayback}>
-              <StopIcon className={classes.icon} />
-            </IconButton>
-          </Grid> */}
-        {/* <Grid item xs={7} container justify="space-around">
-            <Grid item>
-              <IconButton>
-                <FavoriteIcon
-                  style={{ color: blue[500] }}
-                  className={classes.icon}
-                />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton>
-                <ShareIcon
-                  style={{ color: red[500] }}
-                  className={classes.icon}
-                />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton>
-                <ChatBubbleIcon
-                  style={{ color: green[500] }}
-                  className={classes.icon}
-                />
-              </IconButton>
-            </Grid>
-          </Grid> */}
-        {/* </Grid> */}
       </Card>
     </>
   );

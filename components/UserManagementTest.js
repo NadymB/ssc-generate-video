@@ -220,7 +220,7 @@ export default function UserManagementTest() {
               pagination={false}
               className="mt-2"
             />
-            ;
+
             <Row>
               <Col xs={24}>
                 <div className="user-card-pagination text-end mt-5">

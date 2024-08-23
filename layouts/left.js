@@ -3,11 +3,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-
 const data = [
   {
     title: "Music Generation",
-    pathname: "/music-generation",
+    pathname: "/",
     img: "../svg/image.svg",
   },
 
@@ -117,12 +116,13 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
-          <Link href="/music-generation" className="fn_logo">
+          <Link href="/" className="fn_logo">
             <span className="full_logo">
               <img
-                src="../img/logo-desktop-full.png"
+                src="../img/mht-ai-logo-5.jpg"
                 alt=""
                 className="desktop_logo"
+                style={{ width: "100px", height: "100px" }}
               />
               <img
                 src="../img/logo-retina-full.png"

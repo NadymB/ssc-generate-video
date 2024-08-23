@@ -68,7 +68,7 @@ export default function Layout({ children, leftMenu }) {
             />
           )} */}
 
-          {pathname === "/music-generation/" ? (
+          {pathname === "/music-generation/" || pathname === "/" ? (
             <GenSettingsLeft
               activeTrueFalse={activeTrueFalse}
               activeMobileMenu={activeMobileMenu}

@@ -6,28 +6,19 @@ import Link from "next/link";
 import "wave-audio-path-player";
 import WaveSurferPlayer from "./WavesurferPlayer";
 import { fetchMusicListApi } from "@/app/api/Music";
-
-const song_1 = {
-  name: "music - 1",
-  writer: "react-modern-audio-player",
-  img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
-  src: "https://cdn.pixabay.com/audio/2022/08/23/audio_d16737dc28.mp3",
-  id: 1,
-};
-
-const song_2 = {
-  name: "music - 2",
-  writer: "react-modern-audio-player",
-  img: "https://cdn.pixabay.com/photo/2021/11/04/05/33/dome-6767422_960_720.jpg",
-  src: "https://mhtai.kenroly.com/api/upload/66c4eb2412207255d0ba0c38",
-  id: 2,
-};
+import {
+  Row,
+  Col,
+  Space,
+  Table,
+  Tag,
+  Pagination,
+  Button,
+  ConfigProvider,
+  Modal,
+} from "antd";
 
 export default function ImageGeneration() {
-  const [count, setCount] = useState(4);
-  const [leftMenu, setLeftMenu] = useState(false);
-  const [isDropdown, setIsDropdown] = useState(false);
-
   const [generatedSongs, setGeneratedSongs] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
@@ -46,50 +37,13 @@ export default function ImageGeneration() {
     }
   };
 
+  const onChangePagination = (page) => {
+    setPagination((prevState) => ({ ...prevState, page }));
+  };
+
   useEffect(() => {
-    fetchGeneratedSongList();
-  }, []);
-
-  useEffect(() => {
-    console.log("songs:", generatedSongs);
-  }, [generatedSongs]);
-
-  // new
-  // const [progressType, setProgressType] = useState("waveform");
-  // const [playerPlacement, setPlayerPlacement] = useState("static");
-
-  // const [progressType2, setProgressType2] = useState("waveform");
-  // const [playerPlacement2, setPlayerPlacement2] = useState("static");
-  // new
-
-  const handleIsDropdown = () => {
-    setIsDropdown(!isDropdown);
-  };
-
-  const leftMenuHandler = () => {
-    setLeftMenu(!leftMenu);
-    document
-      .querySelector(".techwave_fn_wrapper")
-      .classList.toggle("fn__has_sidebar");
-  };
-
-  const handleIncrement = () => {
-    if (count < 20) {
-      setCount(count + 1);
-    }
-  };
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-
-  const handleInput = (event) => {
-    const val = event.target.value;
-    setSliderValue(val);
-  };
-
-  const [sliderValue, setSliderValue] = useState(7);
+    fetchGeneratedSongList(pagination.page, pagination.pageSize);
+  }, [pagination.page]);
 
   return (
     <>
@@ -167,82 +121,29 @@ export default function ImageGeneration() {
                 </div>
               </div>
               <div className="item_list">
-                {/* <ul className="fn__generation_list"> */}
-                {/* <div className="container-fluid">
-                  <div className="row w-100">
-                    <div className="col-11">
-                      <AudioPlayer
-                        playList={song_1}
-                        activeUI={{
-                          all: true,
-                          progress: progressType,
-                        }}
-                        placement={{
-                          player: playerPlacement,
-                        }}
-                      />
-                    </div>
-                    <div className="col-1 d-flex align-items-center justify-content-center border">
-                      <button
-                        type="button"
-                        class="btn btn-labeled btn-warning d-flex align-items-center justify-content-between w-100 px-0"
-                      >
-                        <img
-                          src="img/icon/download.png"
-                          style={{ width: "24px" }}
-                        ></img>
-                        <span className="me-3">Download</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="container-fluid">
-                  <div className="row w-100 mt-5">
-                    <div className="col-11">
-                      <AudioPlayer
-                        playList={song_2}
-                        activeUI={{
-                          all: true,
-                          progress: progressType2,
-                        }}
-                        placement={{
-                          player: playerPlacement2,
-                        }}
-                      />
-                    </div>
-                    <div className="col-1 d-flex align-items-center justify-content-center border">
-                      <button
-                        type="button"
-                        class="btn btn-labeled btn-warning d-flex align-items-center justify-content-between w-100 px-0"
-                      >
-                        <img
-                          src="img/icon/download.png"
-                          style={{ width: "24px" }}
-                        ></img>
-                        <span className="me-3">Download</span>
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="container-fluid">
-                  <div className="row w-100 my-2">
-                    <span className="text-white">1.</span>
-                    <WaveSurferPlayer song={song_1} />
-                  </div>
-
-                  <div className="row w-100 my-2">
-                    <span className="text-white">2.</span>
-                    <WaveSurferPlayer song={song_2} />
-                  </div>
-                </div> */}
                 <div className="container-fluid">
                   {generatedSongs?.map((generatedSong, index) => (
                     <div className="row w-100 my-2">
-                      <span className="text-white">{index + 1}.</span>
+                      {/* <span className="text-white">{index + 1}.</span> */}
                       <WaveSurferPlayer song={generatedSong} />
                     </div>
                   ))}
+                </div>
+
+                <div className="container-fluid">
+                  <Row>
+                    <Col xs={24}>
+                      <div className="user-card-pagination text-end mt-5">
+                        <Pagination
+                          align="end"
+                          total={pagination?.meta?.total}
+                          onChange={onChangePagination}
+                          current={pagination.page}
+                          pageSize={pagination.pageSize}
+                        />
+                      </div>
+                    </Col>
+                  </Row>
                 </div>
 
                 {/* <div className="container-fluid">
@@ -256,168 +157,16 @@ export default function ImageGeneration() {
             </div>
             {/* end of test */}
 
-            <div className="generation_more" style={{ marginTop: "1000px" }}>
+            <div
+              className="generation_more"
+              // style={{ marginTop: "100px" }}
+            >
               {/* <Link href="pricing" className="techwave_fn_button medium">
                 <span>Previous Generations</span>
               </Link> */}
             </div>
           </div>
         </div>
-
-        {/* <div className="generation__sidebar">
-          <div className="sidebar_model">
-            <div className={`fn__select_model ${isDropdown ? "opened" : ""}`}>
-              <Link href="#" className="model_open">
-                <img className="user_img" src="img/user/user.jpg" alt="" />
-                <div className="author">
-                  <h4 className="subtitle">Model</h4>
-                  <h3 className="title">ArtShaper v3</h3>
-                </div>
-                <span className="fn__icon_button" onClick={handleIsDropdown}>
-                  <img src="svg/arrow.svg" alt="" className="fn__svg" />
-                </span>
-              </Link>
-              <div className="all_models">
-                <ul>
-                  <li>
-                    <Link className="selected" href="#">
-                      ArtShaper v3
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">ArtShaper v2</Link>
-                  </li>
-                  <li>
-                    <Link href="#">GameVisuals</Link>
-                  </li>
-                  <li>
-                    <Link href="#">VintageCar</Link>
-                  </li>
-                  <li>
-                    <Link href="#">ArtDeco</Link>
-                  </li>
-                  <li>
-                    <Link href="#">IceCold</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Water Effect</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Stable Diffusion v2</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Stable Diffusion v1</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Other</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="sidebar_details">
-            <div className="number_of_images">
-              <div className="d-flex align-items-center justify-content-between mb-2">
-                <h4 className="title generation_title">Lyrics</h4>
-                <label className="fn__toggle">
-                  <span className="t_in">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      id="negative_prompt"
-                    />
-                    <span className="t_slider" />
-                    <span className="t_content" />
-                  </span>
-                  Instrumental
-                </label>
-              </div>
-              <div className="include_area">
-                <textarea id="fn__include_textarea" rows={3} />
-                <textarea
-                  className="fn__hidden_textarea"
-                  rows={3}
-                  tabIndex={-1}
-                />
-              </div>
-            </div>
-            <div className="img_sizes">
-              <h4 className="title">Image Dimensions</h4>
-              <div className="img_size_select">
-                <select>
-                  <option defaultValue="512_512">512 x 512px</option>
-                  <option value="768_768">768 x 768px</option>
-                  <option value="512_1024">512 x 1024px</option>
-                  <option value="768_1024">768 x 1024px</option>
-                  <option value="1024_1024">1024 x 1024px</option>
-                </select>
-              </div>
-            </div>
-            <div className="guidance_scale">
-              <h4 className="title">
-                Image Dimensions
-                <span
-                  className="fn__tooltip"
-                  title="Select the resoultion of the images."
-                >
-                  <img src="svg/question.svg" alt="" className="fn__svg" />
-                </span>
-              </h4>
-              <div className="fn__range">
-                <div className="range_in">
-                  <input
-                    type="range"
-                    min={1}
-                    max={40}
-                    value={sliderValue}
-                    onChange={handleInput}
-                  />
-                  <div
-                    className="slider"
-                    style={{ width: sliderValue * 2.5 + "%" }}
-                  ></div>
-                </div>
-                <div className="value">{sliderValue}</div>
-              </div>
-            </div>
-            <div className="prompt_magic_switcher">
-              <h4 className="title">
-                <label htmlFor="prompt_switcher">Prompt Magic</label>
-                <span
-                  className="fn__tooltip"
-                  title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."
-                >
-                  <img src="svg/question.svg" alt="" className="fn__svg" />
-                </span>
-              </h4>
-              <label className="fn__toggle">
-                <span className="t_in">
-                  <input type="checkbox" defaultChecked id="prompt_switcher" />
-                  <span className="t_slider" />
-                  <span className="t_content" />
-                </span>
-              </label>
-            </div>
-            <div className="contrast_switcher">
-              <h4 className="title">
-                <label htmlFor="contrast_switcher">High Contrast</label>
-                <span
-                  className="fn__tooltip"
-                  title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."
-                >
-                  <img src="svg/question.svg" alt="" className="fn__svg" />
-                </span>
-              </h4>
-              <label className="fn__toggle">
-                <span className="t_in">
-                  <input type="checkbox" id="contrast_switcher" />
-                  <span className="t_slider" />
-                  <span className="t_content" />
-                </span>
-              </label>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

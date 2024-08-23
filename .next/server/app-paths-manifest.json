@@ -1,8 +1,3 @@
 {
-  "/not-found": "app/not-found.js",
-  "/user-management/page": "app/user-management/page.js",
-  "/team-management/page": "app/team-management/page.js",
-  "/group-management/page": "app/group-management/page.js",
-  "/management/groups/page": "app/management/groups/page.js",
-  "/music-generation/page": "app/music-generation/page.js"
+  "/page": "app/page.js"
 }

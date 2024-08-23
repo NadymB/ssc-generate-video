@@ -16,53 +16,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/loading.js"
-    ],
-    "/(user)/sign-in/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(user)/sign-in/page.css",
-      "static/chunks/app/(user)/sign-in/page.js"
-    ],
-    "/music-generation/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/music-generation/page.css",
-      "static/chunks/app/music-generation/page.js"
-    ],
-    "/management/users/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/management/users/page.css",
-      "static/chunks/app/management/users/page.js"
-    ],
-    "/user-management/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/user-management/page.css",
-      "static/chunks/app/user-management/page.js"
-    ],
-    "/team-management/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/team-management/page.css",
-      "static/chunks/app/team-management/page.js"
-    ],
-    "/group-management/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/group-management/page.css",
-      "static/chunks/app/group-management/page.js"
-    ],
-    "/management/groups/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/management/groups/page.css",
-      "static/chunks/app/management/groups/page.js"
-    ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
     ]
   }
 }

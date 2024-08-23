@@ -1,4 +1,10 @@
-import { LIST_TEAM_ENDPOINT } from "./endpoints";
+import {
+  LIST_TEAM_ENDPOINT,
+  CREATE_TEAM_ENDPOINT,
+  UPDATE_TEAM_ENDPOINT,
+  DETAIL_TEAM_ENDPOINT,
+  DELETE_TEAM_ENDPOINT,
+} from "./endpoints";
 import ApiFactory from "../ApiFactory";
 
 const UserApi = new ApiFactory({
@@ -12,4 +18,30 @@ const fetchListTeamApi = () =>
     name: LIST_TEAM_ENDPOINT,
   }).get();
 
-export { fetchListTeamApi };
+const createTeamApi = (data) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: CREATE_TEAM_ENDPOINT,
+  }).post(data);
+
+const updateTeamApi = (data) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: UPDATE_TEAM_ENDPOINT,
+  }).put(data);
+
+const fetchDetailTeamApi = (id) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: DETAIL_TEAM_ENDPOINT,
+  }).getOne(id);
+
+const deleteTeamApi = (id) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: DELETE_TEAM_ENDPOINT,
+  }).delete(id);
+
+export {
+  fetchListTeamApi,
+  createTeamApi,
+  updateTeamApi,
+  fetchDetailTeamApi,
+  deleteTeamApi,
+};
