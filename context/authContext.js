@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }) => {
       const response = await loginUserApi(data);
 
       let authToken = response?.data?.data?.token;
+      localStorage.setItem("authToken", authToken);
       setAuthToken(authToken);
 
-      localStorage.setItem("authToken", authToken);
 
       return authToken;
     } catch (error) {
@@ -41,9 +41,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    setAuthToken(null);
+    console.log('call logout')
     localStorage.removeItem("authToken");
-    router.push("/sign-in");
+    setAuthToken(null);
+  
+    // Đợi cho đến khi authToken được cập nhật trước khi chuyển trang
+    router.replace("/sign-in/");
   };
 
   const fetchProfile = async () => {

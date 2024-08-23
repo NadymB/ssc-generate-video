@@ -337,11 +337,11 @@ export default function UserManagementTest() {
             }}
             name="team_ids"
             label="Choose teams"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
           />
         </ProForm.Group>
       </ModalForm>

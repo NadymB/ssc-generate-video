@@ -26,6 +26,10 @@ export default function ImageGeneration() {
     meta: null,
   });
 
+  // useEffect(() => {
+  //     window.location.reload();
+  //   }, [])
+
   const fetchGeneratedSongList = async (page, limit) => {
     try {
       const response = await fetchMusicListApi({ page, limit });

@@ -6,12 +6,12 @@ import { fetchGroupListApi } from "@/app/api/Group";
 import { Span } from "next/dist/trace";
 
 const columns = [
-  {
-    title: "Group ID",
-    dataIndex: "id",
-    key: "id",
-    render: (text) => <a>{text}</a>,
-  },
+  // {
+  //   title: "Group ID",
+  //   dataIndex: "id",
+  //   key: "id",
+  //   render: (text) => <a>{text}</a>,
+  // },
   {
     title: "Name",
     dataIndex: "name",

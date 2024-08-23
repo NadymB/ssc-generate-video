@@ -13,10 +13,10 @@ const UserApi = new ApiFactory({
 
 UserApi.createEntities([{ name: LIST_TEAM_ENDPOINT }]);
 
-const fetchListTeamApi = () =>
+const fetchListTeamApi = (params) =>
   UserApi.createBasicCRUDEndpoints({
     name: LIST_TEAM_ENDPOINT,
-  }).get();
+  }).get(params);
 
 const createTeamApi = (data) =>
   UserApi.createBasicCRUDEndpoints({

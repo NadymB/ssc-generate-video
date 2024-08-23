@@ -7,6 +7,7 @@ if (typeof window !== "undefined") {
   token = localStorage.getItem("authToken");
 }
 
+
 // axios.defaults.timeout = TIMEOUT_REQUEST_API;
 
 class ApiFactory {
