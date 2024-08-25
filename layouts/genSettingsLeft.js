@@ -226,7 +226,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   //   descWordCount: 0,
   // });
 
-  const [descCharLimit, setDescCharLimit] = useState(2700);
+  const [descCharLimit, setDescCharLimit] = useState(199);
   const [{ descContent, descCharCount }, setDescContent] = React.useState({
     descContent: "",
     descCharCount: 0,
@@ -269,7 +269,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
     [LyricCharLimit, setLyricContent]
   );
 
-  const [tileCharLimit, setTitleCharLimit] = useState(200);
+  const [tileCharLimit, setTitleCharLimit] = useState(79);
   const [{ titleContent, titleCharCount }, setTitleContent] = React.useState({
     titleContent: "",
     titleCharCount: 0,
@@ -521,7 +521,8 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                   <textarea
                     id="fn__include_textarea"
                     className="border border-secondary"
-                    rows={20}
+                    rows={15}
+                    placeholder="Prompt mô tả hoặc phong cách âm nhạc."
                     onChange={(event) =>
                       setFormattedDescContent(event.target.value)
                     }

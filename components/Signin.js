@@ -17,9 +17,9 @@ export default function Signin() {
     console.log('call day ne')
     // console.log("authToken - test:", authToken);
     // console.log("hehe:", authToken);
-    let token = localStorage.getItem("authToken");
-    if (token) {
-      console.log('token vip:', token)
+    // let token = localStorage.getItem("authToken");
+    if (authToken) {
+      // console.log('token vip:', token)
       
       // console.log("hehe:", authToken);
       router.push("/"); // Redirect to home or any other protected page

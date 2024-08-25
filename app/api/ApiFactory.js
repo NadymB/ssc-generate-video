@@ -247,6 +247,17 @@ class ApiFactory {
       });
     };
 
+    endpoints.submitDeleteCustom = (data, config) => {
+      const customHeaders = config && config.headers && { ...config.headers };
+      return axios.delete(resourceURL, data, {
+        ...config,
+        headers: {
+          authorization: token ? `Bearer ${token}` : null,
+          ...customHeaders,
+        },
+      });
+    };
+
     /**
      * UPDATE
      */

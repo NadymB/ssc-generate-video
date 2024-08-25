@@ -105,7 +105,7 @@ export default function GroupManagement() {
     <div className="techwave_fn_community_page">
       <div className="fn__title_holder">
         <div className="container-fluid">
-          <h1 className="title">Group Management</h1>
+          <h1 className="title">Quản lý Group</h1>
         </div>
       </div>
       <div className="techwave_fn_feed">

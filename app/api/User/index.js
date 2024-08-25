@@ -2,7 +2,8 @@ import {
   LIST_USER_BY_ADMIN_ENDPOINT,
   LIST_USER_GROUP_ENDPOINT,
   CREATE_NEW_USER_ENDPOINT,
-  FETCH_USER_PROFILE_ENDPOINT,
+  DETAIL_USER_ENDPOINT,
+  UPDATE_USER_ENDPOINT,
 } from "./endpoints";
 import ApiFactory from "../ApiFactory";
 
@@ -30,4 +31,14 @@ const createNewUserApi = (data) =>
     name: CREATE_NEW_USER_ENDPOINT,
   }).post(data);
 
-export { fetchListUserApi, fetchListUserGroupApi, createNewUserApi };
+const fetchDetailUserApi = (id) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: DETAIL_USER_ENDPOINT
+  }).getOne(id);
+
+const updateUserApi = (data) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: UPDATE_USER_ENDPOINT
+  }).put(data)
+
+export { fetchListUserApi, fetchListUserGroupApi, createNewUserApi, fetchDetailUserApi, updateUserApi };

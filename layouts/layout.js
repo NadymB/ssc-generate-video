@@ -90,7 +90,7 @@ export default function Layout({ children, leftMenu }) {
             </div>
             {/* !PAGE (all pages go inside this div) */}
             {/* FOOTER (inside the content) */}
-            {/* <Footer /> */}
+            <Footer />
             {/* !FOOTER (inside the content) */}
           </div>
           {/* !CONTENT */}

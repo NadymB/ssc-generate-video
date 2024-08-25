@@ -7,18 +7,18 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [authToken, setAuthToken] = useState(null);
+  const [authToken, setAuthToken] = useState(global?.window?.localStorage?.getItem("authToken") ? global?.window?.localStorage?.getItem("authToken") : null);
   const router = useRouter();
 
-  useEffect(() => {
-    // Check if we're in the browser and localStorage is available
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("authToken");
-      if (storedToken) {
-        setAuthToken(storedToken);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Check if we're in the browser and localStorage is available
+  //   // if (typeof window !== "undefined") {
+  //     const storedToken = localStorage.getItem("authToken");
+  //     if (storedToken) {
+  //       setAuthToken(storedToken);
+  //     }
+  //   // }
+  // }, []);
 
   const login = async (username, password) => {
     try {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     console.log('call logout')
     localStorage.removeItem("authToken");
     setAuthToken(null);
-  
+    window.location.reload();
     // Đợi cho đến khi authToken được cập nhật trước khi chuyển trang
     router.replace("/sign-in/");
   };

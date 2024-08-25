@@ -38,10 +38,16 @@ const deleteTeamApi = (id) =>
     name: DELETE_TEAM_ENDPOINT,
   }).delete(id);
 
+const deleteMultiTeamApi = (data) => 
+  UserApi.createBasicCRUDEndpoints({
+    name: DELETE_TEAM_ENDPOINT,
+  }).submitDeleteCustom(data);
+
 export {
   fetchListTeamApi,
   createTeamApi,
   updateTeamApi,
   fetchDetailTeamApi,
   deleteTeamApi,
+  deleteMultiTeamApi
 };
