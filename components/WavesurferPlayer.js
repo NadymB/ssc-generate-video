@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 avatar username ostalo layout sa grid
 
 */
-function WaveSurferPlayer({ song, pagination, forceStop}) {
+function WaveSurferPlayer({ song, pagination, forceStop }) {
   let wavesurfer = useRef(null);
 
   const [playerReady, setPlayerReady] = useState(false);
@@ -81,7 +81,6 @@ function WaveSurferPlayer({ song, pagination, forceStop}) {
 
   const { size, elapsed, percentage, download, cancel, error, isInProgress } =
     useDownloader();
-  
 
   useEffect(() => {
     const loadWaveSurfer = async () => {
@@ -133,36 +132,23 @@ function WaveSurferPlayer({ song, pagination, forceStop}) {
 
   const stopPlayback = () => wavesurfer.current.stop();
 
-  
-  // useEffect(() => {
-  //   if (forceStop && wavesurfer.current) {
-  //     wavesurfer.current.stop();
-  //     setIsPlaying(false);
-  //   }
-  // }, [forceStop]);
-
-  // useEffect(() => {
-  //   // `wavesurfer` instance init code
-  //   if (wavesurfer?.current) {
-  //     return () => wavesurfer.current.destroy()
-  //   }
-    
-  // }, []);
-
-  // useEffect(() => {
-  //   if (wavesurfer) {
-  //     if(isPlaying) {
-  //       console.log('call destroy ')
-  //       wavesurfer.current.destroy()
-  //     }
-      
-  //   }
-    
-  // }, [pagination])
-
-  // useEffect(() => {
-  //   console.log('is_playing:', isPlaying)
-  // })
+  useEffect(() => {
+    console.log("call here to destroy player (outer)");
+    // Clear player when pagination changes or forceStop is true
+    if (pagination) {
+      console.log("---------------------------");
+      console.log("song_id:", song?.audio_id);
+      console.log("isPlaying:", isPlaying);
+      console.log("---------------------------");
+      if (isPlaying === true) {
+        console.log("call here to destroy player (inner)");
+        wavesurfer.current.stop();
+        wavesurfer.current.destroy();
+        wavesurfer.current = null;
+      }
+      setIsPlaying(false);
+    }
+  }, [pagination]);
 
   const classes = useStyles();
 
@@ -221,7 +207,9 @@ function WaveSurferPlayer({ song, pagination, forceStop}) {
             <div className="d-flex align-items-center justify-content-center w-100">
               <Button
                 className={`btn-sm ${
-                  song?.status === "queued" || song?.status === "processing" || song?.status === "error"
+                  song?.status === "queued" ||
+                  song?.status === "processing" ||
+                  song?.status === "error"
                     ? "disabled"
                     : ""
                 }`}

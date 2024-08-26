@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 // import AudioPlayer from "react-modern-audio-player";
 import Link from "next/link";
 // import Player from "react-wavy-audio";
@@ -33,7 +33,10 @@ export default function ImageGeneration() {
       const response = await fetchMusicListApi({ page, limit });
       let meta = response?.data?.data?.meta;
       setPagination((prevState) => ({ ...prevState, meta }));
+
+      // let wavesurfer = useRef(null);
       let songs = response?.data?.data?.data;
+
       setGeneratedSongs(songs);
 
       let inProgressSongs = songs.filter(
