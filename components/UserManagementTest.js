@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext, useRef, useMemo } from "react";
 import {
   Row,
   Col,
@@ -15,6 +15,8 @@ import { fetchGroupListApi } from "@/app/api/Group";
 import { fetchListTeamApi } from "@/app/api/Team";
 import { createNewUserApi } from "@/app/api/User";
 import { UserAddOutlined } from "@ant-design/icons";
+import { fetchDetailUserApi } from "@/app/api/User";
+import { updateUserApi } from "@/app/api/User";
 import { css } from "@emotion/css";
 import {
   ModalForm,
@@ -29,71 +31,49 @@ import { Form } from "antd";
 import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Username",
-    dataIndex: "username",
-    key: "username",
-    render: (text) => <span>{text}</span>,
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-    render: (text) => <span>{text}</span>,
-  },
-  {
-    title: "Group",
-    dataIndex: "group",
-    key: "group",
-    render: (_, { group }) => (
-      <Tag
-        color={
-          group === "ADMIN"
-            ? "geekblue"
-            : group === "SUPERVISOR"
-            ? "green"
-            : "volcano"
-        }
-        key={group}
-      >
-        {group.toUpperCase()}
-      </Tag>
-    ),
-  },
-  {
-    title: "Teams",
-    dataIndex: "teams",
-    key: "teams",
-    render: (teams) => (
-      <span>{teams?.map((team) => team.name).join(", ")}</span>
-    ),
-  },
-];
+
 
 export default function UserManagementTest() {
   const [users, setUsers] = useState([]);
+  const [createdUser, setCreatedUser] = useState({})
   const [groups, setGroups] = useState([]);
   const [teams, setTeams] = useState([]);
+  const [detailUser, setDetailUser] = useState({});
   const [pagination, setPagination] = useState({
     page: 1,
     pageSize: 10,
     meta: null,
   });
   const [modalVisit, setModalVisit] = useState(false);
+  const [updateModalVisit, setUpdateModalVisit] = useState(false);
+  const [copyCredentialsModalVisit, setCopyCredentialsModalVisit] = useState(false);
+
   const restFormRef = useRef();
+  const updateRestFormRef = useRef();
+  const copyCredentialsRestFormRef = useRef()
   const formRef = useRef();
   const [form] = Form.useForm();
 
   const onChangePagination = (page) => {
     setPagination((prevState) => ({ ...prevState, page }));
   };
+
+  const handleShowDetailUserModal = async (userId) => {
+    try {
+      const response = await fetchDetailUserApi(userId);
+      if (response?.status === 200) {
+        setDetailUser(response?.data?.data);
+        setUpdateModalVisit(true);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error?.response?.data?.message);
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  useEffect(() => {
+    console.log("user detail:", detailUser)
+  }, [detailUser])
 
   const fetchUserList = async (page, limit) => {
     try {
@@ -125,22 +105,41 @@ export default function UserManagementTest() {
   };
 
   const handleCreateUser = async (values) => {
-    // create a new user
     try {
-      // console.log("testing...");
+
       const response = await createNewUserApi(values);
-      // console.log("response:", response);
+
       if (response?.status === 200) {
-        toast.success("Create a new user successfully!");
+        toast.success("Tạo tài khoản thành công!");
+        setCreatedUser(response?.data?.data)
         fetchUserList(1, pagination.pageSize);
         restFormRef.current?.resetFields();
         setModalVisit(false);
+        setCopyCredentialsModalVisit(true);
       }
     } catch (error) {
       console.error("An error occurred:", error?.response?.data?.message);
       toast.error(error?.response?.data?.message);
     }
   };
+
+  const handleCopyUserCredential = async (values) => {
+    try {
+      const { username, password } = values;
+  
+      const textToCopy = `username:${username}|password:${password}`;
+  
+      await navigator.clipboard.writeText(textToCopy);
+  
+      toast.success('Username và password đã được sao chép vào clipboard');
+    } catch (err) {
+      toast.error('Không thể sao chép thông tin. Vui lòng thử lại.');
+      console.error('Error copying text:', err);
+    }
+  };
+  useEffect(() => {
+    console.log('createdUser:', createdUser)
+  }, [createdUser])
 
   // first call
   useEffect(() => {
@@ -154,31 +153,60 @@ export default function UserManagementTest() {
 
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const rootPrefixCls = getPrefixCls();
-  const linearGradientButton = css`
-    &.${rootPrefixCls}-btn-primary:not([disabled]):not(
-        .${rootPrefixCls}-btn-dangerous
-      ) {
-      border-width: 0;
+  // const linearGradientButton = css`
+  //   &.${rootPrefixCls}-btn-primary:not([disabled]):not(
+  //       .${rootPrefixCls}-btn-dangerous
+  //     ) {
+  //     border-width: 0;
 
-      > span {
-        position: relative;
-      }
+  //     > span {
+  //       position: relative;
+  //     }
 
-      &::before {
-        content: "";
-        background: linear-gradient(135deg, #6253e1, #04befe);
-        position: absolute;
-        inset: 0;
-        opacity: 1;
-        transition: all 0.3s;
-        border-radius: inherit;
-      }
+  //     &::before {
+  //       content: "";
+  //       background: linear-gradient(135deg, #6253e1, #04befe);
+  //       position: absolute;
+  //       inset: 0;
+  //       opacity: 1;
+  //       transition: all 0.3s;
+  //       border-radius: inherit;
+  //     }
 
-      &:hover::before {
-        opacity: 0;
+  //     &:hover::before {
+  //       opacity: 0;
+  //     }
+  //   }
+  // `;
+
+
+  const handleUpdateUser = async (values) => {
+    try {
+      console.log('values:', values)
+      let toSubmit = {
+        id: detailUser?.id,
+        ...values,
+        group_id: values?.group_id,
+      };
+
+     
+
+      const response = await updateUserApi(toSubmit);
+
+      if (response?.status === 200) {
+        toast.success("Cập nhật user thành công!");
+        fetchUserList(1, pagination.pageSize);
+        updateRestFormRef.current?.resetFields();
+        setUpdateModalVisit(false);
       }
+    } catch (error) {
+      console.error(
+        "An error occurred when update team:",
+        error?.response?.data?.message
+      );
+      toast.error(error?.response?.data?.message);
     }
-  `;
+  };
 
   const validateMessages = {
     required: "${label} is required!",
@@ -191,12 +219,78 @@ export default function UserManagementTest() {
     },
   };
 
+  const columns = useMemo(() => [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
+      render: (text) => <span>{text}</span>,
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      render: (text) => <span>{text}</span>,
+    },
+    {
+      title: "Group",
+      dataIndex: "group",
+      key: "group",
+      render: (_, { group }) => (
+        <Tag
+          color={
+            group === "ADMIN"
+              ? "geekblue"
+              : group === "SUPERVISOR"
+              ? "green"
+              : "volcano"
+          }
+          key={group}
+        >
+          {group.toUpperCase()}
+        </Tag>
+      ),
+    },
+    {
+      title: "Teams",
+      dataIndex: "teams",
+      key: "teams",
+      render: (teams) => (
+        <span>{teams?.map((team) => team.name).join(", ")}</span>
+      ),
+    },
+    {
+      title: "Action",
+      dataIndex: "id",
+      key: "id",
+      render: (_, { id }) => (
+        <div className="d-flex justify-content-center w-100">
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={() => {
+              handleShowDetailUserModal(id);
+            }}
+          >
+            Update
+          </button>
+        </div>
+      ),
+    },
+  ], []);
+
   return (
     <>
       <div className="techwave_fn_community_page">
         <div className="fn__title_holder">
           <div className="container-fluid">
-            <h1 className="title">User Management</h1>
+            <h1 className="title">Quản lý User</h1>
           </div>
         </div>
         <div className="techwave_fn_feed">
@@ -211,7 +305,7 @@ export default function UserManagementTest() {
                   setModalVisit(true);
                 }}
               >
-                Create a new user
+                Tạo mới user
               </Button>
             </div>
             <Table
@@ -337,11 +431,146 @@ export default function UserManagementTest() {
             }}
             name="team_ids"
             label="Choose teams"
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
+          />
+        </ProForm.Group>
+      </ModalForm>
+
+      {/* update user modal form */}
+      <ModalForm
+        title="Cập nhật user"
+        open={updateModalVisit}
+        onFinish={handleUpdateUser}
+        onOpenChange={setUpdateModalVisit}
+        submitter={{
+          searchConfig: {
+            submitText: "Submit",
+            resetText: "Close",
+          },
+        }}
+        validateMessages={validateMessages}
+        formRef={updateRestFormRef}
+        modalProps={{
+          destroyOnClose: true,
+          onCancel: () => console.log("run"),
+        }}
+      >
+        <ProForm.Group>
+          {/* <ProFormText
+            width="md"
+            name={"name_" + detailUser?.id}
+            label="Tên của user"
+            tooltip="Nhập tên của user"
+            placeholder="Nhập tên của user"
+            value={detailUser["name"]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
+          /> */}
+           <ProFormText
+            width="md"
+            name="name"
+            label="Tên của user"
+            tooltip="Nhập tên của user"
+            placeholder="Nhập tên của user"
+            value={detailUser["name"]}
+            disabled
+          />
+          <ProFormText
+            width="md"
+            name="email"
+            label="email"
+            tooltip="email cua user"
+            // placeholder="Nhập tên của team"
+            value={detailUser?.email}
+            disabled
+          />
+        </ProForm.Group>
+        <ProForm.Group>
+          {/* manager */}
+          <ProFormSelect
+            options={groups?.map((group) => ({
+              value: group.id,
+              label: group.name,
+            }))}
+            width="md"
+            placeholder={"..."}
+            name="group_id"
+            label="Chọn group"
+            initialValue={{
+              // value: detailUser["group"]["id"],
+              value: detailUser["group_id"],
+            }}
+            // initialValue={detailTeam?.manager?.id}
             rules={[
               {
                 required: true,
               },
             ]}
+          />
+          {/* teams */}
+          <ProFormSelect
+            options={teams?.map((team) => ({
+              value: team.id,
+              label: team.name,
+            }))}
+            width="md"
+            placeholder="..."
+            name="team_ids"
+            label="Chọn team"
+            fieldProps={{
+              mode: "multiple",
+            }}
+            initialValue={detailUser?.teams?.map((team) => team.id)} // Trích xuất toàn bộ team.id
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          />
+        </ProForm.Group>
+      </ModalForm>
+
+      {/* copy-credentials modal form */}
+      <ModalForm
+        title="Sao chép thông tin đăng nhập"
+        open={copyCredentialsModalVisit}
+        onFinish={handleCopyUserCredential}
+        onOpenChange={setCopyCredentialsModalVisit}
+        submitter={{
+          searchConfig: {
+            submitText: "Sao chép",
+            resetText: "Đóng",
+          },
+        }}
+        validateMessages={validateMessages}
+        formRef={copyCredentialsRestFormRef}
+        modalProps={{
+          destroyOnClose: true,
+          onCancel: () => setCreatedUser({}),
+        }}
+      >
+        <ProForm.Group>
+
+           <ProFormText
+            width="md"
+            name="username"
+            label="username"
+            initialValue={createdUser?.username}
+            disabled
+          />
+          <ProFormText
+            width="md"
+            name="password"
+            label="password"
+            initialValue={createdUser?.password}
+            disabled
           />
         </ProForm.Group>
       </ModalForm>

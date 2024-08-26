@@ -6,12 +6,12 @@ import { fetchGroupListApi } from "@/app/api/Group";
 import { Span } from "next/dist/trace";
 
 const columns = [
-  {
-    title: "Group ID",
-    dataIndex: "id",
-    key: "id",
-    render: (text) => <a>{text}</a>,
-  },
+  // {
+  //   title: "Group ID",
+  //   dataIndex: "id",
+  //   key: "id",
+  //   render: (text) => <a>{text}</a>,
+  // },
   {
     title: "Name",
     dataIndex: "name",
@@ -105,7 +105,7 @@ export default function GroupManagement() {
     <div className="techwave_fn_community_page">
       <div className="fn__title_holder">
         <div className="container-fluid">
-          <h1 className="title">Group Management</h1>
+          <h1 className="title">Quản lý Group</h1>
         </div>
       </div>
       <div className="techwave_fn_feed">

@@ -72,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
 avatar username ostalo layout sa grid
 
 */
-function WaveSurferPlayer({ song }) {
-  const wavesurfer = useRef(null);
+function WaveSurferPlayer({ song, pagination, forceStop}) {
+  let wavesurfer = useRef(null);
 
   const [playerReady, setPlayerReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -81,15 +81,7 @@ function WaveSurferPlayer({ song }) {
 
   const { size, elapsed, percentage, download, cancel, error, isInProgress } =
     useDownloader();
-
-  const downloadAudio = (audioUrl, filename) => {
-    const link = document.createElement("a");
-    link.href = audioUrl;
-    link.setAttribute("download", filename);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  };
+  
 
   useEffect(() => {
     const loadWaveSurfer = async () => {
@@ -141,6 +133,37 @@ function WaveSurferPlayer({ song }) {
 
   const stopPlayback = () => wavesurfer.current.stop();
 
+  
+  // useEffect(() => {
+  //   if (forceStop && wavesurfer.current) {
+  //     wavesurfer.current.stop();
+  //     setIsPlaying(false);
+  //   }
+  // }, [forceStop]);
+
+  // useEffect(() => {
+  //   // `wavesurfer` instance init code
+  //   if (wavesurfer?.current) {
+  //     return () => wavesurfer.current.destroy()
+  //   }
+    
+  // }, []);
+
+  // useEffect(() => {
+  //   if (wavesurfer) {
+  //     if(isPlaying) {
+  //       console.log('call destroy ')
+  //       wavesurfer.current.destroy()
+  //     }
+      
+  //   }
+    
+  // }, [pagination])
+
+  // useEffect(() => {
+  //   console.log('is_playing:', isPlaying)
+  // })
+
   const classes = useStyles();
 
   let transportPlayButton;
@@ -173,9 +196,10 @@ function WaveSurferPlayer({ song }) {
             xs={12}
             className="d-flex justify-content-center align-items-center"
           >
-            <h4 className="generated-music-title">
+            <h4 className="generated-music-title d-flex flex-column align-items-center">
               {/* <span>Title: </span> */}
-              {song?.title}
+              <span>{song?.title}</span>
+              <span>({song?.created_by?.name})</span>
             </h4>
           </Grid>
         </Grid>
@@ -197,7 +221,7 @@ function WaveSurferPlayer({ song }) {
             <div className="d-flex align-items-center justify-content-center w-100">
               <Button
                 className={`btn-sm ${
-                  song?.status === "queued" || song?.status === "processing"
+                  song?.status === "queued" || song?.status === "processing" || song?.status === "error"
                     ? "disabled"
                     : ""
                 }`}
@@ -214,7 +238,7 @@ function WaveSurferPlayer({ song }) {
                   song?.status === "queued" || song?.status === "processing"
                 }
               >
-                {song?.status == "complete" ? "Download" : "Processing..."}
+                {song?.status == "complete" ? "Download" : song?.status}
               </Button>
             </div>
           </Grid>

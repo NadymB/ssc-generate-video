@@ -20,6 +20,10 @@ const Home = () => {
     document.title = "Music Generation | Techwave NextJs";
   }, []);
 
+  // useEffect(() => {
+  //   window.location.reload();
+  // }, [])
+
   return (
     <Layout>
       <MusicGeneration />

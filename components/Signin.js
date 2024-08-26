@@ -14,23 +14,31 @@ export default function Signin() {
   const router = useRouter();
 
   useEffect(() => {
+    console.log('call day ne')
     // console.log("authToken - test:", authToken);
     // console.log("hehe:", authToken);
-    const authToken = localStorage.getItem("authToken");
+    // let token = localStorage.getItem("authToken");
     if (authToken) {
+      // console.log('token vip:', token)
+      
       // console.log("hehe:", authToken);
       router.push("/"); // Redirect to home or any other protected page
     }
-  }, []);
+
+    console.log('authToken from useAuth:', authToken)
+  }, [authToken]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log(username, password);
     const authToken = await login(username, password);
     if (authToken) {
+      // useEffect(() => {
+          window.location.reload();
+        // }, [])
       // Redirect to the page the user was trying to access or to a default page
-      const destination = "/";
-      router.push(destination);
+      // const destination = "/";
+      // router.push(destination);
       // console.log("--authToken:", authToken);
     } else {
       // Handle login failure (e.g., display an error message)

@@ -6,19 +6,14 @@ import React, { useEffect, useState } from "react";
 const withProtectedRoute = (WrappedComponent) => {
   return (props) => {
     // const { authToken } = useAuth();
-    const [authToken, setAuthToken] = useState(null);
+    const { authToken, login } = useAuth();
     const router = useRouter();
 
+
     useEffect(() => {
-      // If the user is not authenticated, redirect to the login page
-      // if (!authToken) {
-      //   router.push("/sign-in");
-      // }
 
-      const token = localStorage.getItem("authToken");
-      setAuthToken(token);
 
-      if (!token) {
+      if (!authToken) {
         router.push("/sign-in");
       }
     }, [authToken, router]);

@@ -1,5 +1,10 @@
 {
   "pages": {
+    "/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/loading.js"
+    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -12,9 +17,10 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/loading": [
+    "/(user)/sign-in/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+<<<<<<< HEAD
       "static/chunks/app/loading.js"
     ],
     "/(user)/sign-in/page": [
@@ -27,6 +33,10 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
+=======
+      "static/css/app/(user)/sign-in/page.css",
+      "static/chunks/app/(user)/sign-in/page.js"
+>>>>>>> 1a418b8992ba8bff86bb771f02e3132fe4852fdf
     ]
   }
 }

@@ -25,6 +25,7 @@ import { fetchListUserApi } from "@/app/api/User";
 import { fetchDetailTeamApi } from "@/app/api/Team";
 import { createTeamApi } from "@/app/api/Team";
 import { deleteTeamApi } from "@/app/api/Team";
+import { deleteMultiTeamApi } from "@/app/api/Team";
 import { Span } from "next/dist/trace";
 import { UserAddOutlined } from "@ant-design/icons";
 import { css } from "@emotion/css";
@@ -54,8 +55,9 @@ export default function TeamManagement() {
 
   const handleDeleteTeam = async () => {
     console.log("deleteTeamId:", deleteTeamId);
+    const submitData = ['asdasdasd'];
     try {
-      const response = await deleteTeamApi(deleteTeamId);
+      const response = await deleteMultiTeamApi(submitData);
 
       if (response?.status === 200) {
         toast.success("Xóa team thành công!");
@@ -105,32 +107,32 @@ export default function TeamManagement() {
       key: "supervisor",
       render: (_, { supervisor }) => supervisor?.name,
     },
-    // {
-    //   title: "Action",
-    //   dataIndex: "id",
-    //   key: "id",
-    //   render: (_, { id }) => (
-    //     <div className="d-flex justify-content-center w-100">
-    //       <button
-    //         type="button"
-    //         class="btn btn-outline-primary"
-    //         onClick={() => {
-    //           handleShowDetailTeamModal(id);
-    //         }}
-    //       >
-    //         Update
-    //       </button>
+    {
+      title: "Action",
+      dataIndex: "id",
+      key: "id",
+      render: (_, { id }) => (
+        <div className="d-flex justify-content-center w-100">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            onClick={() => {
+              handleShowDetailTeamModal(id);
+            }}
+          >
+            Update
+          </button>
 
-    //       <button
-    //         type="button"
-    //         class="btn btn-outline-danger ms-2"
-    //         onClick={() => handleShowDeleteTeamModal(id)}
-    //       >
-    //         Delete
-    //       </button>
-    //     </div>
-    //   ),
-    // },
+          <button
+            type="button"
+            class="btn btn-outline-danger ms-2"
+            onClick={() => handleShowDeleteTeamModal(id)}
+          >
+            Delete
+          </button>
+        </div>
+      ),
+    },
   ];
   // test
 
@@ -264,7 +266,7 @@ export default function TeamManagement() {
       <div className="techwave_fn_community_page">
         <div className="fn__title_holder">
           <div className="container-fluid">
-            <h1 className="title">Team Management</h1>
+            <h1 className="title">Quản lý Team</h1>
           </div>
         </div>
         <div className="techwave_fn_feed">
@@ -279,7 +281,7 @@ export default function TeamManagement() {
                   setModalVisit(true);
                 }}
               >
-                Create a new team
+                Tạo mới team
               </Button>
             </div>
             <Table

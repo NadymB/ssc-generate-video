@@ -7,6 +7,7 @@ if (typeof window !== "undefined") {
   token = localStorage.getItem("authToken");
 }
 
+
 // axios.defaults.timeout = TIMEOUT_REQUEST_API;
 
 class ApiFactory {
@@ -238,6 +239,17 @@ class ApiFactory {
       // console.log('---- resource url -----', resourceURL.replace("id", toSubmit), toSubmit);
       // const id = toSubmit && (toSubmit.id || toSubmit.get('id'));
       return axios.delete(resourceURL.replace("id", toSubmit), toSubmit, {
+        ...config,
+        headers: {
+          authorization: token ? `Bearer ${token}` : null,
+          ...customHeaders,
+        },
+      });
+    };
+
+    endpoints.submitDeleteCustom = (data, config) => {
+      const customHeaders = config && config.headers && { ...config.headers };
+      return axios.delete(resourceURL, data, {
         ...config,
         headers: {
           authorization: token ? `Bearer ${token}` : null,
