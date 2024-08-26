@@ -1,9 +1,6 @@
 {
-<<<<<<< HEAD
   "/not-found": "app/not-found.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-=======
->>>>>>> 1a418b8992ba8bff86bb771f02e3132fe4852fdf
   "/page": "app/page.js",
-  "/(user)/sign-in/page": "app/(user)/sign-in/page.js"
+  "/user-management/page": "app/user-management/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

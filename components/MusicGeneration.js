@@ -20,14 +20,14 @@ import {
 
 export default function ImageGeneration() {
   const [generatedSongs, setGeneratedSongs] = useState([]);
-  const [progressSongs, setProgressSongs] = useState([])
+  const [progressSongs, setProgressSongs] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
     pageSize: 10,
     meta: null,
   });
-  const [forceStop, setForceStop] = useState(false)
-  
+  const [forceStop, setForceStop] = useState(false);
+
   const fetchGeneratedSongList = async (page, limit) => {
     try {
       const response = await fetchMusicListApi({ page, limit });
@@ -36,7 +36,9 @@ export default function ImageGeneration() {
       let songs = response?.data?.data?.data;
       setGeneratedSongs(songs);
 
-      let inProgressSongs = songs.filter(song => song?.status === 'processing' || song?.status === 'queued');
+      let inProgressSongs = songs.filter(
+        (song) => song?.status === "processing" || song?.status === "queued"
+      );
       setProgressSongs(inProgressSongs);
     } catch (err) {
       console.error("fetch generated songs failed", err);
@@ -47,16 +49,20 @@ export default function ImageGeneration() {
     try {
       // Gọi API để lấy thông tin bài hát theo songId
       const response = await fetchMusicListApi({ "ids[]": songId });
-      console.log('response ids:', response)
+      console.log("response ids:", response);
       const updatedSong = response?.data?.data?.data[0];
-  
-      setGeneratedSongs(prevSongs => prevSongs.map(song =>
-        song.id === updatedSong.id ? updatedSong : song
-      ));
-  
-      if (updatedSong.status === 'complete' || updatedSong.status === 'error') {
+
+      setGeneratedSongs((prevSongs) =>
+        prevSongs.map((song) =>
+          song.id === updatedSong.id ? updatedSong : song
+        )
+      );
+
+      if (updatedSong.status === "complete" || updatedSong.status === "error") {
         // Loại bỏ bài hát khỏi progressSongs nếu status là 'completed' hoặc 'error'
-        setProgressSongs(prevSongs => prevSongs.filter(song => song.id !== updatedSong.id));
+        setProgressSongs((prevSongs) =>
+          prevSongs.filter((song) => song.id !== updatedSong.id)
+        );
       }
     } catch (err) {
       console.error(`Failed to update song ${songId}`, err);
@@ -65,27 +71,27 @@ export default function ImageGeneration() {
 
   useEffect(() => {
     if (progressSongs.length > 0) {
-      console.log('checking...')
+      console.log("checking...");
       const interval = setInterval(() => {
-        progressSongs.forEach(song => {
-          if (song.status === 'queued' || song.status === 'processing') {
+        progressSongs.forEach((song) => {
+          if (song.status === "queued" || song.status === "processing") {
             checkSongStatus(song.id);
           }
         });
       }, 2000);
-  
+
       // Dừng kiểm tra khi progressSongs rỗng
       return () => clearInterval(interval);
     }
   }, [progressSongs]);
 
   useEffect(() => {
-    console.log('progressSongs:', progressSongs)
-  }, [progressSongs])
+    console.log("progressSongs:", progressSongs);
+  }, [progressSongs]);
 
   const onChangePagination = (page) => {
-    setForceStop(true)
-    setGeneratedSongs([])
+    setForceStop(true);
+    setGeneratedSongs([]);
     setPagination((prevState) => ({ ...prevState, page }));
   };
 
@@ -184,7 +190,11 @@ export default function ImageGeneration() {
                   {generatedSongs?.map((generatedSong, index) => (
                     <div className="row w-100 my-2">
                       {/* <span className="text-white">{index + 1}.</span> */}
-                      <WaveSurferPlayer song={generatedSong} pagination={pagination} forceStop={forceStop} />
+                      <WaveSurferPlayer
+                        song={generatedSong}
+                        pagination={pagination}
+                        forceStop={forceStop}
+                      />
                     </div>
                   ))}
                 </div>
