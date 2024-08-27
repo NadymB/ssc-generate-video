@@ -20991,3 +20991,7 @@ fieldset:disabled .btn {
 	font-size: 20px;
 	margin-bottom: 30px;
 }
+
+.generation_history {
+  min-height: 1982.750px !important;
+}

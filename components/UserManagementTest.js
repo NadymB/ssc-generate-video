@@ -31,11 +31,9 @@ import { Form } from "antd";
 import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 export default function UserManagementTest() {
   const [users, setUsers] = useState([]);
-  const [createdUser, setCreatedUser] = useState({})
+  const [createdUser, setCreatedUser] = useState({});
   const [groups, setGroups] = useState([]);
   const [teams, setTeams] = useState([]);
   const [detailUser, setDetailUser] = useState({});
@@ -46,11 +44,12 @@ export default function UserManagementTest() {
   });
   const [modalVisit, setModalVisit] = useState(false);
   const [updateModalVisit, setUpdateModalVisit] = useState(false);
-  const [copyCredentialsModalVisit, setCopyCredentialsModalVisit] = useState(false);
+  const [copyCredentialsModalVisit, setCopyCredentialsModalVisit] =
+    useState(false);
 
   const restFormRef = useRef();
   const updateRestFormRef = useRef();
-  const copyCredentialsRestFormRef = useRef()
+  const copyCredentialsRestFormRef = useRef();
   const formRef = useRef();
   const [form] = Form.useForm();
 
@@ -72,8 +71,8 @@ export default function UserManagementTest() {
   };
 
   useEffect(() => {
-    console.log("user detail:", detailUser)
-  }, [detailUser])
+    console.log("user detail:", detailUser);
+  }, [detailUser]);
 
   const fetchUserList = async (page, limit) => {
     try {
@@ -106,12 +105,11 @@ export default function UserManagementTest() {
 
   const handleCreateUser = async (values) => {
     try {
-
       const response = await createNewUserApi(values);
 
       if (response?.status === 200) {
         toast.success("Tạo tài khoản thành công!");
-        setCreatedUser(response?.data?.data)
+        setCreatedUser(response?.data?.data);
         fetchUserList(1, pagination.pageSize);
         restFormRef.current?.resetFields();
         setModalVisit(false);
@@ -126,20 +124,20 @@ export default function UserManagementTest() {
   const handleCopyUserCredential = async (values) => {
     try {
       const { username, password } = values;
-  
+
       const textToCopy = `username:${username}|password:${password}`;
-  
+
       await navigator.clipboard.writeText(textToCopy);
-  
-      toast.success('Username và password đã được sao chép vào clipboard');
+
+      toast.success("Username và password đã được sao chép vào clipboard");
     } catch (err) {
-      toast.error('Không thể sao chép thông tin. Vui lòng thử lại.');
-      console.error('Error copying text:', err);
+      toast.error("Không thể sao chép thông tin. Vui lòng thử lại.");
+      console.error("Error copying text:", err);
     }
   };
   useEffect(() => {
-    console.log('createdUser:', createdUser)
-  }, [createdUser])
+    console.log("createdUser:", createdUser);
+  }, [createdUser]);
 
   // first call
   useEffect(() => {
@@ -179,17 +177,16 @@ export default function UserManagementTest() {
   //   }
   // `;
 
-
   const handleUpdateUser = async (values) => {
     try {
-      console.log('values:', values)
+      console.log("values:", values);
       let toSubmit = {
         id: detailUser?.id,
         ...values,
-        group_id: values?.group_id,
+        group_id: values?.group_id?.value
+          ? values?.group_id?.value
+          : values?.group_id,
       };
-
-     
 
       const response = await updateUserApi(toSubmit);
 
@@ -219,71 +216,74 @@ export default function UserManagementTest() {
     },
   };
 
-  const columns = useMemo(() => [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "Username",
-      dataIndex: "username",
-      key: "username",
-      render: (text) => <span>{text}</span>,
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      render: (text) => <span>{text}</span>,
-    },
-    {
-      title: "Group",
-      dataIndex: "group",
-      key: "group",
-      render: (_, { group }) => (
-        <Tag
-          color={
-            group === "ADMIN"
-              ? "geekblue"
-              : group === "SUPERVISOR"
-              ? "green"
-              : "volcano"
-          }
-          key={group}
-        >
-          {group.toUpperCase()}
-        </Tag>
-      ),
-    },
-    {
-      title: "Teams",
-      dataIndex: "teams",
-      key: "teams",
-      render: (teams) => (
-        <span>{teams?.map((team) => team.name).join(", ")}</span>
-      ),
-    },
-    {
-      title: "Action",
-      dataIndex: "id",
-      key: "id",
-      render: (_, { id }) => (
-        <div className="d-flex justify-content-center w-100">
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => {
-              handleShowDetailUserModal(id);
-            }}
+  const columns = useMemo(
+    () => [
+      {
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        render: (text) => <a>{text}</a>,
+      },
+      {
+        title: "Username",
+        dataIndex: "username",
+        key: "username",
+        render: (text) => <span>{text}</span>,
+      },
+      {
+        title: "Email",
+        dataIndex: "email",
+        key: "email",
+        render: (text) => <span>{text}</span>,
+      },
+      {
+        title: "Group",
+        dataIndex: "group",
+        key: "group",
+        render: (_, { group }) => (
+          <Tag
+            color={
+              group === "ADMIN"
+                ? "geekblue"
+                : group === "SUPERVISOR"
+                ? "green"
+                : "volcano"
+            }
+            key={group}
           >
-            Update
-          </button>
-        </div>
-      ),
-    },
-  ], []);
+            {group.toUpperCase()}
+          </Tag>
+        ),
+      },
+      {
+        title: "Teams",
+        dataIndex: "teams",
+        key: "teams",
+        render: (teams) => (
+          <span>{teams?.map((team) => team.name).join(", ")}</span>
+        ),
+      },
+      {
+        title: "Action",
+        dataIndex: "id",
+        key: "id",
+        render: (_, { id }) => (
+          <div className="d-flex justify-content-center w-100">
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => {
+                handleShowDetailUserModal(id);
+              }}
+            >
+              Update
+            </button>
+          </div>
+        ),
+      },
+    ],
+    []
+  );
 
   return (
     <>
@@ -473,7 +473,7 @@ export default function UserManagementTest() {
             //   },
             // ]}
           /> */}
-           <ProFormText
+          <ProFormText
             width="md"
             name="name"
             label="Tên của user"
@@ -557,8 +557,7 @@ export default function UserManagementTest() {
         }}
       >
         <ProForm.Group>
-
-           <ProFormText
+          <ProFormText
             width="md"
             name="username"
             label="username"

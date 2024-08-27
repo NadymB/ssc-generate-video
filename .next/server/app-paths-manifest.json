@@ -1,4 +1,39 @@
 {
+  "/_not-found": "app/_not-found.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/management/users/page": "app/management/users/page.js",
   "/page": "app/page.js",
+<<<<<<< HEAD
   "/favicon.ico/route": "app/favicon.ico/route.js"
+=======
+  "/music-generation/page": "app/music-generation/page.js",
+  "/user-management/page": "app/user-management/page.js",
+  "/ai-chat-bot/page": "app/ai-chat-bot/page.js",
+  "/(user)/sign-up/page": "app/(user)/sign-up/page.js",
+  "/community-feed/page": "app/community-feed/page.js",
+  "/changelog/page": "app/changelog/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/(user)/sign-in/page": "app/(user)/sign-in/page.js",
+  "/documentation/page": "app/documentation/page.js",
+  "/faq/page": "app/faq/page.js",
+  "/image-generation/page": "app/image-generation/page.js",
+  "/intro/page": "app/intro/page.js",
+  "/index-2/page": "app/index-2/page.js",
+  "/management/groups/page": "app/management/groups/page.js",
+  "/notification-single/page": "app/notification-single/page.js",
+  "/models/page": "app/models/page.js",
+  "/index-light/page": "app/index-light/page.js",
+  "/notifications/page": "app/notifications/page.js",
+  "/management/teams/page": "app/management/teams/page.js",
+  "/privacy/page": "app/privacy/page.js",
+  "/group-management/page": "app/group-management/page.js",
+  "/terms/page": "app/terms/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/personal-feed/page": "app/personal-feed/page.js",
+  "/user-billing/page": "app/user-billing/page.js",
+  "/user-settings/page": "app/user-settings/page.js",
+  "/team-management/page": "app/team-management/page.js",
+  "/user-profile/page": "app/user-profile/page.js",
+  "/pricing/page": "app/pricing/page.js"
+>>>>>>> a718e33b307cfd4d08afde32e114fd8f50635831
 }
