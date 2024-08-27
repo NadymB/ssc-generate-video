@@ -17,7 +17,7 @@ const MusicGeneration = dynamic(() => import("@/components/MusicGeneration"), {
 
 const Home = () => {
   useEffect(() => {
-    document.title = "Music Generation | Techwave NextJs";
+    document.title = "MHT AI | Music Generation";
   }, []);
 
   // useEffect(() => {
