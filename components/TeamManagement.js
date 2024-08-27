@@ -123,13 +123,13 @@ export default function TeamManagement() {
             Update
           </button>
 
-          <button
+          {/* <button
             type="button"
             class="btn btn-outline-danger ms-2"
             onClick={() => handleShowDeleteTeamModal(id)}
           >
             Delete
-          </button>
+          </button> */}
         </div>
       ),
     },
@@ -162,6 +162,15 @@ export default function TeamManagement() {
     try {
       //
       let name_id = "name_" + detailTeam?.id;
+
+      if (!("manager_id" in values)) {
+        values['manager_id'] = ""
+      }
+
+      if (!("supervisor_id" in values)) {
+        values['supervisor_id'] = ""
+      }
+
       let toSubmit = {
         id: detailTeam?.id,
         name: values[name_id],
@@ -290,7 +299,6 @@ export default function TeamManagement() {
               pagination={false}
               className="mt-2"
             />
-            ;
             <Row>
               <Col xs={24}>
                 <div className="user-card-pagination text-end mt-5">
@@ -354,11 +362,11 @@ export default function TeamManagement() {
             placeholder={"..."}
             name="manager_id"
             label="Chọn Manager"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
           />
           {/* team */}
           <ProFormSelect
@@ -370,11 +378,11 @@ export default function TeamManagement() {
             placeholder={"..."}
             name="supervisor_id"
             label="Chọn Supervisor"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
           />
         </ProForm.Group>
       </ModalForm>
@@ -406,11 +414,11 @@ export default function TeamManagement() {
             // tooltip="Nhập tên của team"
             // placeholder="Nhập tên của team"
             value={detailTeam["name"]}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
           />
           <ProFormText
             width="md"
@@ -438,11 +446,11 @@ export default function TeamManagement() {
             //   label: detailTeam["manager"]["name"],
             // }}
             initialValue={detailTeam?.manager?.id}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
           />
           {/* supervisor */}
           <ProFormSelect
@@ -455,11 +463,11 @@ export default function TeamManagement() {
             name="supervisor_id"
             label="Chọn Supervisor"
             initialValue={detailTeam?.supervisor?.id}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //   },
+            // ]}
           />
         </ProForm.Group>
       </ModalForm>

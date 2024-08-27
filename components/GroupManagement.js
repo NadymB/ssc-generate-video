@@ -110,7 +110,7 @@ export default function GroupManagement() {
       </div>
       <div className="techwave_fn_feed">
         <div className="container-fluid">
-          <Table columns={columns} dataSource={groups} pagination={false} />;
+          <Table columns={columns} dataSource={groups} pagination={false} />
           <Row>
             <Col xs={24}>
               <div className="user-card-pagination text-end mt-5">

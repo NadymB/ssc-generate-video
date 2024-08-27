@@ -119,10 +119,6 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
   const [defaultGenMode, setDefaultGenMode] = useState(true);
   const [hasVocal, setHasVocal] = useState(true);
 
-  useEffect(() => {
-    console.log("instrumentalToggled:", instrumentalToggled);
-  }, [instrumentalToggled]);
-
   // custom mode states
   const [musicStyles, SetMusicStyles] = useState([]);
 
@@ -298,11 +294,37 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
 
   // const defaultSelectedFilms = top100Films.filter((film) => film.year === 1994);
   const [selectedMusicStyles, setSelectedMusicStyles] = useState([]);
+  const [stylesText, setStylesText] = useState('');
 
   const handleChangeSelectedStyles = (e, value) => {
     // console.log(value);
     setSelectedMusicStyles(value);
   };
+
+  const handleChangeStylesText = (e) => {
+    setStylesText(event.target.value);
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      console.log('call enter')
+      event.preventDefault(); // Ngăn không cho form submit khi nhấn Enter
+      if (stylesText.trim() !== '') {
+
+        let item = {
+          id: "123456789",
+          value: stylesText.trim()
+        }
+        // console.log('call update')
+        setSelectedMusicStyles((prevStyles) => [...prevStyles, item]);
+        setStylesText(''); // Xóa nội dung của TextField sau khi thêm
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log('selected styles:', selectedMusicStyles)
+  }, [selectedMusicStyles]) 
 
   const handleRefreshPage = () => {
     console.log("refresh page...");
@@ -635,6 +657,8 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                         // label="Choose styles of music"
                         variant="outlined"
                         name="combo-box-demo"
+                        onChange={handleChangeStylesText}
+                        onKeyDown={handleKeyDown}
                       />
                     )}
                     onChange={handleChangeSelectedStyles}

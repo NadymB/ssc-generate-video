@@ -340,7 +340,7 @@ export default function UserManagementTest() {
 
       {/* register modal form */}
       <ModalForm
-        title="Create a new user"
+        title="Tạo mới user"
         open={modalVisit}
         // form={form}
         // onFinish={async () => {
@@ -507,12 +507,7 @@ export default function UserManagementTest() {
               // value: detailUser["group"]["id"],
               value: detailUser["group_id"],
             }}
-            // initialValue={detailTeam?.manager?.id}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            // initialValue={detailTeam?.manager?.id} 
           />
           {/* teams */}
           <ProFormSelect
@@ -528,11 +523,6 @@ export default function UserManagementTest() {
               mode: "multiple",
             }}
             initialValue={detailUser?.teams?.map((team) => team.id)} // Trích xuất toàn bộ team.id
-            rules={[
-              {
-                required: true,
-              },
-            ]}
           />
         </ProForm.Group>
       </ModalForm>
