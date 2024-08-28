@@ -7,7 +7,11 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [authToken, setAuthToken] = useState(global?.window?.localStorage?.getItem("authToken") ? global?.window?.localStorage?.getItem("authToken") : null);
+  const [authToken, setAuthToken] = useState(
+    global?.window?.localStorage?.getItem("authToken")
+      ? global?.window?.localStorage?.getItem("authToken")
+      : null
+  );
   const router = useRouter();
 
   // useEffect(() => {
@@ -32,7 +36,6 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("authToken", authToken);
       setAuthToken(authToken);
 
-
       return authToken;
     } catch (error) {
       console.error("Login failed:", error);
@@ -41,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    console.log('call logout')
+    console.log("call logout");
     localStorage.removeItem("authToken");
     setAuthToken(null);
     window.location.reload();
@@ -65,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [authToken]);
 
   return (
     <AuthContext.Provider value={{ user, authToken, login, logout }}>

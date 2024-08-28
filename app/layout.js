@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { Heebo, Work_Sans } from "next/font/google";
 import { AuthProvider } from "@/context/authContext";
 import { icons } from "antd/es/image/PreviewGroup";
+import { RouteChangeHandler } from "@/components/RouteChangeHandler";
 
 const heebo = Heebo({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -26,7 +27,7 @@ export const metadata = {
     default: "Techwave | React NextJs Personal Portfolio Templage", // a default is required when creating a template
   },
   name: "description",
-  
+
   content: "MHT MUSIC AI GENERATOR",
   openGraph: {
     title: "MHT MUSIC AI GENERATOR",
@@ -47,10 +48,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <AuthProvider>
-      <html lang="en" className="toggleMenu"
-        
-      >
-        <body>{children}</body>
+      <html lang="en" className="toggleMenu">
+        <body>
+          {children}
+
+          <RouteChangeHandler />
+          {/* <RouteChangeHandler setForcePlayersStop /> */}
+        </body>
       </html>
     </AuthProvider>
   );

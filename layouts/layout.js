@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { imageToSvg } from "../components/Utilities";
 import Footer from "./footer";
 import Header from "./header";
@@ -11,6 +11,12 @@ import { Toaster } from "react-hot-toast";
 
 export default function Layout({ children, leftMenu }) {
   const pathname = usePathname(); // get router info
+
+  const [forceStop, setForceStop] = useState(false);
+
+  useEffect(() => {
+    setForceStop(true);
+  }, [pathname]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -86,7 +92,8 @@ export default function Layout({ children, leftMenu }) {
             {/* PAGE (all pages go inside this div) */}
             <div className="techwave_fn_page">
               <Toaster position="top-center" />
-              {children}
+              {React.cloneElement(children, { forceStop, setForceStop })}
+              {/* {children} */}
             </div>
             {/* !PAGE (all pages go inside this div) */}
             {/* FOOTER (inside the content) */}

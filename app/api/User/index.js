@@ -4,6 +4,7 @@ import {
   CREATE_NEW_USER_ENDPOINT,
   DETAIL_USER_ENDPOINT,
   UPDATE_USER_ENDPOINT,
+  DELETE_USER_ENDPOINT,
 } from "./endpoints";
 import ApiFactory from "../ApiFactory";
 
@@ -33,12 +34,24 @@ const createNewUserApi = (data) =>
 
 const fetchDetailUserApi = (id) =>
   UserApi.createBasicCRUDEndpoints({
-    name: DETAIL_USER_ENDPOINT
+    name: DETAIL_USER_ENDPOINT,
   }).getOne(id);
 
 const updateUserApi = (data) =>
   UserApi.createBasicCRUDEndpoints({
-    name: UPDATE_USER_ENDPOINT
-  }).put(data)
+    name: UPDATE_USER_ENDPOINT,
+  }).put(data);
 
-export { fetchListUserApi, fetchListUserGroupApi, createNewUserApi, fetchDetailUserApi, updateUserApi };
+const deleteMultiUserApi = (data) =>
+  UserApi.createBasicCRUDEndpoints({
+    name: DELETE_USER_ENDPOINT,
+  }).submitDeleteCustom(data);
+
+export {
+  fetchListUserApi,
+  fetchListUserGroupApi,
+  createNewUserApi,
+  fetchDetailUserApi,
+  updateUserApi,
+  deleteMultiUserApi,
+};

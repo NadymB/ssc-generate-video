@@ -4,8 +4,9 @@ import Link from "next/link";
 import WaveSurferPlayer from "./WavesurferPlayer";
 import { fetchMusicListApi } from "@/app/api/Music";
 import { Row, Col, Pagination } from "antd";
+import { usePathname } from "next/navigation";
 
-export default function MusicGeneration() {
+export default function MusicGeneration({ forceStop, setForceStop }) {
   const [generatedSongs, setGeneratedSongs] = useState([]);
   const [progressSongs, setProgressSongs] = useState([]);
   const [pagination, setPagination] = useState({
@@ -18,6 +19,19 @@ export default function MusicGeneration() {
 
   // Tạo ref để lưu các instance của WaveSurfer
   const wavesurfersRef = useRef([]);
+
+  const pathname = usePathname(); // Use usePathname to track route changes
+
+  // Handle pathname changes (in the cleanup) to stop all players when navigating away from the page
+  useEffect(() => {
+    // Cleanup function that will run when component unmounts
+    return () => {
+      console.log(
+        "Component unmounted or route changed, stopping all players..."
+      );
+      stopAllPlayers(); // Stop players when navigating away or unmounting
+    };
+  }, [pathname]); // Dependency array with pathname ensures the cleanup happens when route changes
 
   const fetchGeneratedSongList = async (page, limit) => {
     try {
@@ -84,22 +98,25 @@ export default function MusicGeneration() {
     });
   };
 
+  useEffect(() => {
+    console.log("call music stop here");
+    if (forceStop) {
+      stopAllPlayers();
+      setForceStop(false);
+    }
+  }, [forceStop]);
+
   const handlePlay = (id) => {
-    console.log('old player:', currentPlayingRef.current)
-    console.log('new player:', id)
+    console.log("old player:", currentPlayingRef.current);
+    console.log("new player:", id);
     if (currentPlayingRef.current && currentPlayingRef.current !== id) {
-      // Nếu có player khác đang phát, dừng nó
-      // console.log('and stop:', currentPlayingRef.current);
-      // if()
-      // console.log()
-      // stopAllPlayers()
       wavesurfersRef.current[currentPlayingRef.current]?.pause();
     }
-    currentPlayingRef.current = id; // Cập nhật player đang phát ngay lập tức
+    currentPlayingRef.current = id;
   };
 
   const onChangePagination = (page) => {
-    stopAllPlayers(); // Dừng tất cả các player trước khi load trang mới
+    stopAllPlayers();
     setGeneratedSongs([]);
     setPagination((prevState) => ({ ...prevState, page }));
   };

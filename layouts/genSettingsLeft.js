@@ -153,7 +153,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
             handleRefreshPage();
           }
         } catch (err) {
-          toast.error("Generate nhạc không thành công!");
+          toast.error(err?.response?.data?.message);
           console.error("generate music with default mode failed:", err);
         }
       }
@@ -195,6 +195,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
           handleRefreshPage();
         }
       } catch (err) {
+        toast.error(err?.response?.data?.message);
         console.error("generate music with custom mode failed:", err);
       }
     }
@@ -294,7 +295,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
 
   // const defaultSelectedFilms = top100Films.filter((film) => film.year === 1994);
   const [selectedMusicStyles, setSelectedMusicStyles] = useState([]);
-  const [stylesText, setStylesText] = useState('');
+  const [stylesText, setStylesText] = useState("");
 
   const handleChangeSelectedStyles = (e, value) => {
     // console.log(value);
@@ -303,28 +304,27 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
 
   const handleChangeStylesText = (e) => {
     setStylesText(event.target.value);
-  }
+  };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      console.log('call enter')
+    if (event.key === "Enter") {
+      console.log("call enter");
       event.preventDefault(); // Ngăn không cho form submit khi nhấn Enter
-      if (stylesText.trim() !== '') {
-
+      if (stylesText.trim() !== "") {
         let item = {
           id: "123456789",
-          value: stylesText.trim()
-        }
+          value: stylesText.trim(),
+        };
         // console.log('call update')
         setSelectedMusicStyles((prevStyles) => [...prevStyles, item]);
-        setStylesText(''); // Xóa nội dung của TextField sau khi thêm
+        setStylesText(""); // Xóa nội dung của TextField sau khi thêm
       }
     }
   };
 
   useEffect(() => {
-    console.log('selected styles:', selectedMusicStyles)
-  }, [selectedMusicStyles]) 
+    console.log("selected styles:", selectedMusicStyles);
+  }, [selectedMusicStyles]);
 
   const handleRefreshPage = () => {
     console.log("refresh page...");
@@ -796,7 +796,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
             </div>
 
             {/* submit button */}
-            <div className="w-100 d-flex justify-content-center">
+            <div className="w-100 d-flex justify-content-center mb-2">
               <Button
                 className="btn mt-2"
                 variant="contained"

@@ -54,8 +54,8 @@ export default function TeamManagement() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const handleDeleteTeam = async () => {
-    console.log("deleteTeamId:", deleteTeamId);
-    const submitData = ['asdasdasd'];
+    // console.log("deleteTeamId:", deleteTeamId);
+    const submitData = { ids: [deleteTeamId] };
     try {
       const response = await deleteMultiTeamApi(submitData);
 
@@ -123,13 +123,13 @@ export default function TeamManagement() {
             Update
           </button>
 
-          {/* <button
+          <button
             type="button"
             class="btn btn-outline-danger ms-2"
             onClick={() => handleShowDeleteTeamModal(id)}
           >
             Delete
-          </button> */}
+          </button>
         </div>
       ),
     },
@@ -164,11 +164,11 @@ export default function TeamManagement() {
       let name_id = "name_" + detailTeam?.id;
 
       if (!("manager_id" in values)) {
-        values['manager_id'] = ""
+        values["manager_id"] = "";
       }
 
       if (!("supervisor_id" in values)) {
-        values['supervisor_id'] = ""
+        values["supervisor_id"] = "";
       }
 
       let toSubmit = {
@@ -413,7 +413,7 @@ export default function TeamManagement() {
             label="Tên của team"
             // tooltip="Nhập tên của team"
             // placeholder="Nhập tên của team"
-            value={detailTeam["name"]}
+            initialValue={detailTeam?.name}
             // rules={[
             //   {
             //     required: true,

@@ -9,6 +9,7 @@ import {
   Pagination,
   Button,
   ConfigProvider,
+  Modal,
 } from "antd";
 import { fetchAdminListUser } from "../app/api/Auth";
 import { fetchGroupListApi } from "@/app/api/Group";
@@ -17,6 +18,7 @@ import { createNewUserApi } from "@/app/api/User";
 import { UserAddOutlined } from "@ant-design/icons";
 import { fetchDetailUserApi } from "@/app/api/User";
 import { updateUserApi } from "@/app/api/User";
+import { deleteMultiUserApi } from "@/app/api/User";
 import { css } from "@emotion/css";
 import {
   ModalForm,
@@ -37,6 +39,7 @@ export default function UserManagementTest() {
   const [groups, setGroups] = useState([]);
   const [teams, setTeams] = useState([]);
   const [detailUser, setDetailUser] = useState({});
+  const [deleteUser, setDeleteUser] = useState({});
   const [pagination, setPagination] = useState({
     page: 1,
     pageSize: 10,
@@ -52,6 +55,38 @@ export default function UserManagementTest() {
   const copyCredentialsRestFormRef = useRef();
   const formRef = useRef();
   const [form] = Form.useForm();
+
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+  const handleDeleteUser = async () => {
+    const submitData = { ids: [deleteUser?.id] };
+    try {
+      const response = await deleteMultiUserApi(submitData);
+
+      if (response?.status === 200) {
+        toast.success("Xóa user thành công!");
+      }
+    } catch (error) {
+      console.error(
+        "An error occurred when update team:",
+        error?.response?.data?.message
+      );
+      toast.error(error?.response?.data?.message);
+    }
+    setOpenDeleteModal(false);
+    setDeleteUser({});
+  };
+
+  const handleCancelDeleteModal = () => {
+    setOpenDeleteModal(false);
+    setDeleteUserId("");
+  };
+
+  const handleShowDeleteUserModal = (id, name) => {
+    setDeleteUser({ id: id, name: name });
+    // console.log("xác nhận xóa team:", id);
+    setOpenDeleteModal(true);
+  };
 
   const onChangePagination = (page) => {
     setPagination((prevState) => ({ ...prevState, page }));
@@ -179,7 +214,6 @@ export default function UserManagementTest() {
 
   const handleUpdateUser = async (values) => {
     try {
-      console.log("values:", values);
       let toSubmit = {
         id: detailUser?.id,
         ...values,
@@ -216,74 +250,80 @@ export default function UserManagementTest() {
     },
   };
 
-  const columns = useMemo(
-    () => [
-      {
-        title: "Name",
-        dataIndex: "name",
-        key: "name",
-        render: (text) => <a>{text}</a>,
+  const columns = useMemo(() => [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
+      render: (text) => <span>{text}</span>,
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      render: (text) => <span>{text}</span>,
+    },
+    {
+      title: "Group",
+      dataIndex: "group",
+      key: "group",
+      render: (_, { group }) => (
+        <Tag
+          color={
+            group === "ADMIN"
+              ? "geekblue"
+              : group === "SUPERVISOR"
+              ? "green"
+              : "volcano"
+          }
+          key={group}
+        >
+          {group.toUpperCase()}
+        </Tag>
+      ),
+    },
+    {
+      title: "Teams",
+      dataIndex: "teams",
+      key: "teams",
+      render: (teams) => {
+        console.log("teams:", teams);
+        return <span>{teams?.map((team) => team.name).join(", ")}</span>;
       },
-      {
-        title: "Username",
-        dataIndex: "username",
-        key: "username",
-        render: (text) => <span>{text}</span>,
-      },
-      {
-        title: "Email",
-        dataIndex: "email",
-        key: "email",
-        render: (text) => <span>{text}</span>,
-      },
-      {
-        title: "Group",
-        dataIndex: "group",
-        key: "group",
-        render: (_, { group }) => (
-          <Tag
-            color={
-              group === "ADMIN"
-                ? "geekblue"
-                : group === "SUPERVISOR"
-                ? "green"
-                : "volcano"
-            }
-            key={group}
+    },
+    {
+      title: "Action",
+      dataIndex: "id",
+      key: "id",
+      render: (_, { id, name }) => (
+        <div className="d-flex justify-content-center w-100">
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={() => {
+              handleShowDetailUserModal(id);
+            }}
           >
-            {group.toUpperCase()}
-          </Tag>
-        ),
-      },
-      {
-        title: "Teams",
-        dataIndex: "teams",
-        key: "teams",
-        render: (teams) => (
-          <span>{teams?.map((team) => team.name).join(", ")}</span>
-        ),
-      },
-      {
-        title: "Action",
-        dataIndex: "id",
-        key: "id",
-        render: (_, { id }) => (
-          <div className="d-flex justify-content-center w-100">
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={() => {
-                handleShowDetailUserModal(id);
-              }}
-            >
-              Update
-            </button>
-          </div>
-        ),
-      },
-    ],
-    []
-  );
+            Update
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-danger ms-2"
+            onClick={() => handleShowDeleteUserModal(id, name)}
+          >
+            Delete
+          </button>
+        </div>
+      ),
+    },
+  ]);
 
   return (
     <>
@@ -507,7 +547,7 @@ export default function UserManagementTest() {
               // value: detailUser["group"]["id"],
               value: detailUser["group_id"],
             }}
-            // initialValue={detailTeam?.manager?.id} 
+            // initialValue={detailTeam?.manager?.id}
           />
           {/* teams */}
           <ProFormSelect
@@ -563,6 +603,16 @@ export default function UserManagementTest() {
           />
         </ProForm.Group>
       </ModalForm>
+
+      {/* delete confirm modal */}
+      <Modal
+        title={`Bạn có chắc chắn muốn xóa user '${deleteUser?.name}'?`}
+        open={openDeleteModal}
+        onOk={handleDeleteUser}
+        onCancel={handleCancelDeleteModal}
+        okText="Xác nhận"
+        cancelText="Hủy"
+      ></Modal>
     </>
   );
 }

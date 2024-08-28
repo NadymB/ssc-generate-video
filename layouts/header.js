@@ -40,6 +40,10 @@ export default function Header({ searchToggle }) {
   const router = useRouter();
   const pathname = usePathname(); // get router info
 
+  useEffect(() => {
+    console.log("user:", user);
+  }, [user]);
+
   // const { user } = useEffect(() => {
   //   // Check if running in the browser (client side)
   //   if (typeof window !== "undefined") {
@@ -138,7 +142,7 @@ export default function Header({ searchToggle }) {
               ))}
             </ul> */}
             <div className="group__list d-flex mx-auto">
-              {!ex_routes.includes(pathname) &&
+              {!ex_routes.includes(pathname) & (user?.group != "EMPLOYEE") &&
                 data.slice(0, 4).map((item, i) => (
                   <Link
                     href={`${item.pathname}`}

@@ -7,7 +7,6 @@ if (typeof window !== "undefined") {
   token = localStorage.getItem("authToken");
 }
 
-
 // axios.defaults.timeout = TIMEOUT_REQUEST_API;
 
 class ApiFactory {
@@ -248,13 +247,17 @@ class ApiFactory {
     };
 
     endpoints.submitDeleteCustom = (data, config) => {
-      const customHeaders = config && config.headers && { ...config.headers };
-      return axios.delete(resourceURL, data, {
+      console.log("delete token:", token);
+      const customHeaders =
+        config && config.headers ? { ...config.headers } : {};
+
+      return axios.delete(resourceURL, {
         ...config,
         headers: {
           authorization: token ? `Bearer ${token}` : null,
           ...customHeaders,
         },
+        data: data, // Đưa data vào đây cho request DELETE
       });
     };
 

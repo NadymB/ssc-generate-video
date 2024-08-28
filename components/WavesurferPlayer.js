@@ -70,23 +70,26 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
   return (
     <Card className={`${classes.card} card-sound-wave`}>
       <Grid
-          container
-          direction="row"
-          alignItems="center"
-          className="border-bottom"
+        container
+        direction="row"
+        alignItems="center"
+        className="border-bottom"
+      >
+        <Grid
+          item
+          xs={12}
+          className="d-flex justify-content-center align-items-center"
         >
-          <Grid
-            item
-            xs={12}
-            className="d-flex justify-content-center align-items-center"
-          >
-            <h4 className="generated-music-title d-flex flex-column align-items-center">
-              {/* <span>Title: </span> */}
-              <span>{song?.title}</span>
-              <span style={{fontSize: "14px"}}>({song?.created_by?.name})</span>
-            </h4>
-          </Grid>
+          <h4 className="generated-music-title d-flex flex-column align-items-center">
+            {/* <span>Title: </span> */}
+            <span>{song?.title}</span>
+            <div style={{ fontSize: "14px" }}>
+              (<span>tác giả: </span>
+              <span className="fw-bold">{song?.created_by?.name})</span>
+            </div>
+          </h4>
         </Grid>
+      </Grid>
       <Grid container direction="row" alignItems="center">
         <Grid item xs={1}>
           <IconButton onClick={togglePlayback}>
@@ -101,12 +104,14 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
           </IconButton>
         </Grid>
         <Grid item xs={10} id={wavesurferId} />
-        <Grid item xs={1}>
+        <Grid item xs={1} className="d-flex justify-content-end">
           <Button
             variant="contained"
             color="success"
             size="small"
-            disabled={song?.status === "queued" || song?.status === "processing"}
+            disabled={
+              song?.status === "queued" || song?.status === "processing"
+            }
           >
             {song?.status === "complete" ? "Download" : song?.status}
           </Button>
