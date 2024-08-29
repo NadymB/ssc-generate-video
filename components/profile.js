@@ -7,10 +7,11 @@ import {
   Col,
   Space,
   Table,
-  Tag,
   Pagination,
   Button,
   ConfigProvider,
+  Tag,
+  Flex,
 } from "antd";
 import { changePasswordApi } from "@/app/api/Auth";
 import { css } from "@emotion/css";
@@ -70,7 +71,7 @@ export default function Profile() {
                     </label>
                     <div className="input_item">
                       <input
-                        className="input text-secondary"
+                        className="input text-secondary fw-bold profile-input"
                         type="text"
                         id="name"
                         defaultValue={user?.name}
@@ -84,7 +85,7 @@ export default function Profile() {
                     <div className="input_item" disabled>
                       <input
                         disabled
-                        className="input text-secondary"
+                        className="input text-secondary fw-bold profile-input"
                         type="text"
                         // id="name"
                         defaultValue={user?.username}
@@ -99,7 +100,7 @@ export default function Profile() {
                     <div className="input_item">
                       <input
                         disabled
-                        className="input text-secondary"
+                        className="input text-secondary fw-bold profile-input"
                         type="text"
                         id="email"
                         defaultValue={user?.email}
@@ -107,25 +108,34 @@ export default function Profile() {
                     </div>
                   </div>
                   <div className="item">
-                    <label className="input_label" htmlFor="email">
+                    <label className="input_label" htmlFor="group">
                       Group
                     </label>
-                    <div className="input_item">
-                      <input
-                        disabled
-                        className="input text-secondary"
-                        type="text"
-                        id="email"
-                        defaultValue={user?.group}
-                      />
+                    <div className="input_item border px-2 py-3 rounded">
+                      <Tag
+                        color={
+                          user?.group === "ADMIN"
+                            ? "#f50"
+                            : user?.group === "MANAGER"
+                            ? "#2db7f5"
+                            : user?.group == "SUPERVISOR"
+                            ? "#87d068"
+                            : user?.group == "EMPLOYEE"
+                            ? "#108ee9"
+                            : "#108ee9"
+                        }
+                        key={user?.group}
+                      >
+                        {user?.group.toUpperCase()}
+                      </Tag>
                     </div>
                   </div>
                   <div className="item">
-                    <label className="input_label" htmlFor="email">
+                    <label className="input_label" htmlFor="teams">
                       Teams
                     </label>
                     <div className="input_item">
-                      <input
+                      {/* <input
                         disabled
                         className="input text-secondary"
                         type="text"
@@ -133,7 +143,20 @@ export default function Profile() {
                         defaultValue={user?.team_ids
                           ?.map((team) => team.name)
                           .join(", ")}
-                      />
+                      /> */}
+                      {/* <Tag>{user?.group.toUpperCase()}</Tag> */}
+                      <div className="input_item border px-2 py-3 rounded">
+                        <Flex gap="4px 0" wrap>
+                          {user?.teams?.map((team) => (
+                            <Tag color="geekblue">{team.name}</Tag>
+                          ))}
+                          {/* {[{ name: "team_1" }, { name: "team_2" }].map(
+                            (team) => (
+                              <Tag color="geekblue">{team.name}</Tag>
+                            )
+                          )} */}
+                        </Flex>
+                      </div>
                     </div>
                   </div>
                   <div className="item">

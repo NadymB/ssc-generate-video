@@ -61,6 +61,11 @@ export default function TeamManagement() {
 
       if (response?.status === 200) {
         toast.success("Xóa team thành công!");
+        fetchTeamList(1, pagination.pageSize);
+        setPagination((prevState) => ({
+          ...prevState,
+          page: 1,
+        }));
       }
     } catch (error) {
       console.error(
@@ -93,19 +98,23 @@ export default function TeamManagement() {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text) => <span>{text}</span>,
+      render: (text) => <span className="fw-bold">{text}</span>,
     },
     {
       title: "Manager",
       dataIndex: "manager",
       key: "manager",
-      render: (_, { manager }) => manager?.name,
+      render: (_, { manager }) => (
+        <span className="fw-bold">{manager?.name}</span>
+      ),
     },
     {
       title: "Supervisor",
       dataIndex: "supervisor",
       key: "supervisor",
-      render: (_, { supervisor }) => supervisor?.name,
+      render: (_, { supervisor }) => (
+        <span className="fw-bold">{supervisor?.name}</span>
+      ),
     },
     {
       title: "Action",
@@ -115,7 +124,7 @@ export default function TeamManagement() {
         <div className="d-flex justify-content-center w-100">
           <button
             type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-secondary"
             onClick={() => {
               handleShowDetailTeamModal(id);
             }}
@@ -182,6 +191,10 @@ export default function TeamManagement() {
       if (response?.status === 200) {
         toast.success("Cập nhật team thành công!");
         fetchTeamList(1, pagination.pageSize);
+        setPagination((prevState) => ({
+          ...prevState,
+          page: 1,
+        }));
         updateRestFormRef.current?.resetFields();
         setUpdateModalVisit(false);
       }
@@ -412,7 +425,7 @@ export default function TeamManagement() {
             name={"name_" + detailTeam?.id}
             label="Tên của team"
             // tooltip="Nhập tên của team"
-            // placeholder="Nhập tên của team"
+            placeholder="Nhập tên của team"
             initialValue={detailTeam?.name}
             // rules={[
             //   {
@@ -425,7 +438,7 @@ export default function TeamManagement() {
             name="created_by"
             label="Được tạo bởi"
             // tooltip="Nhập tên của team"
-            // placeholder="Nhập tên của team"
+            placeholder="..."
             value={detailTeam?.created_by?.name}
             disabled
           />

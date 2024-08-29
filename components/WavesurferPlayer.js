@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
+import useDownloader from "react-use-downloader";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -29,6 +30,8 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const wavesurferId = `wavesurfer--${uuidv4()}`;
   const classes = useStyles();
+
+  const { download } = useDownloader();
 
   useEffect(() => {
     const loadWaveSurfer = async () => {
@@ -92,20 +95,63 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
       </Grid>
       <Grid container direction="row" alignItems="center">
         <Grid item xs={1}>
-          <IconButton onClick={togglePlayback}>
+          <IconButton
+            onClick={togglePlayback}
+            disabled={
+              song?.status === "processing" ||
+              song?.status === "queued" ||
+              song?.status === "error"
+            }
+          >
             {!isPlaying ? (
               <PlayArrowIcon className={classes.icon} />
             ) : (
               <PauseIcon className={classes.icon} />
             )}
           </IconButton>
-          <IconButton onClick={stopPlayback}>
+          <IconButton
+            onClick={stopPlayback}
+            disabled={
+              song?.status === "processing" ||
+              song?.status === "queued" ||
+              song?.status === "error"
+            }
+          >
             <StopIcon className={classes.icon} />
           </IconButton>
         </Grid>
         <Grid item xs={10} id={wavesurferId} />
         <Grid item xs={1} className="d-flex justify-content-end">
-          <Button
+          {song?.status === "queued" || song?.status === "processing" ? (
+            <Button variant="contained" size="small" disabled>
+              {song?.status}
+              <div
+                className="spinner-border text-dark ms-2"
+                role="status"
+                style={{ width: "15px", height: "15px" }}
+              ></div>
+            </Button>
+          ) : song?.status === "error" ? (
+            <Button variant="contained" color="error" size="small" disabled>
+              {song?.status}
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="success"
+              size="small"
+              onClick={() =>
+                download(
+                  `${process.env.NEXT_PUBLIC_UPLOAD_ENDPOINT}/${song?.audio_id}`,
+                  `mht-ai-generated-music-${song?.audio_id}.mp3`
+                )
+              }
+            >
+              Download
+            </Button>
+          )}
+
+          {/* <Button
             variant="contained"
             color="success"
             size="small"
@@ -114,7 +160,12 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
             }
           >
             {song?.status === "complete" ? "Download" : song?.status}
-          </Button>
+            <div
+              class="spinner-border text-dark ms-2"
+              role="status"
+              style={{ width: "15px", height: "15px" }}
+            ></div>
+          </Button> */}
         </Grid>
       </Grid>
     </Card>

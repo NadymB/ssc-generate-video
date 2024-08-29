@@ -2080,7 +2080,7 @@ input[type="button"] {
   --techwave-hover-color: #fff;
   --techwave-heading-font-family: "Heebo", sans-serif;
   --techwave-body-font-family: "Work Sans", sans-serif;
-  --techwave-left-panel-width: 450px;
+  --techwave-left-panel-width: 420px;
   --techwave-header-height: 100px;
 }
 @media (min-width: 1041px) {
@@ -7585,7 +7585,7 @@ a.fn__like.no_border .fn__svg {
 /*	50) Generation Item (used in image generation page)
 /*------------------------------------------------------------------*/
 .fn__generation_item {
-  padding: 31px 40px 10px;
+  padding: 31px 30px 10px;
   border-bottom: 1px solid var(--techwave-border-color);
   position: relative;
 }
@@ -20987,11 +20987,17 @@ fieldset:disabled .btn {
 
 /* generated musics */
 .generated-music-title {
-  font-family: 'Dancing Script', cursive;
-	font-size: 20px;
-	margin-bottom: 30px;
+  font-family: "Dancing Script", cursive;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
 .generation_history {
-  min-height: 1982.750px !important;
+  min-height: 1982.75px !important;
+}
+
+.profile-input {
+  border-width: 1px !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  border-style: solid !important;
 }

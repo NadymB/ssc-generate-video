@@ -368,7 +368,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               />
             </span>
           </Link>
-          <a
+          {/* <a
             className="fn__closer fn__icon_button desktop_closer"
             onClick={activeTrueFalse}
           >
@@ -379,7 +379,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
             onClick={activeMobileMenu}
           >
             <img src="../svg/arrow.svg" alt="" className="fn__svg" />
-          </a>
+          </a> */}
         </div>
         {/* !logo (left panel) */}
         {/* content (left panel) */}
@@ -796,7 +796,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
             </div>
 
             {/* submit button */}
-            <div className="w-100 d-flex justify-content-center mb-2">
+            <div className="w-100 d-flex justify-content-center mb-5">
               <Button
                 className="btn mt-2"
                 variant="contained"

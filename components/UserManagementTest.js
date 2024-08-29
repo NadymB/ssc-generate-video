@@ -10,6 +10,8 @@ import {
   Button,
   ConfigProvider,
   Modal,
+  Divider,
+  Flex,
 } from "antd";
 import { fetchAdminListUser } from "../app/api/Auth";
 import { fetchGroupListApi } from "@/app/api/Group";
@@ -216,6 +218,7 @@ export default function UserManagementTest() {
     try {
       let toSubmit = {
         id: detailUser?.id,
+        email: values?.email,
         ...values,
         group_id: values?.group_id?.value
           ? values?.group_id?.value
@@ -227,6 +230,10 @@ export default function UserManagementTest() {
       if (response?.status === 200) {
         toast.success("Cập nhật user thành công!");
         fetchUserList(1, pagination.pageSize);
+        setPagination((prevState) => ({
+          ...prevState,
+          page: 1,
+        }));
         updateRestFormRef.current?.resetFields();
         setUpdateModalVisit(false);
       }
@@ -255,36 +262,48 @@ export default function UserManagementTest() {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text) => <a>{text}</a>,
+      render: (text) => <span className="fw-bold">{text}</span>,
     },
     {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      render: (text) => <span>{text}</span>,
+      render: (text) => <span className="fw-bold">{text}</span>,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      render: (text) => <span>{text}</span>,
+      render: (text) => <span className="fw-bold">{text}</span>,
     },
     {
       title: "Group",
       dataIndex: "group",
       key: "group",
-      render: (_, { group }) => (
+      render: (_, { group, group_id }) => (
         <Tag
           color={
-            group === "ADMIN"
-              ? "geekblue"
+            group === "SUPER"
+              ? "#ffadd2"
+              : group === "ADMIN"
+              ? "#f50"
+              : group === "MANAGER"
+              ? "#2db7f5"
               : group === "SUPERVISOR"
-              ? "green"
-              : "volcano"
+              ? "#87d068"
+              : group === "EMPLOYEE"
+              ? "#108ee9"
+              : "#108ee9"
           }
-          key={group}
+          key={group_id}
         >
-          {group.toUpperCase()}
+          {(() => {
+            const index = groups?.findIndex(
+              (group_temp) => group_temp?.id === group_id
+            );
+            console.log("group_id:", group_id);
+            return index !== -1 ? groups[index]?.name : "";
+          })()}
         </Tag>
       ),
     },
@@ -294,7 +313,14 @@ export default function UserManagementTest() {
       key: "teams",
       render: (teams) => {
         console.log("teams:", teams);
-        return <span>{teams?.map((team) => team.name).join(", ")}</span>;
+        // return <span>{teams?.map((team) => team.name).join(", ")}</span>;
+        return (
+          <Flex gap="4px 0" wrap>
+            {teams?.map((team) => (
+              <Tag color="geekblue">{team.name}</Tag>
+            ))}
+          </Flex>
+        );
       },
     },
     {
@@ -305,7 +331,7 @@ export default function UserManagementTest() {
         <div className="d-flex justify-content-center w-100">
           <button
             type="button"
-            className="btn btn-outline-primary"
+            className="btn btn-outline-secondary"
             onClick={() => {
               handleShowDetailUserModal(id);
             }}
@@ -405,7 +431,7 @@ export default function UserManagementTest() {
             name="username"
             label="Username"
             tooltip="Enter a username"
-            placeholder="Enter username"
+            placeholder="Nhập username"
             rules={[
               {
                 required: true,
@@ -417,8 +443,8 @@ export default function UserManagementTest() {
             width="md"
             name="email"
             label="Email"
-            tooltip="Enter a email"
-            placeholder="Enter a email"
+            tooltip="Nhập email"
+            placeholder="Nhập email"
             rules={[
               {
                 required: true,
@@ -433,9 +459,9 @@ export default function UserManagementTest() {
           <ProFormText
             width="sm"
             name="name"
-            label="Name"
-            tooltip="Enter a name"
-            placeholder="Enter a name"
+            label="Tên của user"
+            tooltip="Nhập username"
+            placeholder="Nhập username"
             rules={[
               {
                 required: true,
@@ -444,14 +470,16 @@ export default function UserManagementTest() {
           />
           {/* group */}
           <ProFormSelect
-            options={groups.map((group) => ({
-              value: group.id,
-              label: group.name,
-            }))}
+            options={groups
+              .filter((group) => group.id !== "66c1d1f221bd634f136a5661") //exclude item with id 66c1d1f221bd634f136a5661
+              .map((group) => ({
+                value: group.id,
+                label: group.name,
+              }))}
             width="sm"
             placeholder={"..."}
             name="group_id"
-            label="Choose a group"
+            label="Chọn nhóm"
             rules={[
               {
                 required: true,
@@ -470,7 +498,7 @@ export default function UserManagementTest() {
               mode: "multiple",
             }}
             name="team_ids"
-            label="Choose teams"
+            label="Chọn team"
             // rules={[
             //   {
             //     required: true,
@@ -551,10 +579,12 @@ export default function UserManagementTest() {
           />
           {/* teams */}
           <ProFormSelect
-            options={teams?.map((team) => ({
-              value: team.id,
-              label: team.name,
-            }))}
+            options={teams
+              .filter((team) => team.id && team.name) // Lọc các đối tượng có id và name hợp lệ
+              .map((team) => ({
+                value: team.id,
+                label: team.name,
+              }))}
             width="md"
             placeholder="..."
             name="team_ids"

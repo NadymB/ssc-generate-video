@@ -53,17 +53,24 @@ export const AuthProvider = ({ children }) => {
   };
 
   const fetchProfile = async () => {
+    console.log("call fetch profile");
     try {
       const response = await fetchUserProfileApi();
       // console.log("profile:", response);
       if (response?.status === 200) {
         setUser(response?.data?.data);
-      } else {
-        setUser(null);
       }
     } catch (error) {
+      setUser(null);
+      localStorage.removeItem("authToken");
+      setAuthToken("");
       console.error("fetch profile failed:", error);
     }
+  };
+
+  const clearLocalStorageToken = async () => {
+    localStorage.removeItem("authToken");
+    setAuthToken("");
   };
 
   useEffect(() => {

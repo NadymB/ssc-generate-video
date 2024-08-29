@@ -30,6 +30,7 @@ const ex_routes = [
   "/user-management/",
   "/team-management/",
   "/group-management/",
+  "/profile/",
 ];
 
 export default function Header({ searchToggle }) {

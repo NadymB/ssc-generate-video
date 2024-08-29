@@ -16,7 +16,11 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <span>{text}</span>,
+    render: (text) => (
+      <div className="d-flex justify-content-center">
+        <span className="fw-bold">{text}</span>
+      </div>
+    ),
   },
 ];
 

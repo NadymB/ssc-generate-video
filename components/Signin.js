@@ -1,11 +1,11 @@
 "use client"; // Add this directive to mark the component as a Client Component
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
 import { useAuth } from "@/context/authContext";
+import { Toaster } from "react-hot-toast";
 
 export default function Signin() {
   const [username, setUsername] = useState("");
@@ -14,18 +14,18 @@ export default function Signin() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('call day ne')
+    console.log("call day ne");
     // console.log("authToken - test:", authToken);
     // console.log("hehe:", authToken);
     // let token = localStorage.getItem("authToken");
     if (authToken) {
       // console.log('token vip:', token)
-      
+
       // console.log("hehe:", authToken);
       router.push("/"); // Redirect to home or any other protected page
     }
 
-    console.log('authToken from useAuth:', authToken)
+    console.log("authToken from useAuth:", authToken);
   }, [authToken]);
 
   const handleLogin = async (e) => {
@@ -34,14 +34,15 @@ export default function Signin() {
     const authToken = await login(username, password);
     if (authToken) {
       // useEffect(() => {
-          window.location.reload();
-        // }, [])
+      window.location.reload();
+      // }, [])
       // Redirect to the page the user was trying to access or to a default page
       // const destination = "/";
       // router.push(destination);
       // console.log("--authToken:", authToken);
     } else {
       // Handle login failure (e.g., display an error message)
+      toast.error("Tài khoản hoặc mật khẩu không đúng!");
       console.log("login failed!");
     }
   };
@@ -69,14 +70,15 @@ export default function Signin() {
 
   return (
     <>
+      <Toaster position="top-center" />
       <div className="techwave_fn_sign">
         <div className="sign__content">
           <h1 className="logo">Designed by Frenify</h1>
           <form className="login" onSubmit={handleLogin}>
             <div className="form__content">
-              <div className="form__title">Sign In</div>
+              <div className="form__title">Đăng Nhập</div>
               <div className="form__username">
-                <label htmlFor="user_login">Username or Email</label>
+                <label htmlFor="user_login">Tài khoản</label>
                 <input
                   type="text"
                   className="input"
@@ -90,7 +92,7 @@ export default function Signin() {
               </div>
               <div className="form__pass">
                 <div className="pass_lab">
-                  <label htmlFor="user_password">Password</label>
+                  <label htmlFor="user_password">Mật khẩu</label>
                   {/* <Link href="#">Forget Password?</Link> */}
                 </div>
                 <input
@@ -107,20 +109,20 @@ export default function Signin() {
                   <input type="submit" name="submit" value="Sign In" />
                 </label>
               </div>
-              <div className="form__alternative">
+              {/* <div className="form__alternative">
                 <div className="fn__lined_text">
                   <div className="line" />
                   <div className="text">Or</div>
                   <div className="line" />
                 </div>
-              </div>
+              </div> */}
             </div>
           </form>
-          <div className="sign__desc">
+          {/* <div className="sign__desc">
             <p>
               Not a member? <Link href="/sign-up">Sign Up</Link>
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
