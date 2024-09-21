@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/context/authContext";
 
 const data = [
   {
@@ -106,7 +107,7 @@ const data = [
 
 export default function Left({ activeTrueFalse, activeMobileMenu }) {
   const pathname = usePathname();
-
+  const { user } = useAuth();
   const [isToggle, setToggle] = useState(false);
   const toggleHandle = () => setToggle(!isToggle);
 
@@ -124,13 +125,13 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 className="desktop_logo"
                 style={{ width: "100px", height: "100px" }}
               />
-              <img
+              {/* <img
                 src="../img/logo-retina-full.png"
                 alt=""
                 className="retina_logo"
-              />
+              /> */}
             </span>
-            <span className="short_logo">
+            {/* <span className="short_logo">
               <img
                 src="../img/logo-desktop-mini.png"
                 alt=""
@@ -141,14 +142,14 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 alt=""
                 className="retina_logo"
               />
-            </span>
+            </span> */}
           </Link>
-          <a
+          {/* <a
             className="fn__closer fn__icon_button desktop_closer"
             onClick={activeTrueFalse}
           >
             <img src="../svg/arrow.svg" alt="" className="fn__svg" />
-          </a>
+          </a> */}
           <a
             className="fn__closer fn__icon_button mobile_closer"
             onClick={activeMobileMenu}
@@ -184,32 +185,35 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
           {/* !#1 navigation group */}
 
           {/* #2 navigation group */}
-          <div className="nav_group">
-            <h2 className="group__title">Management</h2>
-            <ul className="group__list">
-              {data.slice(1, 4).map((item, i) => (
-                <li key={i}>
-                  <Link
-                    href={`${item.pathname}`}
-                    className={`fn__tooltip menu__item ${
-                      item.pathname === pathname ? "active" : ""
-                    }`}
-                    title={item.title}
-                  >
-                    <span className="icon">
-                      <img src={item.img} alt="" className="fn__svg" />
-                    </span>
-                    <span className="text">
-                      {item.title}
-                      {item.counter && (
-                        <span className="count">{item.counter}</span>
-                      )}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {user?.group != "EMPLOYEE" && (
+            <div className="nav_group">
+              <h2 className="group__title">Management</h2>
+              <ul className="group__list">
+                {data.slice(1, 4).map((item, i) => (
+                  <li key={i}>
+                    <Link
+                      href={`${item.pathname}`}
+                      className={`fn__tooltip menu__item ${
+                        item.pathname === pathname ? "active" : ""
+                      }`}
+                      title={item.title}
+                    >
+                      <span className="icon">
+                        <img src={item.img} alt="" className="fn__svg" />
+                      </span>
+                      <span className="text">
+                        {item.title}
+                        {item.counter && (
+                          <span className="count">{item.counter}</span>
+                        )}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* !#2 navigation group */}
 
           {/* #3 navigation group */}

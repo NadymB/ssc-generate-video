@@ -797,7 +797,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
 
             {/* submit button */}
             <div className="w-100 d-flex justify-content-center mb-5">
-              <Button
+              {/* <Button
                 className="btn mt-2"
                 variant="contained"
                 color="primary"
@@ -805,6 +805,16 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
                 onClick={handleMusicGeneratorSubmit}
               >
                 Tạo
+              </Button> */}
+
+              <Button
+                variant="contained"
+                color="primary"
+                size="medium"
+                onClick={handleMusicGeneratorSubmit}
+                className="mt-4"
+              >
+                Tạo Nhạc
               </Button>
             </div>
           </div>

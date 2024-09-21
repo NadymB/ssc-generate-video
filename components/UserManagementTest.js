@@ -67,6 +67,11 @@ export default function UserManagementTest() {
 
       if (response?.status === 200) {
         toast.success("Xóa user thành công!");
+        fetchUserList(1, pagination.pageSize);
+        setPagination((prevState) => ({
+          ...prevState,
+          page: 1,
+        }));
       }
     } catch (error) {
       console.error(
@@ -471,7 +476,7 @@ export default function UserManagementTest() {
           {/* group */}
           <ProFormSelect
             options={groups
-              .filter((group) => group.id !== "66c1d1f221bd634f136a5661") //exclude item with id 66c1d1f221bd634f136a5661
+              ?.filter((group) => group.id !== "66c1d1f221bd634f136a5661") //exclude item with id 66c1d1f221bd634f136a5661
               .map((group) => ({
                 value: group.id,
                 label: group.name,
@@ -547,8 +552,7 @@ export default function UserManagementTest() {
             label="Tên của user"
             tooltip="Nhập tên của user"
             placeholder="Nhập tên của user"
-            value={detailUser["name"]}
-            disabled
+            initialValue={detailUser["name"]}
           />
           <ProFormText
             width="md"
@@ -556,8 +560,7 @@ export default function UserManagementTest() {
             label="email"
             tooltip="email cua user"
             // placeholder="Nhập tên của team"
-            value={detailUser?.email}
-            disabled
+            initialValue={detailUser?.email}
           />
         </ProForm.Group>
         <ProForm.Group>

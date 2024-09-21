@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/authContext";
 import {
@@ -10,10 +10,12 @@ import {
   Pagination,
   Button,
   ConfigProvider,
+  Divider,
   Tag,
   Flex,
 } from "antd";
 import { changePasswordApi } from "@/app/api/Auth";
+import { fetchDetailUserApi, updateUserApi } from "@/app/api/User";
 import { css } from "@emotion/css";
 import {
   ModalForm,
@@ -29,12 +31,15 @@ import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
-  const { user } = useAuth();
-
+  const { user, fetchProfile } = useAuth();
+  const [detailUser, setDetailUser] = useState({});
   const [modalVisit, setModalVisit] = useState(false);
   const restFormRef = useRef();
   const formRef = useRef();
   const [form] = Form.useForm();
+  const [updateModalVisit, setUpdateModalVisit] = useState(false);
+
+  const updateRestFormRef = useRef();
 
   const handleChangePassword = async (values) => {
     // change password
@@ -52,12 +57,68 @@ export default function Profile() {
     }
   };
 
+  const handleShowDetailUserModal = async (userId) => {
+    try {
+      const response = await fetchDetailUserApi(userId);
+      if (response?.status === 200) {
+        setDetailUser(response?.data?.data);
+        setUpdateModalVisit(true);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error?.response?.data?.message);
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const handleUpdateUser = async (values) => {
+    try {
+      let toSubmit = {
+        id: detailUser?.id,
+        email: values?.email,
+        ...values,
+        name: values?.name,
+        group_id: detailUser?.group_id,
+        team_ids: detailUser?.teams.map((team) => team.id),
+      };
+
+      const response = await updateUserApi(toSubmit);
+
+      if (response?.status === 200) {
+        toast.success("Cập nhật thông tin thành công!");
+        updateRestFormRef.current?.resetFields();
+        fetchProfile();
+        setUpdateModalVisit(false);
+      }
+    } catch (error) {
+      console.error(
+        "An error occurred when update user:",
+        error?.response?.data?.message
+      );
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const validateMessages = {
+    required: "${label} is required!",
+    types: {
+      email: "${label} is not a valid email!",
+      number: "${label} is not a valid number!",
+    },
+    number: {
+      range: "${label} must be between ${min} and ${max}",
+    },
+  };
+
+  useEffect(() => {
+    console.log("detail user:", detailUser);
+  }, [detailUser]);
+
   return (
     <>
       <div className="techwave_fn_user_settings_page">
         {/* Page Title */}
         <div className="techwave_fn_pagetitle">
-          <h2 className="title">Profile</h2>
+          <h2 className="title">Thông Tin Tài Khoản</h2>
         </div>
         {/* !Page Title */}
         <div className="container small">
@@ -71,6 +132,7 @@ export default function Profile() {
                     </label>
                     <div className="input_item">
                       <input
+                        disabled
                         className="input text-secondary fw-bold profile-input"
                         type="text"
                         id="name"
@@ -159,9 +221,23 @@ export default function Profile() {
                       </div>
                     </div>
                   </div>
+                  <div className="d-flex justify-content-center">
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary"
+                      onClick={() => {
+                        handleShowDetailUserModal(user?.id);
+                      }}
+                    >
+                      Thay Đổi Thông Tin
+                    </button>
+                  </div>
+
+                  <Divider plain></Divider>
+
                   <div className="item">
                     <label className="input_label" htmlFor="password">
-                      Password
+                      Mật Khẩu
                     </label>
                     <Link
                       href={"#"}
@@ -170,7 +246,7 @@ export default function Profile() {
                         setModalVisit(true);
                       }}
                     >
-                      Change password
+                      Thay đổi mật khẩu
                     </Link>
                   </div>
                 </div>
@@ -182,7 +258,7 @@ export default function Profile() {
 
       {/* change-password modal form */}
       <ModalForm
-        title="Change your password"
+        title="Thay đổi mật khẩu của bạn"
         open={modalVisit}
         onFinish={handleChangePassword}
         onOpenChange={setModalVisit}
@@ -199,9 +275,9 @@ export default function Profile() {
           <ProFormText.Password
             width="md"
             name="old_password"
-            label="Old Password"
-            tooltip="Enter old password"
-            placeholder="Enter old password"
+            label="Mật khẩu cũ"
+            tooltip="Nhập mật khẩu cũ"
+            placeholder="Nhập mật khẩu cũ"
             rules={[
               {
                 required: true,
@@ -212,15 +288,54 @@ export default function Profile() {
           <ProFormText.Password
             width="md"
             name="new_password"
-            label="New Password"
-            tooltip="Enter new password"
-            placeholder="Enter new password"
+            label="Mật khẩu mới"
+            tooltip="Nhập mật khẩu mới"
+            placeholder="Nhập mật khẩu mới"
             rules={[
               {
                 required: true,
                 message: "Your new password is required!",
               },
             ]}
+          />
+        </ProForm.Group>
+      </ModalForm>
+
+      {/* update user modal form */}
+      <ModalForm
+        title="Thay Đổi Thông Tin"
+        open={updateModalVisit}
+        onFinish={handleUpdateUser}
+        onOpenChange={setUpdateModalVisit}
+        submitter={{
+          searchConfig: {
+            submitText: "Submit",
+            resetText: "Close",
+          },
+        }}
+        validateMessages={validateMessages}
+        formRef={updateRestFormRef}
+        modalProps={{
+          destroyOnClose: true,
+          onCancel: () => console.log("run"),
+        }}
+      >
+        <ProForm.Group>
+          <ProFormText
+            width="md"
+            name="name"
+            label="Tên"
+            tooltip="Nhập tên"
+            placeholder="Nhập tên"
+            initialValue={detailUser["name"]}
+          />
+          <ProFormText
+            width="md"
+            name="email"
+            label="email"
+            tooltip="email cua user"
+            placeholder="Nhập email"
+            initialValue={detailUser?.email ? detailUser?.email : ""}
           />
         </ProForm.Group>
       </ModalForm>

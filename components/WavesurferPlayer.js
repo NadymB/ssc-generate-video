@@ -123,12 +123,17 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
         <Grid item xs={10} id={wavesurferId} />
         <Grid item xs={1} className="d-flex justify-content-end">
           {song?.status === "queued" || song?.status === "processing" ? (
-            <Button variant="contained" size="small" disabled>
+            <Button
+              variant="contained"
+              size="small"
+              disabled
+              style={{ fontSize: "10px" }}
+            >
               {song?.status}
               <div
                 className="spinner-border text-dark ms-2"
                 role="status"
-                style={{ width: "15px", height: "15px" }}
+                style={{ width: "12px", height: "12px" }}
               ></div>
             </Button>
           ) : song?.status === "error" ? (

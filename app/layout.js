@@ -22,9 +22,9 @@ const worksans = Work_Sans({
 
 export const metadata = {
   title: {
-    template: "Techwave NextJs | %s",
+    template: "MHT MUSIC AI | %s",
     // content:'text/html',
-    default: "Techwave | React NextJs Personal Portfolio Templage", // a default is required when creating a template
+    default: "MHT MUSIC AI | Music Generator", // a default is required when creating a template
   },
   name: "description",
 

@@ -41,24 +41,6 @@ export default function Header({ searchToggle }) {
   const router = useRouter();
   const pathname = usePathname(); // get router info
 
-  useEffect(() => {
-    console.log("user:", user);
-  }, [user]);
-
-  // const { user } = useEffect(() => {
-  //   // Check if running in the browser (client side)
-  //   if (typeof window !== "undefined") {
-  //     const storedSkin = localStorage.getItem("frenify_skin");
-  //     if (storedSkin) {
-  //       setSkin(storedSkin);
-  //     }
-  //   }
-  // }, []);
-
-  useEffect(() => {
-    console.log("user:", user);
-  }, [user]);
-
   const toggleSkin = () => {
     const newSkin = skin === "light" ? "dark" : "light";
     setSkin(newSkin);

@@ -5,6 +5,7 @@ import WaveSurferPlayer from "./WavesurferPlayer";
 import { fetchMusicListApi } from "@/app/api/Music";
 import { Row, Col, Pagination } from "antd";
 import { usePathname } from "next/navigation";
+import Button from "@mui/material/Button";
 
 export default function MusicGeneration({ forceStop, setForceStop }) {
   const [generatedSongs, setGeneratedSongs] = useState([]);
@@ -54,7 +55,14 @@ export default function MusicGeneration({ forceStop, setForceStop }) {
   const checkSongStatus = async (songId) => {
     try {
       const response = await fetchMusicListApi({ "ids[]": songId });
-      const updatedSong = response?.data?.data?.data[0];
+      let updatedSong = response?.data?.data?.data[0];
+
+      if (
+        updatedSong?.status == "error" &&
+        updatedSong?.audio_id?.length > 10
+      ) {
+        updatedSong.status = "complete";
+      }
 
       setGeneratedSongs((prevSongs) =>
         prevSongs.map((song) =>

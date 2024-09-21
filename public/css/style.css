@@ -21001,3 +21001,20 @@ fieldset:disabled .btn {
   border-color: rgba(0, 0, 0, 0.2) !important;
   border-style: solid !important;
 }
+
+.style_of_music .MuiIconButton-label {
+  display: none !important;
+}
+
+.ant-pagination-options {
+  display: none !important;
+}
+
+/* [data-techwave-skin="dark"]  */
+[data-techwave-skin="dark"] .ant-pagination-item-ellipsis, .ant-pagination-item-link {
+  color: white !important;
+}
+
+[data-techwave-skin="light"] .ant-pagination-item-link {
+  color: #d9d9d9 !important;
+}

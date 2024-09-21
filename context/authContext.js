@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const fetchProfile = async () => {
-    console.log("call fetch profile");
+    console.log("call fetch profile!");
     try {
       const response = await fetchUserProfileApi();
       // console.log("profile:", response);
@@ -61,10 +61,14 @@ export const AuthProvider = ({ children }) => {
         setUser(response?.data?.data);
       }
     } catch (error) {
-      setUser(null);
-      localStorage.removeItem("authToken");
-      setAuthToken("");
       console.error("fetch profile failed:", error);
+      if (error?.response?.status === 401) {
+        setInterval(() => {
+          setUser(null);
+          localStorage.removeItem("authToken");
+          setAuthToken("");
+        }, 3000);
+      }
     }
   };
 
@@ -78,7 +82,9 @@ export const AuthProvider = ({ children }) => {
   }, [authToken]);
 
   return (
-    <AuthContext.Provider value={{ user, authToken, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, setUser, authToken, login, logout, fetchProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );
