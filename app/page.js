@@ -4,6 +4,7 @@ import Layout from "@/layouts/layout";
 import { AuthProvider } from "@/context/authContext";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import "../output.css";
 
 import dynamic from "next/dynamic";
 // import Layout from "@/layouts/layout";
