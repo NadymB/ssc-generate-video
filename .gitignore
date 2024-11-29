@@ -3,3 +3,5 @@ node_modules
 out
 out.zip
 .env
+.yarn
+yarn.lock
