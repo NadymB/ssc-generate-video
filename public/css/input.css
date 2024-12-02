@@ -1,3 +1,20 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/* Add this CSS to style the thumb of the input range */
+.thumb-white::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: white; /* Change thumb color to white */
+  width: 10px; /* Adjust width as needed */
+  height: 10px; /* Adjust height as needed */
+  border-radius: 50%; /* Make it circular */
+}
+
+.thumb-white::-moz-range-thumb {
+  background: white; /* Change thumb color to white */
+  width: 10px; /* Adjust width as needed */
+  height: 10px; /* Adjust height as needed */
+  border-radius: 50%; /* Make it circular */
+}

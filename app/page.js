@@ -12,7 +12,7 @@ import React from "react";
 import withProtectedRoute from "@/components/WithProtectedRoute";
 // import withProtectedRoute from "@/components/WithProtectedRoute"; // No dynamic import
 
-const MusicGeneration = dynamic(() => import("@/components/MusicGeneration"), {
+const MusicGeneration = dynamic(() => import("@/components/VideoGeneration"), {
   ssr: false,
 });
 

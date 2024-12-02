@@ -111,14 +111,12 @@ function InputPrompt() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                {!selectedImage && (
-                  <img
-                    src="/svg/image.svg"
-                    width={30}
-                    alt="Upload"
-                    className="cursor-pointer"
-                  />
-                )}
+                <img
+                  src="/svg/image.svg"
+                  width={30}
+                  alt="Upload"
+                  className="cursor-pointer"
+                />
 
                 <div
                   className={`absolute top-0 h-full w-full flex items-center justify-center ${

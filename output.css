@@ -578,6 +578,10 @@ video {
   inset: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .bottom-1 {
   bottom: 0.25rem;
 }
@@ -586,12 +590,44 @@ video {
   left: 0px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .top-0 {
   top: 0px;
 }
 
-.right-0 {
-  right: 0px;
+.bottom-3 {
+  bottom: 0.75rem;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.bottom-\[-1px\] {
+  bottom: -1px;
+}
+
+.bottom-\[-100px\] {
+  bottom: -100px;
+}
+
+.bottom-\[-200px\] {
+  bottom: -200px;
+}
+
+.top-\[100\%\] {
+  top: 100%;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .mx-auto {
@@ -616,6 +652,10 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .ml-4 {
   margin-left: 1rem;
 }
@@ -628,12 +668,16 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
+.mt-auto {
+  margin-top: auto;
 }
 
 .block {
@@ -660,8 +704,56 @@ video {
   height: 1px;
 }
 
+.h-\[2px\] {
+  height: 2px;
+}
+
 .h-full {
   height: 100%;
+}
+
+.h-\[4px\] {
+  height: 4px;
+}
+
+.h-\[100px\] {
+  height: 100px;
+}
+
+.h-\[200px\] {
+  height: 200px;
+}
+
+.max-h-\[300px\] {
+  max-height: 300px;
+}
+
+.max-h-\[200px\] {
+  max-height: 200px;
+}
+
+.max-h-\[100px\] {
+  max-height: 100px;
+}
+
+.max-h-\[60px\] {
+  max-height: 60px;
+}
+
+.max-h-10 {
+  max-height: 2.5rem;
+}
+
+.max-h-9 {
+  max-height: 2.25rem;
+}
+
+.max-h-11 {
+  max-height: 2.75rem;
+}
+
+.max-h-12 {
+  max-height: 3rem;
 }
 
 .min-h-\[150px\] {
@@ -676,13 +768,29 @@ video {
   width: 90%;
 }
 
-.w-full {
-  width: 100%;
+.w-\[95\%\] {
+  width: 95%;
 }
 
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-\[50\%\] {
+  width: 50%;
+}
+
+.w-\[45\%\] {
+  width: 45%;
+}
+
+.w-\[40\%\] {
+  width: 40%;
 }
 
 .grow {
@@ -697,6 +805,12 @@ video {
   cursor: pointer;
 }
 
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -705,8 +819,16 @@ video {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -719,6 +841,32 @@ video {
 
 .gap-5 {
   gap: 1.25rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.whitespace-normal {
+  white-space: normal;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .rounded {
@@ -763,6 +911,11 @@ video {
   background-color: rgb(25 26 31 / var(--tw-bg-opacity, 1));
 }
 
+.bg-blue-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+}
+
 .bg-gray_promt {
   --tw-bg-opacity: 1;
   background-color: rgb(38 39 45 / var(--tw-bg-opacity, 1));
@@ -773,13 +926,39 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-blue-700 {
+.bg-slate-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity, 1));
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity, 1));
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .px-2 {
@@ -787,19 +966,28 @@ video {
   padding-right: 0.5rem;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pr-6 {
+  padding-right: 1.5rem;
 }
 
 .text-center {
@@ -819,13 +1007,33 @@ video {
   font-weight: 500;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.accent-white {
+  accent-color: #fff;
+}
+
+.accent-red-500 {
+  accent-color: #ef4444;
+}
+
+.accent-black {
+  accent-color: #000;
+}
+
 .opacity-0 {
   opacity: 0;
+}
+
+.opacity-\[0\.5\] {
+  opacity: 0.5;
 }
 
 .blur {
@@ -843,6 +1051,32 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+/* Add this CSS to style the thumb of the input range */
+
+.thumb-white::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: white;
+  /* Change thumb color to white */
+  width: 10px;
+  /* Adjust width as needed */
+  height: 10px;
+  /* Adjust height as needed */
+  border-radius: 50%;
+  /* Make it circular */
+}
+
+.thumb-white::-moz-range-thumb {
+  background: white;
+  /* Change thumb color to white */
+  width: 10px;
+  /* Adjust width as needed */
+  height: 10px;
+  /* Adjust height as needed */
+  border-radius: 50%;
+  /* Make it circular */
 }
 
 .hover\:bg-blue-800:hover {
@@ -885,4 +1119,34 @@ video {
   .sm\:w-auto {
     width: auto;
   }
+}
+
+.\[\&\:\:-webkit-slider-runnable-track\]\:rounded-full::-webkit-slider-runnable-track {
+  border-radius: 9999px;
+}
+
+.\[\&\:\:-webkit-slider-runnable-track\]\:bg-black\/25::-webkit-slider-runnable-track {
+  background-color: rgb(0 0 0 / 0.25);
+}
+
+.\[\&\:\:-webkit-slider-thumb\]\:h-\[50px\]::-webkit-slider-thumb {
+  height: 50px;
+}
+
+.\[\&\:\:-webkit-slider-thumb\]\:w-\[50px\]::-webkit-slider-thumb {
+  width: 50px;
+}
+
+.\[\&\:\:-webkit-slider-thumb\]\:appearance-none::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+.\[\&\:\:-webkit-slider-thumb\]\:rounded-full::-webkit-slider-thumb {
+  border-radius: 9999px;
+}
+
+.\[\&\:\:-webkit-slider-thumb\]\:bg-purple-500::-webkit-slider-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity, 1));
 }
