@@ -18,3 +18,78 @@
   height: 10px; /* Adjust height as needed */
   border-radius: 50%; /* Make it circular */
 }
+
+.footer-recreate-button {
+  background: -moz-linear-gradient(
+    187deg,
+    #fae6fc 10.92%,
+    #d2e5fb 44.59%,
+    #f8d4f3 95.24%
+  );
+  background: linear-gradient(
+    263deg,
+    #fae6fc 10.92%,
+    #d2e5fb 44.59%,
+    #f8d4f3 95.24%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.button-tab-active,
+.editor-header-tab-item:hover {
+  text-shadow: none !important;
+  background: -moz-linear-gradient(
+    190deg,
+    #fffdee 7.5%,
+    #fff 50%,
+    #ffb7eb 92.5%
+  ) !important;
+  background: linear-gradient(
+    260deg,
+    #fffdee 7.5%,
+    #fff 50%,
+    #ffb7eb 92.5%
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.create-btn .createBtn-hoverEffect {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+.create-btn-container .create-btn-hover-mask {
+  background: -moz-linear-gradient(
+    318deg,
+    rgba(255, 226, 171, 0.6) -7.08%,
+    rgba(255, 113, 89, 0.6) 20.8%,
+    rgba(255, 76, 107, 0.6) 60.13%,
+    rgba(241, 92, 252, 0.6) 122.94%,
+    rgba(234, 169, 255, 0.6) 170.23%
+  );
+  background: linear-gradient(
+    132deg,
+    rgba(255, 226, 171, 0.6) -7.08%,
+    rgba(255, 113, 89, 0.6) 20.8%,
+    rgba(255, 76, 107, 0.6) 60.13%,
+    rgba(241, 92, 252, 0.6) 122.94%,
+    rgba(234, 169, 255, 0.6) 170.23%
+  );
+}
+.group\/create-btn:hover .group-hover\/create-btn\:block,
+.group\/progress:hover .group-hover\/progress\:block,
+.group\/recreate-btn:hover .group-hover\/recreate-btn\:block,
+.group\/video:hover .group-hover\/video\:block {
+  display: block !important;
+}

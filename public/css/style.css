@@ -3,8 +3,6 @@
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* hebrew */
 
-
-
 @font-face {
   font-family: "__Heebo_58c418";
   font-style: normal;
@@ -1506,7 +1504,7 @@ input[type="button"] {
 }
 .tooltipster-grow {
   transform: scale(0, 0);
-   transition-property: transform;
+  transition-property: transform;
   -webkit-backface-visibility: hidden; /* WebKit-specific */
   backface-visibility: hidden; /* Standard property for compatibility */
 }
@@ -1983,7 +1981,7 @@ input[type="button"] {
 /*!******************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./public/css/style.css ***!
   \******************************************************************************************************************************************************************************************************************************************************************/
- /* @charset "utf-8"; */
+/* @charset "utf-8"; */
 /*
 /*	Copyright (c) 2023 Frenify
 /*	Author: Frenify
@@ -4761,10 +4759,7 @@ a.fn__like.no_border .fn__svg {
 /*	28) Icon Button
 /*------------------------------------------------------------------*/
 .fn__icon_button {
-  width: 30px;
-  height: 30px;
   border-radius: 5px;
-  background-color: var(--techwave-some-a-bg-color);
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
@@ -4772,8 +4767,13 @@ a.fn__like.no_border .fn__svg {
   -ms-align-items: center;
   align-items: center;
   justify-content: center;
-  color: var(--techwave-heading-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  background-color: rgba(214, 241, 255, 0.12);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+
 .fn__icon_button .dots {
   display: block;
   position: relative;
@@ -7530,8 +7530,8 @@ a.fn__like.no_border .fn__svg {
   transform: translateY(20px);
   position: absolute;
   left: 0;
-  top: 100%;
-  width: 240px;
+  bottom: 100%;
+  width: 150px;
   margin: 0;
   padding: 0;
   padding-top: 5px;
@@ -7554,7 +7554,13 @@ a.fn__like.no_border .fn__svg {
 }
 .fn__icon_options .fn__icon_popup ul {
   list-style-type: none;
-  background-color: var(--techwave-some-a-bg-color);
+  margin-bottom: 0.5rem; /* Equivalent to mb-2 */
+  padding: 0.5rem; /* Equivalent to p-2 */
+  border-radius: 8px;
+  background-color: rgba(42, 43, 52, 0.3); /* Equivalent to bg-[#2A2B34]/30 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* For Safari support */
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin: 0;
   padding: 15px 20px;
@@ -21014,7 +21020,8 @@ fieldset:disabled .btn {
 }
 
 /* [data-techwave-skin="dark"]  */
-[data-techwave-skin="dark"] .ant-pagination-item-ellipsis, .ant-pagination-item-link {
+[data-techwave-skin="dark"] .ant-pagination-item-ellipsis,
+.ant-pagination-item-link {
   color: white !important;
 }
 

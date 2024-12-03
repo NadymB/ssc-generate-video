@@ -48,9 +48,11 @@ function InputPrompt() {
           <button
             type="button"
             onClick={() => setStateActive("text")}
-            className="mt-2 mb-2"
+            className={`mt-2 mb-2 ${
+              stateActive === "text" ? "button-tab-active" : ""
+            }`}
           >
-            Text to Video
+            <span className="editor-header-tab-item">Text to Video</span>
           </button>
           {stateActive === "text" && (
             <div className="absolute bottom-1 bg-white h-[1px] border-[2px] w-[80%]"></div>
@@ -60,10 +62,11 @@ function InputPrompt() {
           <button
             type="button"
             onClick={() => setStateActive("image")}
-            className="mt-2 mb-2"
-            aria-current={stateActive === "image" ? "page" : undefined}
+            className={`mt-2 mb-2 ${
+              stateActive === "image" ? "button-tab-active" : ""
+            }`}
           >
-            Image to Video
+            <span className="editor-header-tab-item">Text to Video</span>
           </button>
           {stateActive === "image" && (
             <div className="absolute bottom-1 bg-white h-[1px] border-[2px] w-[80%]"></div>
@@ -135,12 +138,30 @@ function InputPrompt() {
           </div>
         )}
       </div>
-      <button
+      {/* <button
         type="submit"
         className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Generate
-      </button>
+      </button> */}
+      <div className="mt-5 cursor-pointer">
+        <div className="relative create-btn-container cursor-pointer">
+          <div className="create-btn group/create-btn relative z-10 h-[44px] w-[130px] overflow-hidden rounded-[41px] bg-white">
+            <div className="z-10 relative flex gap-1 h-full justify-center items-center text-black text-[16px] font-semibold leading-[48px] overflow-hidden rounded-full select-none">
+              <img
+                src="https://cdn.hailuoai.video/web-assets/img/video-header-credits.png"
+                className="w-4 h-4"
+                alt="hilo ai video create icon"
+              />
+              <span>Generate</span>
+            </div>
+            <div className="createBtn-hoverEffect hidden group-hover/create-btn:block">
+              <div></div>
+            </div>
+          </div>
+          <div className="absolute z-0 create-btn-hover-mask hidden group-hover/create-btn:block top-[15px] left-[10px] w-[146px] h-[39px] rounded-[100px] opacity-50 blur-[15px]"></div>
+        </div>
+      </div>
     </form>
   );
 }
