@@ -6,23 +6,23 @@ import screenfull from "screenfull";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/authContext";
-// import UserBilling from "@/public/svg/";
+// import UserBilling from "/";
 
 const data = [
   {
     title: "Quản Lý User",
     pathname: "/user-management/",
-    img: "../svg/community.svg",
+    img: "/svg/community.svg",
   },
   {
     title: "Quản Lý Team",
     pathname: "/team-management/",
-    img: "@/public/svg/community.svg",
+    img: "@/public//svg/community.svg",
   },
   {
     title: "Quản Lý Group",
     pathname: "/group-management/",
-    img: "../svg/community.svg",
+    img: "/svg/community.svg",
   },
 ];
 
@@ -134,7 +134,7 @@ export default function Header({ searchToggle }) {
                   >
                     <span className="icon">
                       <img
-                        src="../svg/community.svg"
+                        src="/svg/community.svg"
                         alt=""
                         className="fn__svg"
                       />
@@ -222,9 +222,8 @@ export default function Header({ searchToggle }) {
             {/* Full Screen (bar item) */}
             <div className="bar__item bar__item_fullscreen">
               <a
-                className={`item_opener fn__tooltip ${
-                  isFullscreen ? "full_screen" : ""
-                }`}
+                className={`item_opener fn__tooltip ${isFullscreen ? "full_screen" : ""
+                  }`}
                 title="Full Screen"
                 onClick={toggleFullscreen}
               >

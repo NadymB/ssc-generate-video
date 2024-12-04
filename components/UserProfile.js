@@ -16,7 +16,7 @@ export default function UserProfile() {
           <div className="techwave_fn_user_profile">
             <div className="user__profile">
               <div className="user_avatar">
-                <img src="img/user/user.jpg" alt=""  />
+                <img src="img/user/user.jpg" alt="" />
               </div>
               <div className="user_details">
                 <ul>
@@ -41,7 +41,7 @@ export default function UserProfile() {
                 </ul>
               </div>
               <Link href="/user-settings" className="user_edit fn__icon_button">
-                <img src="svg/setting.svg" alt=""  className="fn__svg" />
+                <img src="/svg/setting.svg" alt="" className="fn__svg" />
               </Link>
             </div>
             <div className="user__plan">

@@ -678,7 +678,7 @@ export default function PersonalFeed() {
                                     <label className="fn__checkbox">
                                         <input type="checkbox" />Upscaled
                                         <span className="checkmark" />
-                                        <img src="svg/check.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/check.svg" alt="" className="fn__svg" />
                                     </label>
                                 </div>
                             </div>
@@ -687,7 +687,7 @@ export default function PersonalFeed() {
                                     <label className="fn__checkbox">
                                         <input type="checkbox" onClick={handleSelect} />Select Items
                                         <span className="checkmark" />
-                                        <img src="svg/check.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/check.svg" alt="" className="fn__svg" />
                                     </label>
                                 </div>
                             </div>
@@ -703,11 +703,11 @@ export default function PersonalFeed() {
                                 </p>
                                 <div className="actions">
                                     <Link onClick={() => handleDelete()} href="#" className="filter__delete techwave_fn_button has__icon small__border">
-                                        <img src="svg/trash.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/trash.svg" alt="" className="fn__svg" />
                                         <span>Delete</span>
                                     </Link>
                                     <Link href="#" className="filter__download techwave_fn_button has__icon small__border">
-                                        <img src="svg/download.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/download.svg" alt="" className="fn__svg" />
                                         <span>Download</span>
                                     </Link>
                                 </div>
@@ -734,7 +734,7 @@ export default function PersonalFeed() {
                                                 </div>
                                                 <div className={`fn__selectable_item ${selectedItems.includes(feed.id) ? "selected" : ""}`}>
                                                     <span className="icon">
-                                                        <img src="svg/check.svg" alt="" className="fn__svg" />
+                                                        <img src="/svg/check.svg" alt="" className="fn__svg" />
                                                     </span>
                                                 </div>
                                                 <div className="item__info">
@@ -776,7 +776,7 @@ export default function PersonalFeed() {
                                 <div className="lightbox__tlbar_left">
                                     <div className="item item__share fn__icon_options medium_size">
                                         <Link href="#" className="item__btn fn__icon_button">
-                                            <img src="svg/share.svg" alt="" className="fn__svg" />
+                                            <img src="/svg/share.svg" alt="" className="fn__svg" />
                                         </Link>
                                         <div className="fn__icon_popup">
                                             <ul>
@@ -791,7 +791,7 @@ export default function PersonalFeed() {
                                     </div>
                                     <div className="item item__download fn__icon_options medium_size">
                                         <Link href="#" className="item__btn fn__icon_button">
-                                            <img src="svg/download.svg" alt="" className="fn__svg" />
+                                            <img src="/svg/download.svg" alt="" className="fn__svg" />
                                         </Link>
                                         <div className="fn__icon_popup">
                                             <ul>
@@ -817,10 +817,10 @@ export default function PersonalFeed() {
                                 </div>
                                 <div className="lightbox__tlbar_center">
                                     <Link href="#" className="img_nav nav_prev">
-                                        <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                                     </Link>
                                     <Link href="#" className="img_nav nav_next">
-                                        <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                                     </Link>
                                 </div>
                                 <div className="lightbox__tlbar_right">
@@ -841,7 +841,7 @@ export default function PersonalFeed() {
                                     <span className="text">Follow</span>
                                 </Link>
                                 <a className="fn__closer fn__icon_button" onClick={() => setLightbox(false)}>
-                                    <img src="svg/close.svg" alt="" className="fn__svg" />
+                                    <img src="/svg/close.svg" alt="" className="fn__svg" />
                                 </a>
                             </div>
                             <div className="item__details">
@@ -854,7 +854,7 @@ export default function PersonalFeed() {
                                         <h3 className="model_title">{Value.title}</h3>
                                     </div>
                                     <Link href="image-generation" className="fn__icon_button">
-                                        <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                                     </Link>
                                 </div>
                                 <div className="fn__prompt_details">

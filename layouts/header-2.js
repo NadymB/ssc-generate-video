@@ -83,7 +83,7 @@ export default function Header({ searchToggle }) {
                         {/* Search (bar item) */}
                         <div className="bar__item bar__item_search">
                             <a className="item_opener fn__tooltip" title="Search" onClick={searchToggle}>
-                                <img src="svg/search.svg" alt="" className="fn__svg" />
+                                <img src="/svg/search.svg" alt="" className="fn__svg" />
                             </a>
                             <div className="item_popup" data-position="right">
                                 <input type="text" placeholder="Search" />
@@ -93,7 +93,7 @@ export default function Header({ searchToggle }) {
                         {/* Notification (bar item) */}
                         <Menu as="div" className="bar__item bar__item_notification has_notification opened">
                             <Menu.Button as="nav" id="Button1" className="item_opener fn__tooltip" title="Notifications">
-                                <img src="svg/bell.svg" alt="" className="fn__svg" />
+                                <img src="/svg/bell.svg" alt="" className="fn__svg" />
                             </Menu.Button>
                             <Menu.Items as="div" className="item_popup" data-position="right">
                                 <div className="ntfc_header">
@@ -124,15 +124,15 @@ export default function Header({ searchToggle }) {
                         {/* Full Screen (bar item) */}
                         <div className="bar__item bar__item_fullscreen">
                             <a className={`item_opener fn__tooltip ${isFullscreen ? "full_screen" : ""}`} title="Full Screen" onClick={toggleFullscreen}>
-                                <img src="svg/fullscreen.svg" alt="" className="fn__svg f_screen" />
-                                <img src="svg/smallscreen.svg" alt="" className="fn__svg s_screen" />
+                                <img src="/svg/fullscreen.svg" alt="" className="fn__svg f_screen" />
+                                <img src="/svg/smallscreen.svg" alt="" className="fn__svg s_screen" />
                             </a>
                         </div>
                         {/* !Full Screen (bar item) */}
                         {/* Language (bar item) */}
                         <Menu as="div" className="bar__item bar__item_language opened">
                             <Menu.Button as="nav" id="Button2" className="item_opener fn__tooltip" title="Language">
-                                <img src="svg/language.svg" alt="" className="fn__svg" />
+                                <img src="/svg/language.svg" alt="" className="fn__svg" />
                             </Menu.Button>
                             <Menu.Items as="div" className="item_popup" data-position="right">
                                 <ul>
@@ -176,25 +176,25 @@ export default function Header({ searchToggle }) {
                                     <ul>
                                         <li>
                                             <Link href="/user-profile">
-                                                <span className="icon"><img src="svg/person.svg" alt="" className="fn__svg" /></span>
+                                                <span className="icon"><img src="/svg/person.svg" alt="" className="fn__svg" /></span>
                                                 <span className="text">Profile</span>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="/user-settings">
-                                                <span className="icon"><img src="svg/setting.svg" alt="" className="fn__svg" /></span>
+                                                <span className="icon"><img src="/svg/setting.svg" alt="" className="fn__svg" /></span>
                                                 <span className="text">Settings</span>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="/user-billing">
-                                                <span className="icon"><img src="svg/billing.svg" alt="" className="fn__svg" /></span>
+                                                <span className="icon"><img src="/svg/billing.svg" alt="" className="fn__svg" /></span>
                                                 <span className="text">Billing</span>
                                             </Link>
                                         </li>
                                         <li>
                                             <Link href="/sign-in">
-                                                <span className="icon"><img src="svg/logout.svg" alt="" className="fn__svg" /></span>
+                                                <span className="icon"><img src="/svg/logout.svg" alt="" className="fn__svg" /></span>
                                                 <span className="text">Log Out</span>
                                             </Link>
                                         </li>

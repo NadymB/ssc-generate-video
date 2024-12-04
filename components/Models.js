@@ -131,7 +131,7 @@ export default function Models() {
                                 <div className="filter__order">
                                     <div className="fn__icon_options medium_size align_right">
                                         <span className="fn__icon_button">
-                                            <img src="svg/filter.svg" alt="" className="fn__svg" />
+                                            <img src="/svg/filter.svg" alt="" className="fn__svg" />
                                         </span>
                                         <div className="fn__icon_popup">
                                             <ul>
@@ -169,8 +169,8 @@ export default function Models() {
                                                         <div className="item">
                                                             <a onClick={() => hasBookmarkSwitch(product.id)}
                                                                 className={bookmarkStates[index] ? "fn__bookmark has__bookmark" : "fn__bookmark"}>
-                                                                <img src="svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
-                                                                <img src="svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
+                                                                <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                                <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                             </a>
                                                             <div className="img">
                                                                 <img src={product.img} alt="" />
@@ -196,8 +196,8 @@ export default function Models() {
                                                         <div className="item">
                                                             <a onClick={() => hasBookmarkSwitch(product.id)}
                                                                 className={bookmarkStates[index] ? "fn__bookmark has__bookmark" : "fn__bookmark"}>
-                                                                <img src="svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
-                                                                <img src="svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
+                                                                <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                                <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                             </a>
                                                             <div className="img">
                                                                 <img src={product.img} alt="" />
@@ -223,8 +223,8 @@ export default function Models() {
                                                         <div className="item">
                                                             <a onClick={() => hasBookmarkSwitch(product.id)}
                                                                 className={bookmarkStates[index] ? "fn__bookmark has__bookmark" : "fn__bookmark"}>
-                                                                <img src="svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
-                                                                <img src="svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
+                                                                <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                                <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                             </a>
                                                             <div className="img">
                                                                 <img src={product.img} alt="" />
@@ -250,8 +250,8 @@ export default function Models() {
                                                         <div className="item">
                                                             <a onClick={() => hasBookmarkSwitch(product.id)}
                                                                 className={bookmarkStates[index] ? "fn__bookmark has__bookmark" : "fn__bookmark"}>
-                                                                <img src="svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
-                                                                <img src="svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
+                                                                <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                                <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                             </a>
                                                             <div className="img">
                                                                 <img src={product.img} alt="" />

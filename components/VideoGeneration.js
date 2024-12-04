@@ -29,7 +29,7 @@ export default function VideoGeneration() {
                 <div className="item_options">
                   <div className="fn__icon_options medium_size align_right">
                     <Link href="#" className="fn__icon_button">
-                      <img src="svg/info.svg" alt="" className="fn__svg" />
+                      <img src="/svg/info.svg" alt="" className="fn__svg" />
                     </Link>
                     <div className="fn__icon_popup">
                       <ul>
@@ -81,7 +81,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -103,7 +103,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -149,7 +149,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -171,7 +171,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -217,7 +217,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -239,7 +239,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -285,7 +285,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -307,7 +307,7 @@ export default function VideoGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />

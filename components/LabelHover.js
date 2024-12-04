@@ -72,12 +72,12 @@ const LabelHover = () => {
         </button>
         <div className="fn__icon_options medium_size ">
           <button onClick={handleDownload} className="fn__icon_button">
-            <img src="svg/download.svg" alt="" className="fn__svg" />
+            <img src="/svg/download.svg" alt="" className="fn__svg" />
           </button>
         </div>
         <div className="fn__icon_options medium_size">
           <button onClick={handleCopyLink} className="fn__icon_button">
-            <img src="svg/share.svg" alt="" className="fn__svg" />
+            <img src="/svg/share.svg" alt="" className="fn__svg" />
           </button>
         </div>
         <div className="fn__icon_options medium_size">
@@ -108,7 +108,7 @@ const LabelHover = () => {
               </li>
               <li className="flex flex-row items-center gap-2">
                 <button class="flex items-center p-3 rounded-[8px] text-white/90 hover:bg-white/[0.08]">
-                  <img src="svg/report.svg" alt="" className="fn__svg" />
+                  <img src="/svg/report.svg" alt="" className="fn__svg" />
                   <span class="ml-1 text-[13px] leading-none">Report</span>
                 </button>
               </li>

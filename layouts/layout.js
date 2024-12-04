@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { imageToSvg } from "../components/Utilities";
+import { imageToSvg } from "/components/Utilities";
 import Footer from "./footer";
 import Header from "./header";
 import Left from "./left";
@@ -8,6 +8,7 @@ import GenSettingsLeft from "./genSettingsLeft";
 import Search from "./search";
 import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
+import '/output.css';
 
 export default function Layout({ children, leftMenu }) {
   const pathname = usePathname(); // get router info

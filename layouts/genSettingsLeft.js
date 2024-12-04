@@ -31,7 +31,7 @@ const data = [
   {
     title: "Community Feed",
     pathname: "/community-feed",
-    img: "../svg/community.svg",
+    img: "..//svg/community.svg",
   },
   {
     title: "Personal Feed",

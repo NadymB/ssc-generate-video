@@ -48,9 +48,8 @@ function InputPrompt() {
           <button
             type="button"
             onClick={() => setStateActive("text")}
-            className={`mt-2 mb-2 ${
-              stateActive === "text" ? "button-tab-active" : ""
-            }`}
+            className={`mt-2 mb-2 ${stateActive === "text" ? "button-tab-active" : ""
+              }`}
           >
             <span className="editor-header-tab-item">Text to Video</span>
           </button>
@@ -62,9 +61,8 @@ function InputPrompt() {
           <button
             type="button"
             onClick={() => setStateActive("image")}
-            className={`mt-2 mb-2 ${
-              stateActive === "image" ? "button-tab-active" : ""
-            }`}
+            className={`mt-2 mb-2 ${stateActive === "image" ? "button-tab-active" : ""
+              }`}
           >
             <span className="editor-header-tab-item">Text to Video</span>
           </button>
@@ -122,9 +120,8 @@ function InputPrompt() {
                 />
 
                 <div
-                  className={`absolute top-0 h-full w-full flex items-center justify-center ${
-                    isHovered ? "cursor-pointer" : ""
-                  }`}
+                  className={`absolute top-0 h-full w-full flex items-center justify-center ${isHovered ? "cursor-pointer" : ""
+                    }`}
                 >
                   <input
                     type="file"
