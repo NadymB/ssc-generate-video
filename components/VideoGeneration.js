@@ -349,19 +349,19 @@ export default function VideoGeneration() {
               </div>
             </div> */}
             <div className="p-2 flex flex-wrap gap-2 justify-center">
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"}>
+              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={1}>
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"}>
+              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={2}>
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"}>
+              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={3}>
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"}>
+              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={4}>
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"}>
+              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={5}>
                 <LabelHover />
               </VideoElement>
             </div>

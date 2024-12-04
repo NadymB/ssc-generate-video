@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import { useRouter } from "next/navigation";
 
 const VideoElement = (props) => {
   const videoRef = React.useRef(null);
+  const router = useRouter();
+
   const [currentTime, setCurrentTime] = useState("00:00");
   const [duration, setDuration] = useState("00:00");
   const [isPlaying, setIsPlaying] = useState(false);
@@ -65,6 +68,11 @@ const VideoElement = (props) => {
     }
   };
 
+  const handleMouseDown = (event) => {
+    event.preventDefault();
+    router.push(`/fullscreen-video/${event.target.id ?? 1}`);
+  }
+
   const handleSeek = (event) => {
     const seekTime = event.target.value;
     if (videoRef.current) {
@@ -80,7 +88,9 @@ const VideoElement = (props) => {
       onMouseLeave={handleMouseLeave}
     >
       <div className="w-full relative">
-        <video ref={videoRef} muted className=" w-full ">
+        <video ref={videoRef} muted className="w-full cursor-pointer" id={props.id}
+          onMouseDown={handleMouseDown}
+        >
           <source src={props.url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

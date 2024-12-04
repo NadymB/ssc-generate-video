@@ -47,7 +47,7 @@ export default function Layout({ children, leftMenu }) {
     setOpenSearch(!OpenSearch);
   };
   return (
-    <>
+    <div>
       {/* Moving Submenu */}
       <div className="techwave_fn_fixedsub">
         <ul />
@@ -104,6 +104,6 @@ export default function Layout({ children, leftMenu }) {
         </div>
       </div>
       {/* !MAIN WRAPPER */}
-    </>
+    </div>
   );
 }
