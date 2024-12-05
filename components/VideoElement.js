@@ -71,7 +71,7 @@ const VideoElement = (props) => {
   const handleMouseDown = (event) => {
     event.preventDefault();
     router.push(`/fullscreen-video/${event.target.id ?? 1}`);
-  }
+  };
 
   const handleSeek = (event) => {
     const seekTime = event.target.value;
@@ -83,12 +83,16 @@ const VideoElement = (props) => {
 
   return (
     <div
-      className="w-[45%] flex flex-col relative"
+      className="h-fit max-w-full rounded-lg flex flex-col relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="w-full relative">
-        <video ref={videoRef} muted className="w-full cursor-pointer" id={props.id}
+        <video
+          ref={videoRef}
+          muted
+          className="w-full cursor-pointer"
+          id={props.id}
           onMouseDown={handleMouseDown}
         >
           <source src={props.url} type="video/mp4" />
