@@ -57,14 +57,14 @@ const LabelHover = () => {
           'url("https://cdn.hailuoai.com/pre/2024-11-12-16/video_cover/1731401761511890699-307238001435230211.jpg?x-oss-process=image/resize,p_50/format,webp")',
       }}
     >
-      <div class="absolute left-0 top-0 h-full w-full rounded-b bg-[rgba(19,19,19,0.7)] backdrop-blur-[30px] [-webkit-backdrop-filter:blur(30px)]"></div>
+      <div className="absolute left-0 top-0 h-full w-full rounded-b bg-[rgba(19,19,19,0.7)] backdrop-blur-[30px] [-webkit-backdrop-filter:blur(30px)]"></div>
       <div className="z-20 all_options flex gap-3  justify-center">
         <button className="flex-grow flex justify-center items-center rounded-[8px] p-2 border border-transparent hover:border-[rgba(214,211,255,0.10)] bg-[rgba(214,241,255,0.12)] hover:bg-[rgba(214,241,255,0.14)] ">
           <img
             src="/img/recreate-star.png"
             width="20"
             height="20"
-            class="w-5 h-5"
+            className="w-5 h-5"
           ></img>
           <span className="ml-1 text-[12px] leading-5 font-[500] footer-recreate-button">
             Re-Create
@@ -87,29 +87,29 @@ const LabelHover = () => {
           <div className="fn__icon_popup">
             <ul>
               <li className="flex flex-row items-center gap-2">
-                <button class="flex items-center p-3 rounded-[8px] text-white/90 hover:text-[#F04248] hover:bg-white/[0.08]">
+                <button className="flex items-center p-3 rounded-[8px] text-white/90 hover:text-[#F04248] hover:bg-white/[0.08]">
                   <svg
                     width="15"
                     height="16"
                     viewBox="0 0 15 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    class="fn__svg"
+                    className="fn__svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M9.99959 2.14063C9.99959 2.4858 9.71977 2.76562 9.37459 2.76562L5.62459 2.76562C5.27942 2.76562 4.99959 2.4858 4.99959 2.14062C4.99959 1.79545 5.27942 1.51562 5.62459 1.51562H9.37459C9.71977 1.51562 9.99959 1.79545 9.99959 2.14063ZM1.1597 4.18536C1.16304 3.8402 1.44555 3.5631 1.79071 3.56644L13.222 3.67699C13.5671 3.68032 13.8443 3.96284 13.8409 4.308C13.8376 4.65316 13.5551 4.93026 13.2099 4.92693L11.8233 4.91352V12.9961C11.8233 13.3413 11.5435 13.6211 11.1983 13.6211H3.80387C3.4587 13.6211 3.17887 13.3413 3.17887 12.9961V4.82992L1.77862 4.81638C1.43346 4.81304 1.15636 4.53052 1.1597 4.18536ZM6.63493 7.30469C6.63493 6.95951 6.35511 6.67969 6.00993 6.67969C5.66475 6.67969 5.38493 6.95951 5.38493 7.30469V10.5637C5.38493 10.9089 5.66475 11.1887 6.00993 11.1887C6.35511 11.1887 6.63493 10.9089 6.63493 10.5637V7.30469ZM8.99186 6.67969C9.33704 6.67969 9.61686 6.95951 9.61686 7.30469V10.5637C9.61686 10.9089 9.33704 11.1887 8.99186 11.1887C8.64669 11.1887 8.36686 10.9089 8.36686 10.5637V7.30469C8.36686 6.95951 8.64668 6.67969 8.99186 6.67969Z"
                       fill="currentColor"
                     ></path>
                   </svg>
-                  <span class="ml-1 text-[13px] leading-none">Delete</span>
+                  <span className="ml-1 text-[13px] leading-none">Delete</span>
                 </button>
               </li>
               <li className="flex flex-row items-center gap-2">
-                <button class="flex items-center p-3 rounded-[8px] text-white/90 hover:bg-white/[0.08]">
+                <button className="flex items-center p-3 rounded-[8px] text-white/90 hover:bg-white/[0.08]">
                   <img src="/svg/report.svg" alt="" className="fn__svg" />
-                  <span class="ml-1 text-[13px] leading-none">Report</span>
+                  <span className="ml-1 text-[13px] leading-none">Report</span>
                 </button>
               </li>
             </ul>

@@ -291,14 +291,14 @@ export default function UserManagementTest() {
             group === "SUPER"
               ? "#ffadd2"
               : group === "ADMIN"
-              ? "#f50"
-              : group === "MANAGER"
-              ? "#2db7f5"
-              : group === "SUPERVISOR"
-              ? "#87d068"
-              : group === "EMPLOYEE"
-              ? "#108ee9"
-              : "#108ee9"
+                ? "#f50"
+                : group === "MANAGER"
+                  ? "#2db7f5"
+                  : group === "SUPERVISOR"
+                    ? "#87d068"
+                    : group === "EMPLOYEE"
+                      ? "#108ee9"
+                      : "#108ee9"
           }
           key={group_id}
         >
@@ -346,7 +346,7 @@ export default function UserManagementTest() {
 
           <button
             type="button"
-            class="btn btn-outline-danger ms-2"
+            className="btn btn-outline-danger ms-2"
             onClick={() => handleShowDeleteUserModal(id, name)}
           >
             Delete
@@ -504,11 +504,11 @@ export default function UserManagementTest() {
             }}
             name="team_ids"
             label="Chọn team"
-            // rules={[
-            //   {
-            //     required: true,
-            //   },
-            // ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //   },
+          // ]}
           />
         </ProForm.Group>
       </ModalForm>
@@ -578,7 +578,7 @@ export default function UserManagementTest() {
               // value: detailUser["group"]["id"],
               value: detailUser["group_id"],
             }}
-            // initialValue={detailTeam?.manager?.id}
+          // initialValue={detailTeam?.manager?.id}
           />
           {/* teams */}
           <ProFormSelect
