@@ -93,3 +93,40 @@
 .group\/video:hover .group-hover\/video\:block {
   display: block !important;
 }
+
+.adm-toast-mask .adm-toast-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.adm-toast-main .adm-toast-icon {
+  margin-right: 16px;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.adm-toast-main {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: flex;
+  margin-inline: auto;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #fff;
+  font-size: 18px;
+  line-height: 25px;
+  max-width: unset;
+  border-radius: 12px;
+  padding: 16px 32px 16px 16px;
+  background-color: #222328;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}

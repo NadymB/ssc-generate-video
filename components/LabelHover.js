@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { alertAction } from "@/redux/actions/alertAction";
 
 const LabelHover = () => {
   const [stateHoverCopy, setStateHoverCopy] = useState(null);
+  const dispatch = useDispatch();
 
   const handleMouseEnter = () => {
     setStateHoverCopy(true); // Set to true on hover
@@ -41,6 +44,13 @@ const LabelHover = () => {
       .writeText(linkToCopy)
       .then(() => {
         console.log("Link copied to clipboard!");
+        dispatch(
+          alertAction({
+            message: "Link copied. Go and share this video with your friends!",
+            visibility: true,
+            state: "success",
+          })
+        );
       })
       .catch((err) => {
         console.error("Failed to copy link: ", err);

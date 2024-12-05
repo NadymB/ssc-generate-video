@@ -5,6 +5,9 @@ import { AuthProvider } from "@/context/authContext";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "../output.css";
+import { wrapper } from "@/redux/store";
+import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
 
 import dynamic from "next/dynamic";
 // import Layout from "@/layouts/layout";
@@ -33,18 +36,3 @@ const Home = () => {
 };
 
 export default withProtectedRoute(Home);
-
-// export default function Home() {
-//   const router = useRouter();
-
-//   // useEffect(() => {
-//   //   if (typeof window !== "undefined") {
-//   //     router.push("/music-generation");
-//   //   }
-//   // }, [router]);
-//   return (
-//     <Layout>
-//       <MusicGeneration />
-//     </Layout>
-//   );
-// }

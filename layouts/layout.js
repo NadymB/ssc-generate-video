@@ -6,13 +6,19 @@ import Header from "./header";
 import Left from "./left";
 import GenSettingsLeft from "./genSettingsLeft";
 import Search from "./search";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
+import "../output.css";
+import AlertNotification from "@/components/AlertNotification";
+import { alertAction } from "@/redux/actions/alertAction";
 
 export default function Layout({ children, leftMenu }) {
   const pathname = usePathname(); // get router info
 
   const [forceStop, setForceStop] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setForceStop(true);
@@ -46,12 +52,31 @@ export default function Layout({ children, leftMenu }) {
   const searchToggle = () => {
     setOpenSearch(!OpenSearch);
   };
+  const { visibility } = useSelector((state) => {
+    return {
+      visibility: state?.alertReducer?.visibility,
+    };
+  });
+
+  useEffect(() => {
+    let timeout; // Declare timeout variable
+
+    if (visibility === true) {
+      timeout = setTimeout(() => {
+        dispatch(alertAction({ visibility: false }));
+      }, 2000);
+    }
+
+    return () => clearTimeout(timeout); // Clear timeout on cleanup
+  }, [visibility]);
   return (
-    <div>
+    <div className="relative">
       {/* Moving Submenu */}
-      <div className="techwave_fn_fixedsub">
+      {visibility && <AlertNotification></AlertNotification>}
+
+      {/* <div className="techwave_fn_fixedsub">
         <ul />
-      </div>
+      </div> */}
       {/* !Moving Submenu */}
       {/* Preloader */}
       {/* <Loading/> */}

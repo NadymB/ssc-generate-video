@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Điều này sẽ đảm bảo Next.js xuất bản tĩnh
+  output: "standalone", // Điều này sẽ đảm bảo Next.js xuất bản tĩnh
   experimental: {
     // appDir: false, // Tắt app directory nếu đang sử dụng (đã xóa)
   },

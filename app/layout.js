@@ -1,3 +1,4 @@
+"use client";
 import "./globals.css";
 import "../public/css/plugins.css";
 import "../public/css/style.css";
@@ -6,56 +7,24 @@ import { Heebo, Work_Sans } from "next/font/google";
 import { AuthProvider } from "@/context/authContext";
 import { icons } from "antd/es/image/PreviewGroup";
 import { RouteChangeHandler } from "@/components/RouteChangeHandler";
+import { wrapper } from "@/redux/store"; // Import the wrapper
+import { Provider } from "react-redux";
 
-const heebo = Heebo({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal"],
-  subsets: ["latin"],
-  display: "swap",
-});
-const worksans = Work_Sans({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const metadata = {
-  title: {
-    template: "MHT MUSIC AI | %s",
-    // content:'text/html',
-    default: "MHT MUSIC AI | Music Generator", // a default is required when creating a template
-  },
-  name: "description",
-
-  content: "MHT MUSIC AI GENERATOR",
-  openGraph: {
-    title: "MHT MUSIC AI GENERATOR",
-    description: "MHT MUSIC AI GENERATOR",
-  },
-  author: [
-    { name: "Thinh" },
-    { name: "Nguyen Huy", url: "https://thinhprotein.com" },
-  ],
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  httpEquiv: "Content-Type",
-  charset: "utf-8",
-  icons: {
-    icon: "../../public/img/mht-ai-logo-5.jpg", // Path to your favicon file
-  },
-};
-
-export default function RootLayout({ children }) {
+function RootLayout({ children }) {
+  const store = wrapper.useStore();
   return (
-    <AuthProvider>
-      <html lang="en" className="toggleMenu">
-        <body>
-          {children}
-
-          <RouteChangeHandler />
-          {/* <RouteChangeHandler setForcePlayersStop /> */}
-        </body>
-      </html>
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <html lang="en" className="toggleMenu">
+          <body>
+            {children}
+            <RouteChangeHandler />
+          </body>
+        </html>
+      </AuthProvider>
+    </Provider>
   );
 }
+
+// Wrap the RootLayout with the Redux wrapper
+export default RootLayout;

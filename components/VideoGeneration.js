@@ -1,10 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import VideoElement from "./VideoElement";
+import { startClock } from "@/redux/actions/alertAction";
+import { useSelector } from "react-redux";
 import LabelHover from "./LabelHover";
+import { useDispatch } from "react-redux";
+import Notification from "./Notification";
+import AlertNotification from "./AlertNotification";
 
 export default function VideoGeneration() {
+  //const lastUpdate = useSelector((state) => state?.lastUpdate);
+  const { lastUpdate } = useSelector((state) => {
+    return {
+      lastUpdate: state?.alertReducer?.lastUpdate,
+    };
+  });
+  console.log(lastUpdate);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(startClock());
+  }, [dispatch]);
   return (
     <>
       <div className="techwave_fn_image_generation_page">
@@ -348,20 +365,36 @@ export default function VideoGeneration() {
                 </ul>
               </div>
             </div> */}
-            <div className="p-2 flex flex-wrap gap-2 justify-center">
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={1}>
+
+            <div className="p-2 grid grid-cols-2 md:grid-cols-4 gap-4 justify-center">
+              <VideoElement
+                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
+                videoId={1}
+              >
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={2}>
+              <VideoElement
+                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
+                videoId={2}
+              >
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={3}>
+              <VideoElement
+                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
+                videoId={3}
+              >
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={4}>
+              <VideoElement
+                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
+                videoId={4}
+              >
                 <LabelHover />
               </VideoElement>
-              <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={5}>
+              <VideoElement
+                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
+                videoId={5}
+              >
                 <LabelHover />
               </VideoElement>
             </div>

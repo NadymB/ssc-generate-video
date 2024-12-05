@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "@mui/material/Button";
 import { generateMusicApi, fetchMusicStylesApi } from "@/app/api/Music";
 import InputPromt from "@/components/InputPromt";
-// import { useRouter } from "next/router";
 
 const suggestions = [
   { value: 3, label: "Bananas" },
