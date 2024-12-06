@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 const VideoElement = (props) => {
   const videoRef = React.useRef(null);
+  const { videoId } = props;
   const router = useRouter();
 
   const [currentTime, setCurrentTime] = useState("00:00");
@@ -70,7 +71,8 @@ const VideoElement = (props) => {
 
   const handleMouseDown = (event) => {
     event.preventDefault();
-    router.push(`/fullscreen-video/${event.target.id ?? 1}`);
+    console.log("Video id: ", videoId);
+    router.push(`/fullscreen-video/${videoId ?? 1}`);
   }
 
   const handleSeek = (event) => {
@@ -88,7 +90,7 @@ const VideoElement = (props) => {
       onMouseLeave={handleMouseLeave}
     >
       <div className="w-full relative">
-        <video ref={videoRef} muted className="w-full cursor-pointer" id={props.id}
+        <video ref={videoRef} muted className="w-full cursor-pointer" id={videoId}
           onMouseDown={handleMouseDown}
         >
           <source src={props.url} type="video/mp4" />

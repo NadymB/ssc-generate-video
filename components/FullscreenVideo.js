@@ -41,7 +41,7 @@ const mockVideoList = [
 ];
 
 function FullscreenVideo(props) {
-    const videoId = useParams();
+    const videoId = useParams().id;
     const videoRef = useRef(null);
 
     const [videoSource, setVideoSource] = useState("https://www.w3schools.com/html/mov_bbb.mp4");
@@ -66,6 +66,9 @@ function FullscreenVideo(props) {
         fetchVideoList();
     }, [mockVideoList]);
 
+    const handleGoBackButton = () => {
+        window.history.back();
+    }
 
     const handleCopyPrompt = () => {
         navigator.clipboard.writeText(promptText).then(() => {
@@ -91,40 +94,44 @@ function FullscreenVideo(props) {
 
     return (
         <div className='w-full bg-gray-800 flex flex-row justify-stretch'>
-            <div id="main_video_content h-screen" className='w-[80%] p-2'>
-                <div id="detail_video_wrapper" className='w-full flex flex-row items-center gap-2'>
-                    <div id="video_control_wrapper" className='relative w-[80%] flex flex-col justify-center bg-gray-500'>
+            <div id="main_video_content h-[85vh]" className='w-[85%] p-2'>
+                <div id="detail_video_wrapper" className='w-full h-[85vh] flex flex-row items-center gap-2'>
+                    <div id="video_control_wrapper" className='relative w-[70%] flex flex-col justify-center bg-gray-500'>
                         <CloseCircleFilled id="detail_video_close_btn"
                             className='absolute cursor-pointer transition-transform duration-300 transform hover:scale-125 hover:opacity-75'
                             title='Close video'
                             style={{
                                 fontSize: "32px", top: "2.5%", left: "2.5%", zIndex: "10"
                             }}
+                            onClick={handleGoBackButton}
                         />
 
-                        <div id="round_video_wrapper" className='py-5 px-1 rounded-lg overflow-hidden'>
+                        <div id="round_video_wrapper" title={`Video ${videoId}`} className='py-5 px-1 rounded-lg overflow-hidden'>
                             <video ref={videoRef} className="w-full cursor-pointer rounded-lg"
                                 muted controls controlsList='nodownload'
                             >
                                 <source src={videoSource} type='video/mp4' />
                                 <LabelHover />
                             </video>
-                            {/* <VideoElement url={"https://www.w3schools.com/html/mov_bbb.mp4"} videoId={5}>
+                            {/* <VideoElement videoId={videoId}
+                                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
+                                className="w-full cursor-pointer rounded-lg"
+                            >
                                 <LabelHover />
                             </VideoElement> */}
                         </div>
                     </div>
 
-                    <div id="detail_video_content" className='w-[20%] flex flex-col px-1 gap-3'>
+                    <div id="detail_video_content" className='w-[30%] h-[85vh] flex flex-col justify-evenly px-1 gap-3'>
                         <div id='video_content_header' className='w-full flex flex-row justify-between items-center'>
-                            <strong className='text-white' style={{ fontSize: "32px !important" }}>Prompt</strong>
+                            <strong className='text-white text-[24px]'>Prompt</strong>
                             <Button type="text"
                                 className="flex cursor-pointer items-center justify-center rounded bg-[rgba(21,22,27,0.7)] p-2"
                                 onClick={handleCopyPrompt}
                             >
                                 <span dangerouslySetInnerHTML={{ __html: CopyIcon }}></span>
                                 <span
-                                    className="text-[32px] font-normal leading-[24px] text-white"
+                                    className="text-[24px] font-normal leading-[24px] text-white"
                                     aria-label="Copy Prompt"
                                 >
                                     Copy
@@ -179,7 +186,9 @@ function FullscreenVideo(props) {
                 </div>
             </div>
 
-            <div id="other_video_list" className='w-[20%] max-height-screen flex flex-col justify-center gap-4 items-center overflow-scroll' >
+            <div id="other_video_list"
+                className='w-[15%] h-[750px] py-5 flex flex-col justify-start gap-4 flex-basis items-center overflow-scroll'
+            >
                 {videoList && videoList?.length >= 0
                     ? videoList.map((video, index) => (
                         <img key={`video-index-${index}`} src={video.thumb} alt="Video thumbnail" title={`Video ${video.id}`}
