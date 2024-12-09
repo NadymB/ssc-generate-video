@@ -4,6 +4,8 @@ import VideoElement from './VideoElement';
 import LabelHover from './LabelHover';
 import { CloseCircleFilled } from '@ant-design/icons';
 import { Badge, Button } from 'antd';
+import { zIndex } from 'material-ui/styles';
+import { original } from '@reduxjs/toolkit';
 
 const promptText = "Frozen Glacial Mystical spiral Lighthouse, a minimalist lighthouse landscape with a mystical , Watercolor Clipart, comic, strybk, full Illustration, 4k, sharp focus, watercolor, smooth soft skin, symmetrical, soft lighting, detailed face, concept art, muted colors";
 const mockOriginalImage = "https://static.vecteezy.com/system/resources/thumbnails/036/594/092/small_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg";
@@ -44,17 +46,35 @@ function FullscreenVideo(props) {
     const videoId = useParams().id;
     const videoRef = useRef(null);
 
-    const [videoSource, setVideoSource] = useState("https://www.w3schools.com/html/mov_bbb.mp4");
+    const [videoInfo, setVideoInfo] = useState({
+        sources: ["http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"],
+        thumb: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+        originalImage: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+    });
     const [videoList, setVideoList] = useState([]);
+    const [backgroundImage, setBackgroundImage] = useState(null);
 
     useEffect(() => {
-        const fetchVideoSource = async () => {
-            setVideoSource(videoSource);
+        const fetchVideoInfo = async () => {
+            setVideoInfo({
+                description: "The first Blender Open Movie from 2006",
+                sources: [
+                    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                ],
+                subtitle: "By Blender Foundation",
+                thumb:
+                    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+                title: "Elephant Dream",
+                originalImage: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+            });
 
             // TODO: Fetch video by ID here
+
+            // Set background image by video's thumb
+            setBackgroundImage("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg");
         };
 
-        fetchVideoSource();
+        fetchVideoInfo();
     }, [videoId]);
 
     useEffect(() => {
@@ -94,31 +114,49 @@ function FullscreenVideo(props) {
 
     return (
         <div className='w-full bg-gray-800 flex flex-row justify-stretch'>
-            <div id="main_video_content h-[85vh]" className='w-[85%] p-2'>
-                <div id="detail_video_wrapper" className='w-full h-[85vh] flex flex-row items-center gap-2'>
-                    <div id="video_control_wrapper" className='relative w-[70%] flex flex-col justify-center bg-gray-500'>
-                        <CloseCircleFilled id="detail_video_close_btn"
-                            className='absolute cursor-pointer transition-transform duration-300 transform hover:scale-125 hover:opacity-75'
-                            title='Close video'
-                            style={{
-                                fontSize: "32px", top: "2.5%", left: "2.5%", zIndex: "10"
-                            }}
-                            onClick={handleGoBackButton}
-                        />
+            <div id="main_video_content" className='relative w-[85%] h-[85vh] p-2 bg-transparent z-0'>
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: `url(${backgroundImage})`,
+                        filter: "blur(80px)",
+                        zIndex: "-1"
+                    }}
+                >
+                    {/* This div element is purposely empty */}
+                </div>
 
-                        <div id="round_video_wrapper" title={`Video ${videoId}`} className='py-5 px-1 rounded-lg overflow-hidden'>
-                            <video ref={videoRef} className="w-full cursor-pointer rounded-lg"
+
+                <CloseCircleFilled id="detail_video_close_btn"
+                    className='absolute cursor-pointer transition-transform duration-300 transform hover:scale-125 hover:opacity-75'
+                    title='Close video'
+                    style={{
+                        fontSize: "32px", top: "5%", left: "2.5%", zIndex: "10"
+                    }}
+                    onClick={handleGoBackButton}
+                />
+
+                <div id="detail_video_wrapper" className='w-full h-[85vh] flex flex-row items-center gap-2 z-10'>
+                    <div id="video_control_wrapper" className='relative w-[70%] flex flex-col justify-center overflow-hidden'
+                    // style={{
+                    //     backgroundImage: `url(${backgroundImage})`,
+                    //     backgroundSize: "cover", backgroundPosition: "center",
+                    //     filter: "blur(30px)", zIndex: "0"
+                    // }}
+                    >
+
+                        <div id="round_video_wrapper" title={`Video ${videoId}`} className='py-1 px-1 h-fit rounded-lg overflow-hidden' style={{ zIndex: 10 }}>
+                            {/* <video ref={videoRef} className="w-full cursor-pointer rounded-lg"
                                 muted controls controlsList='nodownload'
                             >
-                                <source src={videoSource} type='video/mp4' />
+                                <source src={videoInfo?.sources[0]} type='video/mp4' />
                                 <LabelHover />
-                            </video>
-                            {/* <VideoElement videoId={videoId}
-                                url={"https://www.w3schools.com/html/mov_bbb.mp4"}
-                                className="w-full cursor-pointer rounded-lg"
-                            >
-                                <LabelHover />
-                            </VideoElement> */}
+                            </video> */}
+                            <VideoElement videoId={videoId}
+                                url={videoInfo?.sources[0]}
+                                className=" relative w-full cursor-pointer rounded-lg"
+                                style={{ zIndex: 10 }}
+                            ></VideoElement>
                         </div>
                     </div>
 
@@ -143,7 +181,7 @@ function FullscreenVideo(props) {
 
                         <div id="original_image_wrapper flex flex-col gap-3">
                             <strong className='text-white'>Original image</strong>
-                            <img src={mockOriginalImage}
+                            <img src={videoInfo?.originalImage ?? mockOriginalImage}
                                 alt="Original image"
                                 width={"80"}
                                 className='rounded-lg overflow-hidden transition-transform duration-150 transform hover:scale-125'
@@ -201,7 +239,7 @@ function FullscreenVideo(props) {
                     : <p className='text-white'>No videos found.</p>
                 }
             </div>
-        </div>
+        </div >
     );
 }
 
