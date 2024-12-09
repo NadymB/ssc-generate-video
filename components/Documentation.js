@@ -5,9 +5,9 @@ import Link from 'next/link'
 
 export default function Documentation() {
   const [isDropdown, setIsDropdown] = useState(false)
-const handleIsDropdown = () => {
-  setIsDropdown(!isDropdown)
-}
+  const handleIsDropdown = () => {
+    setIsDropdown(!isDropdown)
+  }
   return (
     <>
       <div className="techwave_fn_doc_page">
@@ -74,9 +74,9 @@ const handleIsDropdown = () => {
             <li className="menu-item-has-children">
               <Link href="#" onClick={handleIsDropdown}>
                 Quick Setup
-                <span className="trigger"><img src="svg/arrow.svg" alt=""  className="fn__svg" /></span>
+                <span className="trigger"><img src="/svg/arrow.svg" alt="" className="fn__svg" /></span>
               </Link>
-              <ul className="sub-menu"  style={{display: `${!isDropdown ? "none" : ""}`}}>
+              <ul className="sub-menu" style={{ display: `${!isDropdown ? "none" : ""}` }}>
                 <li>
                   <Link href="#doc_customization"><span className="text">Customization</span></Link>
                 </li>

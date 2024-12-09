@@ -537,20 +537,20 @@ export default function PersonalFeed() {
   const [activeIndex, setActiveIndex] = useState(1)
   const [isSelect, setIsSelect] = useState(false)
   const [selectedItems, setSelectedItems] = useState([]);
-  
-  
+
+
   const handleOnClick = (index) => {
     setActiveIndex(index)
   }
-  
+
   const handleSelect = () => {
     setIsSelect(!isSelect)
   }
-  
+
   const filteredProductsByCategory = activeIndex
-  ? feeds.filter(feed => feed.category === activeIndex)
-  : null;
-  
+    ? feeds.filter(feed => feed.category === activeIndex)
+    : null;
+
   const [portfolioItems, setPortfolioItems] = useState(filteredProductsByCategory);
   const toggleItemSelection = (itemId) => {
     if (selectedItems.includes(itemId)) {
@@ -596,7 +596,7 @@ export default function PersonalFeed() {
                   <label className="fn__checkbox">
                     <input type="checkbox" />Upscaled
                     <span className="checkmark" />
-                    <img src="svg/check.svg" alt="" className="fn__svg" />
+                    <img src="/svg/check.svg" alt="" className="fn__svg" />
                   </label>
                 </div>
               </div>
@@ -605,7 +605,7 @@ export default function PersonalFeed() {
                   <label className="fn__checkbox">
                     <input type="checkbox" onClick={handleSelect} />Select Items
                     <span className="checkmark" />
-                    <img src="svg/check.svg" alt="" className="fn__svg" />
+                    <img src="/svg/check.svg" alt="" className="fn__svg" />
                   </label>
                 </div>
               </div>
@@ -619,11 +619,11 @@ export default function PersonalFeed() {
                 <p className="desc"><span className="count">{selectedItems.length}</span> item(s) selected</p>
                 <div className="actions">
                   <Link href="#" onClick={handleDelete} disabled={selectedItems.length === 0} className="filter__delete techwave_fn_button has__icon small__border">
-                    <img src="svg/trash.svg" alt="" className="fn__svg" />
+                    <img src="/svg/trash.svg" alt="" className="fn__svg" />
                     <span>Delete</span>
                   </Link>
                   <Link href="#" className="filter__download techwave_fn_button has__icon small__border">
-                    <img src="svg/download.svg" alt="" className="fn__svg" />
+                    <img src="/svg/download.svg" alt="" className="fn__svg" />
                     <span>Download</span>
                   </Link>
                 </div>
@@ -649,7 +649,7 @@ export default function PersonalFeed() {
                         </div>
                         <div className={`fn__selectable_item ${selectedItems.includes(feed.id) ? "selected" : ""}`}>
                           <span className="icon">
-                            <img src="svg/check.svg" alt="" className="fn__svg" />
+                            <img src="/svg/check.svg" alt="" className="fn__svg" />
                           </span>
                         </div>
                         <div className="item__info">
@@ -660,8 +660,8 @@ export default function PersonalFeed() {
                             </div>
                             <Link href="#" className="fn__like no_border" data-id={3}>
                               <span className="count">{feed.count}</span>
-                              <img src="svg/like.svg" alt="" className="fn__svg empty__like" />
-                              <img src="svg/like-full.svg" alt="" className="fn__svg full__like" />
+                              <img src="/svg/like.svg" alt="" className="fn__svg empty__like" />
+                              <img src="/svg/like-full.svg" alt="" className="fn__svg full__like" />
                             </Link>
                           </div>
                           <p className="desc">{feed.desc}</p>

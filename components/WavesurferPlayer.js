@@ -166,7 +166,7 @@ function WaveSurferPlayer({ song, registerWaveSurfer, onPlay }) {
           >
             {song?.status === "complete" ? "Download" : song?.status}
             <div
-              class="spinner-border text-dark ms-2"
+              className="spinner-border text-dark ms-2"
               role="status"
               style={{ width: "15px", height: "15px" }}
             ></div>

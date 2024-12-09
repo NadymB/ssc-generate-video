@@ -668,7 +668,7 @@ export default function PersonalFeed() {
                                     <label className="fn__checkbox">
                                         <input type="checkbox" />Upscaled
                                         <span className="checkmark" />
-                                        <img src="svg/check.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/check.svg" alt="" className="fn__svg" />
                                     </label>
                                 </div>
                             </div>
@@ -677,7 +677,7 @@ export default function PersonalFeed() {
                                     <label className="fn__checkbox">
                                         <input type="checkbox" />Select Items
                                         <span className="checkmark" />
-                                        <img src="svg/check.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/check.svg" alt="" className="fn__svg" />
                                     </label>
                                 </div>
                             </div>
@@ -693,11 +693,11 @@ export default function PersonalFeed() {
                                 </p>
                                 <div className="actions">
                                     <Link href="#" className="filter__delete techwave_fn_button has__icon small__border">
-                                        <img src="svg/trash.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/trash.svg" alt="" className="fn__svg" />
                                         <span>Delete</span>
                                     </Link>
                                     <Link href="#" className="filter__download techwave_fn_button has__icon small__border">
-                                        <img src="svg/download.svg" alt="" className="fn__svg" />
+                                        <img src="/svg/download.svg" alt="" className="fn__svg" />
                                         <span>Download</span>
                                     </Link>
                                 </div>
@@ -724,7 +724,7 @@ export default function PersonalFeed() {
                                                 </div>
                                                 <div className={`fn__selectable_item`}>
                                                     <span className="icon">
-                                                        <img src="svg/check.svg" alt="" className="fn__svg" />
+                                                        <img src="/svg/check.svg" alt="" className="fn__svg" />
                                                     </span>
                                                 </div>
                                                 <div className="item__info">

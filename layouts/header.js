@@ -6,7 +6,7 @@ import screenfull from "screenfull";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/authContext";
-// import UserBilling from "@/public/svg/";
+// import UserBilling from "/";
 
 const data = [
   {
@@ -17,7 +17,7 @@ const data = [
   {
     title: "Quản Lý Team",
     pathname: "/team-management/",
-    img: "/public/svg/community.svg",
+    img: "@/public//svg/community.svg",
   },
   {
     title: "Quản Lý Group",
@@ -222,9 +222,8 @@ export default function Header({ searchToggle }) {
             {/* Full Screen (bar item) */}
             <div className="bar__item bar__item_fullscreen">
               <a
-                className={`item_opener fn__tooltip ${
-                  isFullscreen ? "full_screen" : ""
-                }`}
+                className={`item_opener fn__tooltip ${isFullscreen ? "full_screen" : ""
+                  }`}
                 title="Full Screen"
                 onClick={toggleFullscreen}
               >

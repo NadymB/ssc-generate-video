@@ -21,8 +21,8 @@ export default function Search({ OpenSearch, searchToggle }) {
                         value={searchText}
                         onChange={handleInputChange}
                     />
-                    <img src="svg/search.svg" alt="" className="fn__svg search__icon" />
-                    <a onClick={searchToggle} className="search__closer" href="#"><img src="svg/close.svg" alt="" className="fn__svg" /></a>
+                    <img src="/svg/search.svg" alt="" className="fn__svg search__icon" />
+                    <a onClick={searchToggle} className="search__closer" href="#"><img src="/svg/close.svg" alt="" className="fn__svg" /></a>
                 </div>
                 <div className={`search__results ${searchText ? 'opened' : ''}`}>
                     {/* Results will come here (via ajax after the integration you made after purchase as it doesn't work in HTML) */}

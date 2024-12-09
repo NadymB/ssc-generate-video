@@ -28,7 +28,7 @@ export default function Index() {
                   <div className="item">
                     <Link href="/image-generation">
                       <span className="icon">
-                        <img src="svg/image.svg" alt="" className="fn__svg" />
+                        <img src="/svg/image.svg" alt="" className="fn__svg" />
                       </span>
                       <h2 className="title">Image Generation</h2>
                       <p className="desc">
@@ -38,7 +38,7 @@ export default function Index() {
                         imaginative qualities.
                       </p>
                       <span className="arrow">
-                        <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                        <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                       </span>
                     </Link>
                   </div>
@@ -47,7 +47,7 @@ export default function Index() {
                   <div className="item">
                     <Link href="/ai-chat-bot">
                       <span className="icon">
-                        <img src="svg/chat.svg" alt="" className="fn__svg" />
+                        <img src="/svg/chat.svg" alt="" className="fn__svg" />
                       </span>
                       <h2 className="title">AI Chat Bot</h2>
                       <p className="desc">
@@ -57,7 +57,7 @@ export default function Index() {
                         to user queries or prompts.{" "}
                       </p>
                       <span className="arrow">
-                        <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                        <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                       </span>
                     </Link>
                   </div>

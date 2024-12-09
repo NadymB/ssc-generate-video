@@ -20,7 +20,7 @@ export default function UserSettings() {
                   {/* Upload Shortcode */}
                   <label className="fn__upload">
                     <span className="upload_content">
-                      <img src="svg/upload.svg" alt=""  className="fn__svg" />
+                      <img src="/svg/upload.svg" alt="" className="fn__svg" />
                       <span className="title">Drag &amp; Drop a Image</span>
                       <span className="fn__lined_text">
                         <span className="line" />
@@ -32,9 +32,9 @@ export default function UserSettings() {
                     </span>
                     <span className="upload_preview">
                       <Link href="#" className="fn__closer fn__icon_button">
-                        <img src="svg/close.svg" alt=""  className="fn__svg" />
+                        <img src="/svg/close.svg" alt="" className="fn__svg" />
                       </Link>
-                      <img src="#" alt=""  className="preview_img" />
+                      <img src="#" alt="" className="preview_img" />
                     </span>
                     <input type="file" accept="image/*" />
                   </label>
@@ -70,7 +70,7 @@ export default function UserSettings() {
                     <label className="fn__checkbox">
                       <input type="checkbox" />I approve all changes
                       <span className="checkmark" />
-                      <img src="svg/check.svg" alt=""  className="fn__svg" />
+                      <img src="/svg/check.svg" alt="" className="fn__svg" />
                     </label>
                   </div>
                   <div className="item">
