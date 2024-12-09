@@ -25,7 +25,6 @@ const VideoElement = (props) => {
 
       video.addEventListener("timeupdate", updateTime);
       video.addEventListener("loadedmetadata", updateTime);
-
       return () => {
         video.removeEventListener("timeupdate", updateTime);
         video.removeEventListener("loadedmetadata", updateTime);
@@ -89,11 +88,11 @@ const VideoElement = (props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full relative">
+      <div className="w-full relative rounded-lg">
         <video
           ref={videoRef}
           muted
-          className="w-full cursor-pointer"
+          className="w-full cursor-pointer rounded-lg"
           id={props.id}
           onMouseDown={handleMouseDown}
         >
@@ -126,7 +125,7 @@ const VideoElement = (props) => {
       </div>
 
       {isHovered && props.children}
-    </div>
+    </div >
   );
 };
 

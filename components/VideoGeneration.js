@@ -15,7 +15,6 @@ export default function VideoGeneration() {
       lastUpdate: state?.alertReducer?.lastUpdate,
     };
   });
-  console.log(lastUpdate);
   const dispatch = useDispatch();
 
   useEffect(() => {
