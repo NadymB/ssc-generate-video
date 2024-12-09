@@ -1,11 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { Menu } from "@headlessui/react";
 import screenfull from "screenfull";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/authContext";
+import { logOut } from "@/redux/actions/authenAction";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { loadProfile } from "@/redux/actions/authenAction";
+
 // import UserBilling from "@/public/svg/";
 
 const data = [
@@ -37,8 +42,14 @@ export default function Header({ searchToggle }) {
   // Light/Dark switcher
   const [skin, setSkin] = useState("dark");
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const { logout, user } = useAuth();
+  // const { logout, user } = useAuth();
+  const { profile: user } = useSelector((state) => {
+    return {
+      profile: state?.authenReducer?.profile,
+    };
+  });
   const router = useRouter();
+  const dispatch = useDispatch();
   const pathname = usePathname(); // get router info
 
   const toggleSkin = () => {
@@ -61,6 +72,9 @@ export default function Header({ searchToggle }) {
       screenfull.toggle();
     }
   };
+  const handleLogin = useCallback(() => {
+    dispatch(loadProfile());
+  }, [dispatch]);
 
   const handleFullscreenChange = () => {
     setIsFullscreen(screenfull.isFullscreen);
@@ -71,6 +85,8 @@ export default function Header({ searchToggle }) {
     if (screenfull.isEnabled) {
       screenfull.on("change", handleFullscreenChange);
     }
+    handleLogin();
+    console.log(user);
 
     return () => {
       if (screenfull.isEnabled) {
@@ -80,7 +96,7 @@ export default function Header({ searchToggle }) {
   }, []);
 
   const handleLogout = () => {
-    logout();
+    dispatch(logOut());
   };
 
   return (
@@ -131,6 +147,7 @@ export default function Header({ searchToggle }) {
                     href={`${item.pathname}`}
                     className="fn__tooltip menu__item d-flex align-items-center justify-content-between"
                     title={item.title}
+                    id={i}
                   >
                     <span className="icon">
                       <img

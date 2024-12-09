@@ -1,51 +1,74 @@
 "use client"; // Add this directive to mark the component as a Client Component
 import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import { Toaster } from "react-hot-toast";
+import { login, loadProfile } from "@/redux/actions/authenAction";
+import { useDispatch } from "react-redux";
 
 export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { authToken, login } = useAuth();
+  // const { authToken, login } = useAuth();
+  const dispatch = useDispatch();
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("call day ne");
-    // console.log("authToken - test:", authToken);
-    // console.log("hehe:", authToken);
-    // let token = localStorage.getItem("authToken");
-    if (authToken) {
-      // console.log('token vip:', token)
+  // useEffect(() => {
+  //   console.log("call day ne");
+  //   // console.log("authToken - test:", authToken);
+  //   // console.log("hehe:", authToken);
+  //   // let token = localStorage.getItem("authToken");
+  //   if (authToken) {
+  //     // console.log('token vip:', token)
 
-      // console.log("hehe:", authToken);
-      router.push("/"); // Redirect to home or any other protected page
-    }
+  //     // console.log("hehe:", authToken);
+  //     router.push("/"); // Redirect to home or any other protected page
+  //   }
 
-    console.log("authToken from useAuth:", authToken);
-  }, [authToken]);
+  //   console.log("authToken from useAuth:", authToken);
+  // }, [authToken]);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    console.log(username, password);
-    const authToken = await login(username, password);
-    if (authToken) {
-      // useEffect(() => {
-      window.location.reload();
-      // }, [])
-      // Redirect to the page the user was trying to access or to a default page
-      // const destination = "/";
-      // router.push(destination);
-      // console.log("--authToken:", authToken);
-    } else {
-      // Handle login failure (e.g., display an error message)
-      toast.error("Tài khoản hoặc mật khẩu không đúng!");
-      console.log("login failed!");
-    }
-  };
+  const handleLogin = useCallback(
+    (e) => {
+      e.preventDefault();
+      // Check if username and password are provided
+      if (!username || !password) {
+        toast.error("Please enter both username and password!");
+        return; // Exit the function if fields are empty
+      }
+      console.log("authToken from useAuth:", username, password);
+
+      dispatch(
+        login({
+          username: username,
+          password: password,
+        })
+      );
+      dispatch(loadProfile());
+    },
+    [dispatch, username, password]
+  );
+
+  // const handleLogin = async (e) => {
+  //   console.log(username, password);
+  //   const authToken = await login(username, password);
+  //   if (authToken) {
+  //     // useEffect(() => {
+  //     window.location.reload();
+  //     // }, [])
+  //     // Redirect to the page the user was trying to access or to a default page
+  //     // const destination = "/";
+  //     // router.push(destination);
+  //     // console.log("--authToken:", authToken);
+  //   } else {
+  //     // Handle login failure (e.g., display an error message)
+  //     toast.error("Tài khoản hoặc mật khẩu không đúng!");
+  //     console.log("login failed!");
+  //   }
+  // };
 
   // const handleLogin = async (e) => {
   //   e.preventDefault();
@@ -71,6 +94,7 @@ export default function Signin() {
   return (
     <>
       <Toaster position="top-center" />
+
       <div className="techwave_fn_sign">
         <div className="sign__content">
           <h1 className="logo">Designed by Frenify</h1>
@@ -106,7 +130,12 @@ export default function Signin() {
               </div>
               <div className="form__submit">
                 <label className="fn__submit">
-                  <input type="submit" name="submit" value="Sign In" />
+                  <input
+                    type="submit"
+                    name="submit"
+                    value="Sign In"
+                    onClick={handleLogin}
+                  />
                 </label>
               </div>
               {/* <div className="form__alternative">
