@@ -18,10 +18,10 @@ const ChatSidebarItem = () => {
                     </span>
                     <span className="save_options">
                         <button className="save">
-                            <img src="svg/check.svg" alt="" className="fn__svg" />
+                            <img src="/svg/check.svg" alt="" className="fn__svg" />
                         </button>
                         <button className="cancel">
-                            <img src="svg/close.svg" alt="" className="fn__svg" />
+                            <img src="/svg/close.svg" alt="" className="fn__svg" />
                         </button>
                     </span>
                 </div>
@@ -41,10 +41,10 @@ const ChatSidebarItem = () => {
                     </span>
                     <span className="save_options">
                         <button className="save">
-                            <img src="svg/check.svg" alt="" className="fn__svg" />
+                            <img src="/svg/check.svg" alt="" className="fn__svg" />
                         </button>
                         <button className="cancel">
-                            <img src="svg/close.svg" alt="" className="fn__svg" />
+                            <img src="/svg/close.svg" alt="" className="fn__svg" />
                         </button>
                     </span>
                 </div>
@@ -64,10 +64,10 @@ const ChatSidebarItem = () => {
                     </span>
                     <span className="save_options">
                         <button className="save">
-                            <img src="svg/check.svg" alt="" className="fn__svg" />
+                            <img src="/svg/check.svg" alt="" className="fn__svg" />
                         </button>
                         <button className="cancel">
-                            <img src="svg/close.svg" alt="" className="fn__svg" />
+                            <img src="/svg/close.svg" alt="" className="fn__svg" />
                         </button>
                     </span>
                 </div>
@@ -87,10 +87,10 @@ const ChatSidebarItem = () => {
                     </span>
                     <span className="save_options">
                         <button className="save">
-                            <img src="svg/check.svg" alt="" className="fn__svg" />
+                            <img src="/svg/check.svg" alt="" className="fn__svg" />
                         </button>
                         <button className="cancel">
-                            <img src="svg/close.svg" alt="" className="fn__svg" />
+                            <img src="/svg/close.svg" alt="" className="fn__svg" />
                         </button>
                     </span>
                 </div>

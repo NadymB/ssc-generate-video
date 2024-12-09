@@ -92,27 +92,27 @@ export default function AIChatbot() {
     };
 
     const handleSubmit = () => {
-    if (inputText.trim() !== '') {
-        const userMessage = inputText; // Save the user's message
+        if (inputText.trim() !== '') {
+            const userMessage = inputText; // Save the user's message
 
-        // Add user's message to the chat immediately
-        addMessage('You', userMessage);
-        setInputText(''); // Clear the input field
+            // Add user's message to the chat immediately
+            addMessage('You', userMessage);
+            setInputText(''); // Clear the input field
 
-        // Add "typing..." message after user's message
-        addMessage('Bot', 'Typing...');
+            // Add "typing..." message after user's message
+            addMessage('Bot', 'Typing...');
 
-        // Simulate typing delay (you can adjust the delay duration as needed)
-        setTimeout(() => {
-            const response = handleMessage(userMessage); // Process the user's message
+            // Simulate typing delay (you can adjust the delay duration as needed)
+            setTimeout(() => {
+                const response = handleMessage(userMessage); // Process the user's message
 
-            // Remove the "typing..." message and add the bot's response
-            setMessages(prevMessages =>
-                prevMessages.filter(msg => msg.text !== 'Typing...').concat({ author: 'Bot', text: response })
-            );
-        }, 1000); // Delay in milliseconds (adjust as needed)
-    }
-};
+                // Remove the "typing..." message and add the bot's response
+                setMessages(prevMessages =>
+                    prevMessages.filter(msg => msg.text !== 'Typing...').concat({ author: 'Bot', text: response })
+                );
+            }, 1000); // Delay in milliseconds (adjust as needed)
+        }
+    };
 
 
 
@@ -221,7 +221,7 @@ export default function AIChatbot() {
                                     onKeyDown={handleKeyDown}
                                 />
                                 <button onClick={handleSubmit}>
-                                    <img src="svg/enter.svg" alt="" className="fn__svg" />
+                                    <img src="/svg/enter.svg" alt="" className="fn__svg" />
                                 </button>
                             </div>
                         </div>
@@ -253,10 +253,10 @@ export default function AIChatbot() {
                                         </span>
                                         <span className="save_options">
                                             <button className="save">
-                                                <img src="svg/check.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/check.svg" alt="" className="fn__svg" />
                                             </button>
                                             <button className="cancel">
-                                                <img src="svg/close.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/close.svg" alt="" className="fn__svg" />
                                             </button>
                                         </span>
                                     </div>
@@ -276,10 +276,10 @@ export default function AIChatbot() {
                                         </span>
                                         <span className="save_options">
                                             <button className="save">
-                                                <img src="svg/check.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/check.svg" alt="" className="fn__svg" />
                                             </button>
                                             <button className="cancel">
-                                                <img src="svg/close.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/close.svg" alt="" className="fn__svg" />
                                             </button>
                                         </span>
                                     </div>
@@ -299,10 +299,10 @@ export default function AIChatbot() {
                                         </span>
                                         <span className="save_options">
                                             <button className="save">
-                                                <img src="svg/check.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/check.svg" alt="" className="fn__svg" />
                                             </button>
                                             <button className="cancel">
-                                                <img src="svg/close.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/close.svg" alt="" className="fn__svg" />
                                             </button>
                                         </span>
                                     </div>
@@ -322,10 +322,10 @@ export default function AIChatbot() {
                                         </span>
                                         <span className="save_options">
                                             <button className="save">
-                                                <img src="svg/check.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/check.svg" alt="" className="fn__svg" />
                                             </button>
                                             <button className="cancel">
-                                                <img src="svg/close.svg" alt="" className="fn__svg" />
+                                                <img src="/svg/close.svg" alt="" className="fn__svg" />
                                             </button>
                                         </span>
                                     </div>

@@ -22,7 +22,7 @@ const data = [
   {
     title: "Quản Lý Team",
     pathname: "/team-management/",
-    img: "/public/svg/community.svg",
+    img: "@/public//svg/community.svg",
   },
   {
     title: "Quản Lý Group",

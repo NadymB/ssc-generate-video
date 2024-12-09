@@ -93,7 +93,7 @@ export default function Intro() {
                                 </div>
                                 <textarea rows={1} className="fn__hidden_textarea" tabIndex={-1} />
                                 <textarea rows={1} placeholder="Send a message..." id="fn__chat_textarea" />
-                                <button><img src="svg/enter.svg" alt="" className="fn__svg" /></button>
+                                <button><img src="/svg/enter.svg" alt="" className="fn__svg" /></button>
                             </div>
                         </div>
                         <img src="img/intro/click.png" alt="" className="chat_decor" />

@@ -28,7 +28,7 @@ export default function NotificationSingle() {
             <p>With TECH-AI 4.1.2, we continue our commitment to empowering teams, improving project outcomes, and driving organizational success. Experience the power of innovation and efficiency with our latest version. Upgrade to TECH-AI 4.1.2 and unlock the full potential of your projects.</p>
             <div className="fn__backto">
               <Link href="/notifications">
-                <img src="svg/arrow.svg" alt=""  className="fn__svg" />
+                <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                 <span className="text">Back to Notifications</span>
               </Link>
             </div>

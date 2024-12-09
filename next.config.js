@@ -4,7 +4,7 @@ const nextConfig = {
   experimental: {
     // appDir: false, // Tắt app directory nếu đang sử dụng (đã xóa)
   },
-  trailingSlash: true, // Đảm bảo các URL có trailing slash để export tốt hơn
+  trailingSlash: false, // Đảm bảo các URL có trailing slash để export tốt hơn
   //   async redirects() {
   //     return [
   //       {

@@ -14,17 +14,17 @@ const data = [
   {
     title: "Users",
     pathname: "/user-management/",
-    img: "../svg/community.svg",
+    img: "..//svg/community.svg",
   },
   {
     title: "Teams",
     pathname: "/team-management/",
-    img: "../svg/community.svg",
+    img: "..//svg/community.svg",
   },
   {
     title: "Groups",
     pathname: "/group-management/",
-    img: "../svg/community.svg",
+    img: "..//svg/community.svg",
   },
 
   // {
@@ -35,7 +35,7 @@ const data = [
   // {
   //   title: "Community Feed",
   //   pathname: "/community-feed",
-  //   img: "../svg/community.svg",
+  //   img: "..//svg/community.svg",
   // },
   // {
   //   title: "Personal Feed",
@@ -168,9 +168,8 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 <li key={i}>
                   <Link
                     href={`${item.pathname}`}
-                    className={`fn__tooltip menu__item ${
-                      item.pathname === pathname ? "active" : ""
-                    }`}
+                    className={`fn__tooltip menu__item ${item.pathname === pathname ? "active" : ""
+                      }`}
                     title={item.title}
                   >
                     <span className="icon">
@@ -193,9 +192,8 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                   <li key={i}>
                     <Link
                       href={`${item.pathname}`}
-                      className={`fn__tooltip menu__item ${
-                        item.pathname === pathname ? "active" : ""
-                      }`}
+                      className={`fn__tooltip menu__item ${item.pathname === pathname ? "active" : ""
+                        }`}
                       title={item.title}
                     >
                       <span className="icon">

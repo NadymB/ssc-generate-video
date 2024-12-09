@@ -48,7 +48,7 @@ export default function ImageGeneration() {
                   This wil use <span className="count">4</span> tokens
                 </p>
                 <a className="sidebar__trigger" onClick={leftMenuHandler}>
-                  <img src="svg/option.svg" alt="" className="fn__svg" />
+                  <img src="/svg/option.svg" alt="" className="fn__svg" />
                 </a>
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function ImageGeneration() {
                 <div className="item_options">
                   <div className="fn__icon_options medium_size align_right">
                     <Link href="#" className="fn__icon_button">
-                      <img src="svg/info.svg" alt="" className="fn__svg" />
+                      <img src="/svg/info.svg" alt="" className="fn__svg" />
                     </Link>
                     <div className="fn__icon_popup">
                       <ul>
@@ -160,7 +160,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -182,7 +182,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -228,7 +228,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -250,7 +250,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -296,7 +296,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -318,7 +318,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -364,7 +364,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -386,7 +386,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -445,7 +445,7 @@ export default function ImageGeneration() {
                 <div className="item_options">
                   <div className="fn__icon_options medium_size align_right">
                     <Link href="#" className="fn__icon_button">
-                      <img src="svg/info.svg" alt="" className="fn__svg" />
+                      <img src="/svg/info.svg" alt="" className="fn__svg" />
                     </Link>
                     <div className="fn__icon_popup">
                       <ul>
@@ -497,7 +497,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -519,7 +519,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -565,7 +565,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -587,7 +587,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -633,7 +633,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -655,7 +655,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -701,7 +701,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -723,7 +723,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -782,7 +782,7 @@ export default function ImageGeneration() {
                 <div className="item_options">
                   <div className="fn__icon_options medium_size align_right">
                     <Link href="#" className="fn__icon_button">
-                      <img src="svg/info.svg" alt="" className="fn__svg" />
+                      <img src="/svg/info.svg" alt="" className="fn__svg" />
                     </Link>
                     <div className="fn__icon_popup">
                       <ul>
@@ -834,7 +834,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -856,7 +856,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -902,7 +902,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -924,7 +924,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -970,7 +970,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -992,7 +992,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -1038,7 +1038,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/download.svg"
+                                src="/svg/download.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -1060,7 +1060,7 @@ export default function ImageGeneration() {
                           <div className="fn__icon_options medium_size">
                             <Link href="#" className="fn__icon_button">
                               <img
-                                src="svg/upscale.svg"
+                                src="/svg/upscale.svg"
                                 alt=""
                                 className="fn__svg"
                               />
@@ -1118,7 +1118,7 @@ export default function ImageGeneration() {
                   <h3 className="title">ArtShaper v3</h3>
                 </div>
                 <span className="fn__icon_button" onClick={handleIsDropdown}>
-                  <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                  <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                 </span>
               </Link>
               <div className="all_models">
@@ -1188,7 +1188,7 @@ export default function ImageGeneration() {
                   className="fn__tooltip"
                   title="Select the resoultion of the images."
                 >
-                  <img src="svg/question.svg" alt="" className="fn__svg" />
+                  <img src="/svg/question.svg" alt="" className="fn__svg" />
                 </span>
               </h4>
               <div className="fn__range">
@@ -1215,7 +1215,7 @@ export default function ImageGeneration() {
                   className="fn__tooltip"
                   title="TechWave Prompt v3.0. Our custom render pipeline which has much faster compliance and can improve the result with any model selected. Applies a 2x multiplier to accepted costs due to higher GPU overhead."
                 >
-                  <img src="svg/question.svg" alt="" className="fn__svg" />
+                  <img src="/svg/question.svg" alt="" className="fn__svg" />
                 </span>
               </h4>
               <label className="fn__toggle">
@@ -1233,7 +1233,7 @@ export default function ImageGeneration() {
                   className="fn__tooltip"
                   title="If your photo consists of extremely bright and dark areas, then it's considered high contrast. When it has a wide range of tones that go from pure white to pure black, it's medium contrast. No pure whites or blacks and a range of middle tones means it's low contrast."
                 >
-                  <img src="svg/question.svg" alt="" className="fn__svg" />
+                  <img src="/svg/question.svg" alt="" className="fn__svg" />
                 </span>
               </h4>
               <label className="fn__toggle">

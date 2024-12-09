@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { imageToSvg } from "../components/Utilities";
+import { imageToSvg } from "/components/Utilities";
 import Footer from "./footer";
 import Header from "./header";
 import Left from "./left";

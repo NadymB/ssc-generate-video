@@ -233,7 +233,7 @@ export default function CommunityFeed() {
                   <label className="fn__checkbox">
                     <input type="checkbox" />Upscaled
                     <span className="checkmark" />
-                    <img src="svg/check.svg" alt="" className="fn__svg" />
+                    <img src="/svg/check.svg" alt="" className="fn__svg" />
                   </label>
                 </div>
               </div>
@@ -242,11 +242,11 @@ export default function CommunityFeed() {
                   <span>All</span>
                 </a>
                 <a className={`filter__trending ${filterKey == "trending" ? "enabled" : "disabled"} techwave_fn_button has__icon small__border`} onClick={handleFilterKeyChange('trending')}  >
-                  <img src="svg/thunder.svg" alt="" className="fn__svg" />
+                  <img src="/svg/thunder.svg" alt="" className="fn__svg" />
                   <span>Trending</span>
                 </a>
                 <a className={`filter__new ${filterKey == "new" ? "enabled" : "disabled"} techwave_fn_button has__icon small__border`} onClick={handleFilterKeyChange("new")}>
-                  <img src="svg/new.svg" alt="" className="fn__svg" />
+                  <img src="/svg/new.svg" alt="" className="fn__svg" />
                   <span>New</span>
                 </a>
               </div>
@@ -301,7 +301,7 @@ export default function CommunityFeed() {
                 <div className="lightbox__tlbar_left">
                   <div className="item item__share fn__icon_options medium_size">
                     <Link href="#" className="item__btn fn__icon_button">
-                      <img src="svg/share.svg" alt="" className="fn__svg" />
+                      <img src="/svg/share.svg" alt="" className="fn__svg" />
                     </Link>
                     <div className="fn__icon_popup">
                       <ul>
@@ -316,7 +316,7 @@ export default function CommunityFeed() {
                   </div>
                   <div className="item item__download fn__icon_options medium_size">
                     <Link href="#" className="item__btn fn__icon_button">
-                      <img src="svg/download.svg" alt="" className="fn__svg" />
+                      <img src="/svg/download.svg" alt="" className="fn__svg" />
                     </Link>
                     <div className="fn__icon_popup">
                       <ul>
@@ -342,10 +342,10 @@ export default function CommunityFeed() {
                 </div>
                 <div className="lightbox__tlbar_center">
                   <Link href="#" className="img_nav nav_prev">
-                    <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                    <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                   </Link>
                   <Link href="#" className="img_nav nav_next">
-                    <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                    <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                   </Link>
                 </div>
                 <div className="lightbox__tlbar_right">
@@ -366,7 +366,7 @@ export default function CommunityFeed() {
                   <span className="text">Follow</span>
                 </Link>
                 <a className="fn__closer fn__icon_button" onClick={() => setLightbox(false)}>
-                  <img src="svg/close.svg" alt="" className="fn__svg" />
+                  <img src="/svg/close.svg" alt="" className="fn__svg" />
                 </a>
               </div>
               <div className="item__details">
@@ -379,7 +379,7 @@ export default function CommunityFeed() {
                     <h3 className="model_title">{Value.title}</h3>
                   </div>
                   <Link href="image-generation" className="fn__icon_button">
-                    <img src="svg/arrow.svg" alt="" className="fn__svg" />
+                    <img src="/svg/arrow.svg" alt="" className="fn__svg" />
                   </Link>
                 </div>
                 <div className="fn__prompt_details">

@@ -50,7 +50,7 @@ export default function FinetunedModel() {
                                 <div className="filter__order">
                                     <div className="fn__icon_options medium_size align_right">
                                         <span className="fn__icon_button">
-                                            <img src="svg/filter.svg" alt=""  className="fn__svg" />
+                                            <img src="/svg/filter.svg" alt="" className="fn__svg" />
                                         </span>
                                         <div className="fn__icon_popup">
                                             <ul>
@@ -86,18 +86,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/1.jpg" alt=""  />
+                                                        <img src="img/models/1.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -107,18 +107,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/2.jpg" alt=""  />
+                                                        <img src="img/models/2.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -128,18 +128,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/3.jpg" alt=""  />
+                                                        <img src="img/models/3.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -149,18 +149,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/4.jpg" alt=""  />
+                                                        <img src="img/models/4.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -170,18 +170,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/5.jpg" alt=""  />
+                                                        <img src="img/models/5.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -191,18 +191,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/6.jpg" alt=""  />
+                                                        <img src="img/models/6.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -212,18 +212,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/7.jpg" alt=""  />
+                                                        <img src="img/models/7.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -233,18 +233,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/8.jpg" alt=""  />
+                                                        <img src="img/models/8.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -254,18 +254,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/9.jpg" alt=""  />
+                                                        <img src="img/models/9.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -275,18 +275,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/10.jpg" alt=""  />
+                                                        <img src="img/models/10.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -300,18 +300,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/1.jpg" alt=""  />
+                                                        <img src="img/models/1.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -321,18 +321,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/2.jpg" alt=""  />
+                                                        <img src="img/models/2.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -342,18 +342,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/3.jpg" alt=""  />
+                                                        <img src="img/models/3.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -363,18 +363,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/4.jpg" alt=""  />
+                                                        <img src="img/models/4.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -384,18 +384,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/5.jpg" alt=""  />
+                                                        <img src="img/models/5.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -405,18 +405,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/6.jpg" alt=""  />
+                                                        <img src="img/models/6.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -426,18 +426,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/7.jpg" alt=""  />
+                                                        <img src="img/models/7.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -447,18 +447,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/8.jpg" alt=""  />
+                                                        <img src="img/models/8.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -468,18 +468,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/9.jpg" alt=""  />
+                                                        <img src="img/models/9.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -489,18 +489,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/10.jpg" alt=""  />
+                                                        <img src="img/models/10.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -514,18 +514,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/1.jpg" alt=""  />
+                                                        <img src="img/models/1.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -535,18 +535,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/2.jpg" alt=""  />
+                                                        <img src="img/models/2.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -556,18 +556,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/3.jpg" alt=""  />
+                                                        <img src="img/models/3.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -577,18 +577,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/4.jpg" alt=""  />
+                                                        <img src="img/models/4.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -598,18 +598,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/5.jpg" alt=""  />
+                                                        <img src="img/models/5.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -619,18 +619,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/6.jpg" alt=""  />
+                                                        <img src="img/models/6.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -640,18 +640,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/7.jpg" alt=""  />
+                                                        <img src="img/models/7.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -661,18 +661,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/8.jpg" alt=""  />
+                                                        <img src="img/models/8.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -682,18 +682,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/9.jpg" alt=""  />
+                                                        <img src="img/models/9.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -703,18 +703,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/10.jpg" alt=""  />
+                                                        <img src="img/models/10.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -728,18 +728,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark has__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/1.jpg" alt=""  />
+                                                        <img src="img/models/1.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
@@ -749,18 +749,18 @@ export default function FinetunedModel() {
                                             <li className="fn__model_item">
                                                 <div className="item">
                                                     <Link href="#" className="fn__bookmark">
-                                                        <img src="svg/bookmark.svg" alt=""  className="fn__svg hasntbook" />
-                                                        <img src="svg/bookmarked.svg" alt=""  className="fn__svg hasbook" />
+                                                        <img src="/svg/bookmark.svg" alt="" className="fn__svg hasntbook" />
+                                                        <img src="/svg/bookmarked.svg" alt="" className="fn__svg hasbook" />
                                                     </Link>
                                                     <div className="img">
-                                                        <img src="img/models/2.jpg" alt=""  />
+                                                        <img src="img/models/2.jpg" alt="" />
                                                     </div>
                                                     <div className="item__info">
                                                         <h3 className="title">GameVisuals</h3>
                                                         <p className="desc">A versatile model great at both photorealism and anime, includes noise offset training... by Lykon.</p>
                                                     </div>
                                                     <div className="item__author">
-                                                        <img src="img/user/user.jpg" alt=""  />
+                                                        <img src="img/user/user.jpg" alt="" />
                                                         <h3 className="author_name">Caden</h3>
                                                     </div>
                                                 </div>
