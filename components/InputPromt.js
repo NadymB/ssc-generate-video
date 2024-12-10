@@ -41,17 +41,20 @@ function InputPrompt() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-[90%] rounded-2xl flex flex-col bg-black_promt items-center justify-center text-sm font-medium text-center text-white"
+      className="w-[90%] rounded-2xl flex flex-col bg-gray_background dark:bg-black_promt items-center justify-center text-sm font-medium text-center text-white"
     >
       <ul className="flex flex-row p-4 gap-5">
         <li className="relative flex flex-col items-center justify-center h-full">
           <button
             type="button"
             onClick={() => setStateActive("text")}
-            className={`mt-2 mb-2 ${stateActive === "text" ? "button-tab-active" : ""
-              }`}
+            className={`mt-2 mb-2 ${
+              stateActive === "text" ? "button-tab-active" : ""
+            }`}
           >
-            <span className="editor-header-tab-item">Text to Video</span>
+            <span className="editor-header-tab-item dark:text-white_text text-black_text">
+              Text to Video
+            </span>
           </button>
           {stateActive === "text" && (
             <div className="absolute bottom-1 bg-white h-[1px] border-[2px] w-[80%]"></div>
@@ -61,10 +64,13 @@ function InputPrompt() {
           <button
             type="button"
             onClick={() => setStateActive("image")}
-            className={`mt-2 mb-2 ${stateActive === "image" ? "button-tab-active" : ""
-              }`}
+            className={`mt-2 mb-2 ${
+              stateActive === "image" ? "button-tab-active" : ""
+            }`}
           >
-            <span className="editor-header-tab-item">Text to Video</span>
+            <span className="editor-header-tab-item dark:text-white_text text-black_text">
+              Text to Video
+            </span>
           </button>
           {stateActive === "image" && (
             <div className="absolute bottom-1 bg-white h-[1px] border-[2px] w-[80%]"></div>
@@ -72,16 +78,16 @@ function InputPrompt() {
         </li>
       </ul>
 
-      <div className="flex flex-col bg-gray_promt w-full rounded-2xl border-b border-gray-200 min-h-[150px]">
+      <div className="flex flex-col bg-[#65636348] dark:bg-gray_promt w-full rounded-2xl border-b border-gray-200 min-h-[150px]">
         <textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          className="border-0 rounded-2xl p-4 mb-10 min-h-[150px] bg-gray_promt text-white"
+          className="border-0 rounded-2xl p-4 mb-10 min-h-[150px]  text-gray-900 dark:text-white_text"
           placeholder="Share your story here"
-        ></textarea>
+        />
 
         {stateActive === "image" && (
-          <div className="w-full relative">
+          <div className="w-full relative  ">
             <div className="ml-4 mb-2 gap-2 flex flex-col relative">
               {selectedImage && (
                 <div className="relative w-fit">
@@ -120,14 +126,15 @@ function InputPrompt() {
                 />
 
                 <div
-                  className={`absolute top-0 h-full w-full flex items-center justify-center ${isHovered ? "cursor-pointer" : ""
-                    }`}
+                  className={`absolute top-0 h-full w-full flex items-center justify-center ${
+                    isHovered ? "cursor-pointer" : ""
+                  }`}
                 >
                   <input
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer "
                   />
                 </div>
               </div>

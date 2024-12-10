@@ -12,7 +12,7 @@ const AlertNotification = () => {
   });
   return (
     <div className="mt-2  left-0 right-0 fixed z-10 adm-toast-main adm-toast-main-icon">
-      <div class="adm-toast-icon">
+      <div className="adm-toast-icon">
         {state === "success" ? (
           <img src="/svg/success.svg" alt="error" width="24" height="25" />
         ) : (

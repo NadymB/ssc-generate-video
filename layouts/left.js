@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useAuth } from "@/context/authContext";
+import { useSelector } from "react-redux";
 
 const data = [
   {
@@ -107,13 +107,17 @@ const data = [
 
 export default function Left({ activeTrueFalse, activeMobileMenu }) {
   const pathname = usePathname();
-  const { user } = useAuth();
+  const { profile: user } = useSelector((state) => {
+    return {
+      profile: state?.authenReducer?.profile,
+    };
+  });
   const [isToggle, setToggle] = useState(false);
   const toggleHandle = () => setToggle(!isToggle);
 
   return (
     <>
-      <div className="techwave_fn_leftpanel">
+      <div className="techwave_fn_leftpanel ">
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
@@ -168,8 +172,9 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 <li key={i}>
                   <Link
                     href={`${item.pathname}`}
-                    className={`fn__tooltip menu__item ${item.pathname === pathname ? "active" : ""
-                      }`}
+                    className={`fn__tooltip menu__item ${
+                      item.pathname === pathname ? "active" : ""
+                    }`}
                     title={item.title}
                   >
                     <span className="icon">
@@ -192,8 +197,9 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                   <li key={i}>
                     <Link
                       href={`${item.pathname}`}
-                      className={`fn__tooltip menu__item ${item.pathname === pathname ? "active" : ""
-                        }`}
+                      className={`fn__tooltip menu__item ${
+                        item.pathname === pathname ? "active" : ""
+                      }`}
                       title={item.title}
                     >
                       <span className="icon">

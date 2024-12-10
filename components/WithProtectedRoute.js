@@ -1,18 +1,19 @@
 "use client";
-import { useAuth } from "@/context/authContext";
+
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const withProtectedRoute = (WrappedComponent) => {
   return (props) => {
-    // const { authToken } = useAuth();
-    const { authToken, login } = useAuth();
+    const { token: authToken } = useSelector((state) => {
+      return {
+        token: state?.authenReducer?.token,
+      };
+    });
     const router = useRouter();
 
-
     useEffect(() => {
-
-
       if (!authToken) {
         router.push("/sign-in");
       }

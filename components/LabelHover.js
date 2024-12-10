@@ -67,7 +67,7 @@ const LabelHover = () => {
           'url("https://cdn.hailuoai.com/pre/2024-11-12-16/video_cover/1731401761511890699-307238001435230211.jpg?x-oss-process=image/resize,p_50/format,webp")',
       }}
     >
-      <div class="absolute left-0 top-0 h-full w-full rounded-b bg-[rgba(19,19,19,0.7)] backdrop-blur-[30px] [-webkit-backdrop-filter:blur(30px)]"></div>
+      <div className="absolute left-0 top-0 h-full w-full rounded-b bg-[rgba(19,19,19,0.7)] backdrop-blur-[30px] [-webkit-backdrop-filter:blur(30px)]"></div>
       <div className="z-20 all_options flex flex-wrap gap-3  justify-center">
         <button className="flex-grow flex justify-center items-center rounded-[8px] p-2 border border-transparent hover:border-[rgba(214,211,255,0.10)] bg-[rgba(214,241,255,0.12)] hover:bg-[rgba(214,241,255,0.14)] ">
           <img

@@ -337,9 +337,7 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
 
   return (
     <>
-      <div className="techwave_fn_leftpanel flex flex-col items-center">
-        <div className="mobile_extra_closer" />
-        {/* logo (left panel) */}
+      <div className="techwave_fn_leftpanel flex flex-col items-center  dark:bg-black_background ">
         <div className="leftpanel_logo d-flex justify-content-center mb-5 w-full">
           <Link href="/" className="fn_logo">
             <span className="full_logo">
@@ -368,24 +366,8 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               />
             </span>
           </Link>
-          {/* <a
-            className="fn__closer fn__icon_button desktop_closer"
-            onClick={activeTrueFalse}
-          >
-            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
-          </a>
-          <a
-            className="fn__closer fn__icon_button mobile_closer"
-            onClick={activeMobileMenu}
-          >
-            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
-          </a> */}
         </div>
-        {/* !logo (left panel) */}
-        {/* content (left panel) */}
         <InputPromt></InputPromt>
-
-        {/* !content (left panel) */}
       </div>
     </>
   );
