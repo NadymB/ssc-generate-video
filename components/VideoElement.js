@@ -73,7 +73,7 @@ const VideoElement = (props) => {
     event.preventDefault();
     console.log("Video id: ", videoId);
     router.push(`/fullscreen-video/${videoId ?? 1}`);
-  }
+  };
 
   const handleSeek = (event) => {
     const seekTime = event.target.value;
@@ -85,7 +85,9 @@ const VideoElement = (props) => {
 
   return (
     <div
-      className="h-fit max-w-full rounded-lg flex flex-col relative"
+      className={`${
+        props?.className ? props?.className : "h-fit max-w-full"
+      } rounded-lg flex flex-col relative`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

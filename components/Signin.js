@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/authContext";
+
 import { Toaster } from "react-hot-toast";
 import { login, loadProfile } from "@/redux/actions/authenAction";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const { authToken, login } = useAuth();
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -39,7 +39,6 @@ export default function Signin() {
         toast.error("Please enter both username and password!");
         return; // Exit the function if fields are empty
       }
-      console.log("authToken from useAuth:", username, password);
 
       dispatch(
         login({

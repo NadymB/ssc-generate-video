@@ -11,9 +11,10 @@ export function login({ username, password }) {
 }
 
 export function loginSuccess(data) {
+  console.log(data);
   return {
     type: actionTypes.LOGIN_SUCCESS,
-    data,
+    payload: data,
   };
 }
 export function logOut() {

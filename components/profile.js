@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { useAuth } from "@/context/authContext";
+
 import {
   Row,
   Col,
@@ -14,6 +14,7 @@ import {
   Tag,
   Flex,
 } from "antd";
+import { useDispatch } from "react-redux";
 import { changePasswordApi } from "@/app/api/Auth";
 import { fetchDetailUserApi, updateUserApi } from "@/app/api/User";
 import { css } from "@emotion/css";
@@ -26,16 +27,22 @@ import {
   ProFromMulti,
 } from "@ant-design/pro-components";
 import { Form } from "antd";
+import { useSelector } from "react-redux";
 // import { toast } from "react-toastify";
 import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
-  const { user, fetchProfile } = useAuth();
+  const { profile: user } = useSelector((state) => {
+    return {
+      profile: state?.authenReducer?.profile,
+    };
+  });
   const [detailUser, setDetailUser] = useState({});
   const [modalVisit, setModalVisit] = useState(false);
   const restFormRef = useRef();
   const formRef = useRef();
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [updateModalVisit, setUpdateModalVisit] = useState(false);
 
@@ -86,7 +93,7 @@ export default function Profile() {
       if (response?.status === 200) {
         toast.success("Cập nhật thông tin thành công!");
         updateRestFormRef.current?.resetFields();
-        fetchProfile();
+        dispatch(loadProfile());
         setUpdateModalVisit(false);
       }
     } catch (error) {
@@ -188,7 +195,7 @@ export default function Profile() {
                         }
                         key={user?.group}
                       >
-                        {user?.group.toUpperCase()}
+                        {user?.group?.toUpperCase()}
                       </Tag>
                     </div>
                   </div>

@@ -1,3 +1,5 @@
+const { white } = require("material-ui/styles/colors");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
@@ -14,6 +16,10 @@ module.exports = {
 
     extend: {
       colors: {
+        black_background: "#111213",
+        black_text: "#000000",
+        white_text: "#ffffff",
+        gray_background: "#f6f7f9",
         black_promt: "#191a1f",
         gray_promt: "#26272d",
         white_text: "#FFFFFF",
@@ -43,6 +49,7 @@ module.exports = {
         gray_report: "rgba(183, 183, 183, 1)",
         green_form_reason: "rgba(64, 199, 154, 0.5)",
       },
+
       fontFamily: {
         baloo2: ['"Baloo Bhai 2"'],
         inter: ["Inter", "sans-serif"],

@@ -2,6 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
+
 /* Add this CSS to style the thumb of the input range */
 .thumb-white::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -36,25 +38,43 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .button-tab-active,
 .editor-header-tab-item:hover {
   text-shadow: none !important;
-  background: -moz-linear-gradient(
-    190deg,
-    #fffdee 7.5%,
-    #fff 50%,
-    #ffb7eb 92.5%
-  ) !important;
-  background: linear-gradient(
-    260deg,
-    #fffdee 7.5%,
-    #fff 50%,
-    #ffb7eb 92.5%
-  ) !important;
+    background: -moz-linear-gradient(190deg,
+        #161506 7.5%,
+        #055d18 50%,
+        #20b107 92.5%) !important;
+    background: linear-gradient(260deg,
+        #2e2d2b 7.5%,
+        #199b19 50%,
+        #40a930 92.5%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+ 
+}
+
+
+/* Dark mode styles */
+[data-techwave-skin="dark"] .button-tab-active,
+[data-techwave-skin="dark"] .editor-header-tab-item:hover {
+text-shadow: none !important;
+  background: -moz-linear-gradient(190deg,
+      #fffdee 7.5%,
+      #fff 50%,
+      #ffb7eb 92.5%) !important;
+  background: linear-gradient(260deg,
+      #fffdee 7.5%,
+      #fff 50%,
+      #ffb7eb 92.5%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
+
+
 
 .create-btn .createBtn-hoverEffect {
   position: absolute;

@@ -14,14 +14,12 @@ function RootLayout({ children }) {
   const store = wrapper.useStore();
   return (
     <Provider store={store}>
-      <AuthProvider>
-        <html lang="en" className="toggleMenu">
-          <body>
-            {children}
-            <RouteChangeHandler />
-          </body>
-        </html>
-      </AuthProvider>
+      <html lang="en" className="toggleMenu">
+        <body>
+          {children}
+          <RouteChangeHandler />
+        </body>
+      </html>
     </Provider>
   );
 }

@@ -29,8 +29,8 @@ function* loginSaga({ payload }) {
         console.log(token);
         localStorage.setItem("authToken", token);
         console.log("User logged in successfully");
+        yield put(loginSuccess(token));
         window.location.href = "/";
-        yield put(loginSuccess(response?.data?.data));
       } else {
         throw new Error("Invalid login response");
       }

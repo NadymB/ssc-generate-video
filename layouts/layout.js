@@ -70,7 +70,7 @@ export default function Layout({ children, leftMenu }) {
     return () => clearTimeout(timeout); // Clear timeout on cleanup
   }, [visibility]);
   return (
-    <div className="relative">
+    <div className="relative  dark:bg-black_background bg-white">
       {/* Moving Submenu */}
       {visibility && <AlertNotification></AlertNotification>}
 
@@ -82,7 +82,7 @@ export default function Layout({ children, leftMenu }) {
       {/* <Loading/> */}
       {/* !Preloader */}
       {/* MAIN WRAPPER */}
-      <div className="techwave_fn_wrapper">
+      <div className="techwave_fn_wrapper dark:bg-black_background bg-white">
         <div className="techwave_fn_wrap">
           {/* Searchbar */}
           <Search OpenSearch={OpenSearch} searchToggle={searchToggle} />
@@ -113,7 +113,7 @@ export default function Layout({ children, leftMenu }) {
           {/* !LEFT PANEL */}
           {/* !LEFT PANEL */}
           {/* CONTENT */}
-          <div className="techwave_fn_content">
+          <div className="techwave_fn_content dark:bg-black_background bg-white">
             {/* PAGE (all pages go inside this div) */}
             <div className="techwave_fn_page">
               <Toaster position="top-center" />

@@ -5,7 +5,7 @@ import { Menu } from "@headlessui/react";
 import screenfull from "screenfull";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/context/authContext";
+
 import { logOut } from "@/redux/actions/authenAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -62,6 +62,14 @@ export default function Header({ searchToggle }) {
     if (typeof window !== "undefined") {
       // Update local storage and document attribute
       localStorage.setItem("frenify_skin", skin);
+      if (skin == "dark") {
+        document.documentElement.classList.add("dark");
+        console.log("dark skin");
+      } else {
+        document.documentElement.classList.remove("dark");
+        console.log("darkSkin");
+      }
+
       document.documentElement.setAttribute("data-techwave-skin", skin);
     }
   }, [skin]);
@@ -101,45 +109,9 @@ export default function Header({ searchToggle }) {
 
   return (
     <>
-      <header className="techwave_fn_header">
-        {/* Header left: token information */}
+      <header className="techwave_fn_header dark:bg-black_background">
         <div className="header__left">
           <div className="fn__token_info">
-            {/* <span className="token_summary">
-              <span className="count">120</span>
-              <span className="text">
-                Tokens
-                <br />
-                Remain
-              </span>
-            </span> */}
-            {/* <Link href="/pricing" className="token_upgrade techwave_fn_button">
-              <span>Upgrade</span>
-            </Link> */}
-
-            {/* <ul className="group__list">
-              {data.slice(0, 4).map((item, i) => (
-                <li key={i}>
-                  <Link
-                    href={`${item.pathname}`}
-                    className={`fn__tooltip menu__item ${
-                      item.pathname === pathname ? "active" : ""
-                    }`}
-                    title={item.title}
-                  >
-                    <span className="icon">
-                      <img src={item.img} alt="" className="fn__svg" />
-                    </span>
-                    <span className="text">
-                      {item.title}
-                      {item.counter && (
-                        <span className="count">{item.counter}</span>
-                      )}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul> */}
             <div className="group__list d-flex mx-auto">
               {!ex_routes.includes(pathname) & (user?.group != "EMPLOYEE") &&
                 data.slice(0, 4).map((item, i) => (
@@ -147,7 +119,7 @@ export default function Header({ searchToggle }) {
                     href={`${item.pathname}`}
                     className="fn__tooltip menu__item d-flex align-items-center justify-content-between"
                     title={item.title}
-                    id={i}
+                    key={i}
                   >
                     <span className="icon">
                       <img
@@ -156,87 +128,16 @@ export default function Header({ searchToggle }) {
                         className="fn__svg"
                       />
                     </span>
-                    {/* <span>Management</span>
-                     */}
-                    <span className="text ms-2">
-                      {/* User Management */}
-                      {item.title}
-                      {/* {item.title} */}
-                      {/* {item.counter && <span className="count">{item.counter}</span>} */}
-                    </span>
+
+                    <span className="text ms-2">{item.title}</span>
                   </Link>
                 ))}
             </div>
           </div>
         </div>
-        {/* /Header left: token information */}
-        {/* Header right: navigation bar */}
+
         <div className="header__right">
           <div className="fn__nav_bar">
-            {/* Search (bar item) */}
-            {/* <div className="bar__item bar__item_search">
-              <a
-                className="item_opener fn__tooltip"
-                title="Search"
-                onClick={searchToggle}
-              >
-                <img src="/svg/search.svg" alt="" className="fn__svg" />
-              </a>
-              <div className="item_popup" data-position="right">
-                <input type="text" placeholder="Search" />
-              </div>
-            </div> */}
-            {/* !Search (bar item) */}
-            {/* Notification (bar item) */}
-            {/* <Menu
-              as="div"
-              className="bar__item bar__item_notification has_notification opened"
-            >
-              <Menu.Button
-                as="nav"
-                id="Button1"
-                className="item_opener fn__tooltip"
-                title="Notifications"
-              >
-                <img src="/svg/bell.svg" alt="" className="fn__svg" />
-              </Menu.Button>
-              <Menu.Items as="div" className="item_popup" data-position="right">
-                <div className="ntfc_header">
-                  <h2 className="ntfc_title">Notifications</h2>
-                  <Link href="/notifications">View All</Link>
-                </div>
-                <div className="ntfc_list">
-                  <ul>
-                    <li>
-                      <p>
-                        <Link href="/notification-single">
-                          Version 4.1.2 has been launched
-                        </Link>
-                      </p>
-                      <span>34 Min Ago</span>
-                    </li>
-                    <li>
-                      <p>
-                        <Link href="/notification-single">
-                          Video Generation has been released
-                        </Link>
-                      </p>
-                      <span>12 Apr</span>
-                    </li>
-                    <li>
-                      <p>
-                        <Link href="/notification-single">
-                          Terms has been updated
-                        </Link>
-                      </p>
-                      <span>12 Apr</span>
-                    </li>
-                  </ul>
-                </div>
-              </Menu.Items>
-            </Menu> */}
-            {/* !Notification (bar item) */}
-            {/* Full Screen (bar item) */}
             <div className="bar__item bar__item_fullscreen">
               <a
                 className={`item_opener fn__tooltip ${
@@ -257,33 +158,7 @@ export default function Header({ searchToggle }) {
                 />
               </a>
             </div>
-            {/* !Full Screen (bar item) */}
-            {/* Language (bar item) */}
-            {/* <Menu as="div" className="bar__item bar__item_language opened">
-              <Menu.Button
-                as="nav"
-                id="Button2"
-                className="item_opener fn__tooltip"
-                title="Language"
-              >
-                <img src="/svg/language.svg" alt="" className="fn__svg" />
-              </Menu.Button>
-              <Menu.Items as="div" className="item_popup" data-position="right">
-                <ul>
-                  <li>
-                    <span className="active">English</span>
-                  </li>
-                  <li>
-                    <Link href="#">Spanish</Link>
-                  </li>
-                  <li>
-                    <Link href="#">French</Link>
-                  </li>
-                </ul>
-              </Menu.Items>
-            </Menu> */}
-            {/* !Language (bar item) */}
-            {/* Site Skin (bar item) */}
+
             <div className="bar__item bar__item_skin">
               <a
                 className="item_opener fn__tooltip"

@@ -18,8 +18,7 @@ function reducer(state = initialState, action) {
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        token: data?.token,
-
+        token: action.payload,
         loading: false,
       };
     case actionTypes.LOGOUT:
