@@ -22,6 +22,13 @@ const LabelHover = () => {
       .writeText(promptText)
       .then(() => {
         console.log("Prompt copied to clipboard!");
+        dispatch(
+          alertAction({
+            message: "Copied.",
+            visibility: true,
+            state: "success",
+          })
+        );
       })
       .catch((err) => {
         console.error("Failed to copy: ", err);
@@ -143,23 +150,7 @@ const LabelHover = () => {
             className="absolute bottom-0 left-0 right-0 top-0 z-50 flex cursor-pointer items-center justify-center rounded  bg-[rgba(21,22,27,0.7)] p-2"
             onClick={handleCopyPrompt}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.33301 17L13.9997 17C15.571 17 16.3567 17 16.8449 16.5118C17.333 16.0237 17.333 15.238 17.333 13.6667L17.333 6"
-                stroke="white"
-                strokeWidth="1.66667"
-              ></path>
-              <path
-                d="M14.333 12.3333C14.333 13.119 14.333 13.5118 14.0889 13.7559C13.8449 14 13.452 14 12.6663 14L4.99967 14C4.214 14 3.82116 14 3.57708 13.7559C3.33301 13.5118 3.33301 13.119 3.33301 12.3333L3.33301 2.66667C3.33301 1.88099 3.33301 1.48816 3.57708 1.24408C3.82116 1 4.214 1 4.99967 1L12.6663 1C13.452 1 13.8449 1 14.0889 1.24408C14.333 1.48816 14.333 1.88099 14.333 2.66667L14.333 12.3333Z"
-                fill="white"
-              ></path>
-            </svg>
+            <img src="/svg/copy.svg" />
             <span
               className="ml-2 text-[13px] font-normal leading-[24px] text-white"
               aria-label="Copy Prompt"

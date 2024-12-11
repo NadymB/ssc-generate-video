@@ -104,16 +104,17 @@ const VideoElement = (props) => {
   return (
     <div
       className={`${
-        props?.className ? props?.className : "h-fit max-w-full"
+        props?.className ? props?.className : "max-w-full"
       } rounded-lg flex flex-col relative`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full relative rounded-lg">
+      <div className="w-full h-fit relative rounded-lg">
         <video
           ref={videoRef}
           muted={isMuted}
-          className="w-full cursor-pointer rounded-lg"
+          loop={true}
+          className="w-full  cursor-pointer rounded-lg"
           id={props.id}
           autoPlay={props?.autoPlay}
           onMouseDown={handleMouseDown}

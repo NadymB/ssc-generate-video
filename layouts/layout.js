@@ -70,65 +70,34 @@ export default function Layout({ children, leftMenu }) {
     return () => clearTimeout(timeout); // Clear timeout on cleanup
   }, [visibility]);
   return (
-    <div className="relative  dark:bg-black_background bg-white">
+    <div className="relative h-full w-full  dark:bg-black_background bg-white">
       {/* Moving Submenu */}
       {visibility && <AlertNotification></AlertNotification>}
 
-      {/* <div className="techwave_fn_fixedsub">
-        <ul />
-      </div> */}
-      {/* !Moving Submenu */}
-      {/* Preloader */}
-      {/* <Loading/> */}
-      {/* !Preloader */}
-      {/* MAIN WRAPPER */}
-      <div className="techwave_fn_wrapper dark:bg-black_background bg-white">
-        <div className="techwave_fn_wrap">
-          {/* Searchbar */}
-          <Search OpenSearch={OpenSearch} searchToggle={searchToggle} />
-          {/* !Searchbar */}
-          {/* HEADER */}
-          <Header searchToggle={searchToggle} />
-          {/* !HEADER */}
-          {/* LEFT PANEL */}
-          {/* LEFT PANEL */}
-          {/* {pathname === "/user-profile" && (
-            <Left
-              activeTrueFalse={activeTrueFalse}
-              activeMobileMenu={activeMobileMenu}
-            />
-          )} */}
+      <div className="h-full dark:bg-black_background bg-white">
+        {/* <Search OpenSearch={OpenSearch} searchToggle={searchToggle} /> */}
 
-          {pathname === "/music-generation/" || pathname === "/" ? (
-            <GenSettingsLeft
-              activeTrueFalse={activeTrueFalse}
-              activeMobileMenu={activeMobileMenu}
-            />
-          ) : (
-            <Left
-              activeTrueFalse={activeTrueFalse}
-              activeMobileMenu={activeMobileMenu}
-            />
-          )}
-          {/* !LEFT PANEL */}
-          {/* !LEFT PANEL */}
-          {/* CONTENT */}
-          <div className="techwave_fn_content dark:bg-black_background bg-white">
-            {/* PAGE (all pages go inside this div) */}
-            <div className="techwave_fn_page">
-              <Toaster position="top-center" />
-              {React.cloneElement(children, { forceStop, setForceStop })}
-              {/* {children} */}
-            </div>
-            {/* !PAGE (all pages go inside this div) */}
-            {/* FOOTER (inside the content) */}
-            <Footer />
-            {/* !FOOTER (inside the content) */}
-          </div>
-          {/* !CONTENT */}
+        <Header searchToggle={searchToggle} />
+
+        {pathname === "/music-generation/" || pathname === "/" ? (
+          <GenSettingsLeft
+            activeTrueFalse={activeTrueFalse}
+            activeMobileMenu={activeMobileMenu}
+          />
+        ) : (
+          <Left
+            activeTrueFalse={activeTrueFalse}
+            activeMobileMenu={activeMobileMenu}
+          />
+        )}
+
+        <div className="techwave_fn_content h-[calc(100%-100px)] dark:bg-black_background bg-white">
+          <Toaster position="top-center" />
+          {React.cloneElement(children, { forceStop, setForceStop })}
+
+          <Footer />
         </div>
       </div>
-      {/* !MAIN WRAPPER */}
     </div>
   );
 }

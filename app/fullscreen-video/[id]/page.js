@@ -20,9 +20,7 @@ const page = () => {
 
   return (
     <Layout leftMenu>
-      <FullscreenVideo
-      // videoId={id}
-      />
+      <FullscreenVideo />
     </Layout>
   );
 };

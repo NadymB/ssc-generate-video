@@ -164,24 +164,35 @@ export default function VideoGeneration() {
         "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WhatCarCanYouGetForAGrand.jpg",
       title: "What care can you get for a grand?",
     },
+    {
+      description:
+        "The Smoking Tire meets up with Chris and Jorge from CarsForAGrand.com to see just how far $1,000 can go when looking for a car.",
+      sources: [
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+      ],
+      subtitle: "By Garage419",
+      thumb:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WhatCarCanYouGetForAGrand.jpg",
+      title: "What care can you get for a grand?",
+    },
   ];
 
   return (
     <>
-      <div className="techwave_fn_image_generation_page">
-        <div className="generation__page">
+      <div className="techwave_fn_image_generation_page ">
+        <div className="relative dark:bg-black_background">
           <div className="generation_history">
-            <div className="p-2 grid grid-cols-4 md:grid-cols-2 gap-2 justify-center">
-              {Array.from({ length: Math.ceil(videos.length / 4) }).map(
+            <div className="grid grid-cols-4 md:grid-cols-2 gap-1">
+              {Array.from({ length: Math.ceil(videos.length / 3) }).map(
                 (_, rowIndex) => (
-                  <div className="grid gap-2" key={rowIndex}>
+                  <div className="grid gap-1 h-fit" key={rowIndex}>
                     {videos
-                      .slice(rowIndex * 4, rowIndex * 4 + 4)
+                      .slice(rowIndex * 3, rowIndex * 3 + 3)
                       .map((video, index) => (
                         <VideoElement
                           url={video.sources[0]} // Use the first source URL
-                          videoId={rowIndex * 4 + index + 1} // Assign a unique ID
-                          key={rowIndex * 4 + index}
+                          videoId={rowIndex * 3 + index + 1} // Assign a unique ID
+                          key={rowIndex * 3 + index}
                         >
                           <LabelHover />
                         </VideoElement>
