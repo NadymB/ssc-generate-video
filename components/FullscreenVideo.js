@@ -218,7 +218,7 @@ function FullscreenVideo(props) {
   const videoContainerRef = useRef([]);
 
   const handleGoBackButton = () => {
-    router.back();
+    router.push("/");
   };
 
   const handleCopyPrompt = () => {
@@ -274,7 +274,7 @@ function FullscreenVideo(props) {
         ></div>
         <div
           onClick={handleGoBackButton}
-          className=" absolute w-fit   z-10 cursor-pointer rounded-lg bg-[#202128]"
+          className=" absolute w-fit   z-10 cursor-pointer rounded-lg bg-[#202128] transition-transform duration-150 transform hover:scale-125"
         >
           <img src="/svg/close-rectangle.svg" />
         </div>
@@ -298,7 +298,7 @@ function FullscreenVideo(props) {
             </div>
           </div>
 
-          <div className="w-[30%] h-full flex flex-col px-1 gap-3 justify-between">
+          <div className="w-[30%] h-full flex flex-col px-1 gap-3 justify-evenly">
             <div className="w-full flex flex-col items-center">
               <div
                 id="video_content_header"
@@ -361,9 +361,8 @@ function FullscreenVideo(props) {
           {videoList && videoList?.length >= 0 ? (
             videoList.map((video, index) => (
               <div
-                className={`${
-                  indexVideo == video.id ? "border" : ""
-                } overflow-clip rounded-lg cursor-pointer w-[100px] h-[56px]`}
+                className={`${indexVideo == video.id ? "border" : ""
+                  } overflow-clip rounded-lg cursor-pointer w-[100px] h-[56px]`}
                 ref={(element) => {
                   videoContainerRef.current[video.id] = element;
                 }}
