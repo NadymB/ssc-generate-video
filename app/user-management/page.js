@@ -6,6 +6,7 @@ import UserManagementTest from "@/components/UserManagementTest";
 import Layout from "@/layouts/layout";
 import React from "react";
 import withProtectedRoute from "@/components/WithProtectedRoute";
+import UserDataTable from "@/components/UserDataTable";
 
 const Page = () => {
   useEffect(() => {
@@ -14,7 +15,8 @@ const Page = () => {
 
   return (
     <Layout leftMenu>
-      <UserManagementTest />
+      {/* <UserManagementTest /> */}
+      <UserDataTable />
     </Layout>
   );
 };
