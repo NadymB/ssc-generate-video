@@ -366,6 +366,12 @@ export default function GenSettingsLeft({ activeTrueFalse, activeMobileMenu }) {
               />
             </span>
           </Link>
+          <a
+            className="fn__closer fn__icon_button mobile_closer"
+            onClick={activeMobileMenu}
+          >
+            <img src="../svg/arrow.svg" alt="" className="fn__svg" />
+          </a>
         </div>
         <InputPromt></InputPromt>
       </div>

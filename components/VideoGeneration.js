@@ -178,32 +178,26 @@ export default function VideoGeneration() {
   ];
 
   return (
-    <>
-      <div className="techwave_fn_image_generation_page ">
-        <div className="relative dark:bg-black_background">
-          <div className="generation_history">
-            <div className="grid grid-cols-4 md:grid-cols-2 gap-1">
-              {Array.from({ length: Math.ceil(videos.length / 3) }).map(
-                (_, rowIndex) => (
-                  <div className="grid gap-1 h-fit" key={rowIndex}>
-                    {videos
-                      .slice(rowIndex * 3, rowIndex * 3 + 3)
-                      .map((video, index) => (
-                        <VideoElement
-                          url={video.sources[0]} // Use the first source URL
-                          videoId={rowIndex * 3 + index + 1} // Assign a unique ID
-                          key={rowIndex * 3 + index}
-                        >
-                          <LabelHover />
-                        </VideoElement>
-                      ))}
-                  </div>
-                )
-              )}
+    <div className="p-3 ">
+      <div className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-1 mb-[150px] ">
+        {Array.from({ length: Math.ceil(videos.length / 3) }).map(
+          (_, rowIndex) => (
+            <div className="h-fit grid gap-1" key={rowIndex}>
+              {videos
+                .slice(rowIndex * 3, rowIndex * 3 + 3)
+                .map((video, index) => (
+                  <VideoElement
+                    url={video.sources[0]} // Use the first source URL
+                    videoId={rowIndex * 3 + index + 1} // Assign a unique ID
+                    key={rowIndex * 3 + index}
+                  >
+                    <LabelHover />
+                  </VideoElement>
+                ))}
             </div>
-          </div>
-        </div>
+          )
+        )}
       </div>
-    </>
+    </div>
   );
 }

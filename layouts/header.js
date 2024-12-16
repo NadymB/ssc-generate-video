@@ -197,7 +197,7 @@ export default function Header({ searchToggle }) {
                     <h2 className="user_name">
                       <span>{user?.group}</span>
                     </h2>
-                    <p>
+                    <div>
                       <Link
                         href="/mailto:cadmail@gmail.com"
                         className="user_email"
@@ -205,7 +205,7 @@ export default function Header({ searchToggle }) {
                         {/* cadmail@gmail.com */}
                         {user?.email}
                       </Link>
-                    </p>
+                    </div>
                   </div>
                 </div>
                 <div className="user_nav">

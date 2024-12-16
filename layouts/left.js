@@ -117,7 +117,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
 
   return (
     <>
-      <div className="techwave_fn_leftpanel ">
+      <div className="techwave_fn_leftpanel bg-black_background ">
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
@@ -129,13 +129,13 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 className="desktop_logo"
                 style={{ width: "100px", height: "100px" }}
               />
-              {/* <img
+              <img
                 src="../img/logo-retina-full.png"
                 alt=""
                 className="retina_logo"
-              /> */}
+              />
             </span>
-            {/* <span className="short_logo">
+            <span className="short_logo">
               <img
                 src="../img/logo-desktop-mini.png"
                 alt=""
@@ -146,7 +146,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 alt=""
                 className="retina_logo"
               />
-            </span> */}
+            </span>
           </Link>
           {/* <a
             className="fn__closer fn__icon_button desktop_closer"

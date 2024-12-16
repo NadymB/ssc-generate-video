@@ -218,7 +218,7 @@ function FullscreenVideo(props) {
   const videoContainerRef = useRef([]);
 
   const handleGoBackButton = () => {
-    router.back();
+    router.push("/");
   };
 
   const handleCopyPrompt = () => {
@@ -357,7 +357,7 @@ function FullscreenVideo(props) {
       </div>
 
       <div className="w-[15%] h-full  py-[50px]  justify-center items-center  ">
-        <div className="flex h-full flex-col gap-3 overflow-y-auto">
+        <div className="flex h-[90%] flex-col gap-3 overflow-y-auto">
           {videoList && videoList?.length >= 0 ? (
             videoList.map((video, index) => (
               <div

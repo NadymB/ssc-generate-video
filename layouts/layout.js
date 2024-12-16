@@ -22,6 +22,7 @@ export default function Layout({ children, leftMenu }) {
 
   useEffect(() => {
     setForceStop(true);
+    console.log(pathname);
   }, [pathname]);
 
   useEffect(() => {
@@ -70,11 +71,11 @@ export default function Layout({ children, leftMenu }) {
     return () => clearTimeout(timeout); // Clear timeout on cleanup
   }, [visibility]);
   return (
-    <div className="relative h-full w-full  dark:bg-black_background bg-white">
+    <div className="relative h-full w-full  dark:bg-black_background">
       {/* Moving Submenu */}
       {visibility && <AlertNotification></AlertNotification>}
 
-      <div className="h-full dark:bg-black_background bg-white">
+      <div className="h-full dark:bg-black_background">
         {/* <Search OpenSearch={OpenSearch} searchToggle={searchToggle} /> */}
 
         <Header searchToggle={searchToggle} />
@@ -90,11 +91,13 @@ export default function Layout({ children, leftMenu }) {
             activeMobileMenu={activeMobileMenu}
           />
         )}
-
-        <div className="techwave_fn_content h-[calc(100%-100px)] dark:bg-black_background bg-white">
-          <Toaster position="top-center" />
+        <Toaster position="top-center" />
+        <div
+          className={`${
+            pathname !== "/" ? "h-full" : ""
+          } techwave_fn_content dark:bg-black_background `}
+        >
           {React.cloneElement(children, { forceStop, setForceStop })}
-
           <Footer />
         </div>
       </div>

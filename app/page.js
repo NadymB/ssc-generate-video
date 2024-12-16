@@ -22,6 +22,7 @@ const MusicGeneration = dynamic(() => import("@/components/VideoGeneration"), {
 const Home = () => {
   useEffect(() => {
     document.title = "MHT AI | Music Generation";
+    console.log(document.title);
   }, []);
 
   // useEffect(() => {
